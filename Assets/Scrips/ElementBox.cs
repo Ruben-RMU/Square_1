@@ -10,26 +10,80 @@ namespace Scrips
         [Header("Box Identity")]
         public BoxType boxType;
 
-        [Header("Combination Prefabs")]
+        [Header("Combination Settings")]
         [SerializeField] private GameObject explosionEffectPrefab;
-        [SerializeField] private GameObject platformPrefab;
+
+        [Header("Magnetic Repulsion")]
+        [SerializeField] private float magneticRadius = 3f;  // Distance where magnetic force starts
+        [SerializeField] private float maxRepelForce = 15f; // Push strength at point-blank range
+
+        private Rigidbody2D _rb;
+
+        private void Awake()
+        {
+            _rb = GetComponent<Rigidbody2D>();
+        }
+
+        private void FixedUpdate()
+        {
+            // Continuously scan for opposite-type boxes nearby
+            ApplyMagneticRepulsion();
+        }
+
+        private void ApplyMagneticRepulsion()
+        {
+            // Find all colliders within the magnetic radius
+            Collider2D[] nearbyColliders = Physics2D.OverlapCircleAll(transform.position, magneticRadius);
+
+            foreach (var col in nearbyColliders)
+            {
+                // Skip checking ourselves
+                if (col.gameObject == gameObject) continue;
+
+                if (col.TryGetComponent<PushableBox>(out var otherBox))
+                {
+                    // Only apply repulsion between Light and Dark
+                    if (IsLightAndDarkPair(this.boxType, otherBox.boxType))
+                    {
+                        Vector2 directionAway = transform.position - col.transform.position;
+                        float distance = directionAway.magnitude;
+
+                        if (distance > 0)
+                        {
+                            // Force gets stronger the closer they get (inverse linear falloff)
+                            float proximityFactor = 4f - Mathf.Clamp01(distance / magneticRadius);
+                            float forceMagnitude = maxRepelForce * proximityFactor;
+
+                            // Apply continuous smooth magnetic force
+                            _rb.AddForce(directionAway.normalized * forceMagnitude, ForceMode2D.Force);
+                        }
+                    }
+                }
+            }
+        }
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            // Check if we collided with another box
             if (collision.gameObject.TryGetComponent<PushableBox>(out var otherBox))
             {
-                // Prevent double execution: only the box with the lower Instance ID handles the collision
-                if (GetInstanceID() < otherBox.GetInstanceID())
+                // Light + Light or Dark + Dark combination logic
+                if (this.boxType == otherBox.boxType)
                 {
-                    Vector3 contactPoint = collision.GetContact(0).point;
-                    CombineBoxes(this.boxType, otherBox.boxType, contactPoint);
+                    if (GetInstanceID() < otherBox.GetInstanceID())
+                    {
+                        Vector3 contactPoint = collision.GetContact(0).point;
+                        CombineBoxes(this.boxType, otherBox.boxType, contactPoint);
 
-                    // Destroy both physical boxes upon merging
-                    Destroy(otherBox.gameObject);
-                    Destroy(gameObject);
+                        Destroy(otherBox.gameObject);
+                        Destroy(gameObject);
+                    }
                 }
             }
+        }
+
+        private bool IsLightAndDarkPair(BoxType a, BoxType b)
+        {
+            return (a == BoxType.Light && b == BoxType.Dark) || (a == BoxType.Dark && b == BoxType.Light);
         }
 
         private void CombineBoxes(BoxType typeA, BoxType typeB, Vector3 point)
@@ -39,39 +93,34 @@ namespace Scrips
             {
                 TriggerExplosion(point);
             }
-            // 2. Dark + Dark = Teleport Player
+            // 2. Dark + Dark = Teleport Player to nearest target
             else if (typeA == BoxType.Dark && typeB == BoxType.Dark)
             {
                 TriggerTeleport(point);
-            }
-            // 3. Light + Dark = New Platform
-            else
-            {
-                SpawnPlatform(point);
             }
         }
 
         private void TriggerExplosion(Vector3 point)
         {
-            // 1. Spawn explosion visuals/particles if assigned
             if (explosionEffectPrefab) 
                 Instantiate(explosionEffectPrefab, point, Quaternion.identity);
 
-            // 2. Define explosion radius
-            float explosionRadius = 4f;
+            float explosionRadius = 3.5f;
+            Collider2D[] affectedColliders = Physics2D.OverlapCircleAll(point, explosionRadius);
 
-            // Find all colliders within the explosion area
-            Collider2D[] affected = Physics2D.OverlapCircleAll(point, explosionRadius);
-
-            foreach (var col in affected)
+            foreach (var col in affectedColliders)
             {
-                // Check if the affected object is a Breakable Wall
                 if (col.TryGetComponent<BreakableWall>(out var wall))
                 {
-                    wall.Break();
+                    Vector2 direction = col.transform.position - point;
+                    RaycastHit2D hit = Physics2D.Raycast(point, direction.normalized, direction.magnitude);
+
+                    if (hit.collider != null && hit.collider.gameObject == col.gameObject)
+                    {
+                        wall.Break();
+                    }
                 }
 
-                // Apply knockback force to rigidbodies (Player, other boxes, physics props)
                 if (col.TryGetComponent<Rigidbody2D>(out var rb))
                 {
                     Vector2 forceDir = (col.transform.position - point).normalized;
@@ -85,7 +134,6 @@ namespace Scrips
             GameObject player = GameObject.FindWithTag("Player");
             if (player == null) return;
 
-            // Find all active teleport targets in the level
             GameObject[] targets = GameObject.FindGameObjectsWithTag("TeleportTarget");
 
             if (targets.Length > 0)
@@ -93,7 +141,6 @@ namespace Scrips
                 GameObject nearestTarget = null;
                 float shortestDistance = float.MaxValue;
 
-                // Find the target closest to the collision point
                 foreach (GameObject target in targets)
                 {
                     float distance = Vector2.Distance(point, target.transform.position);
@@ -111,17 +158,15 @@ namespace Scrips
             }
             else
             {
-                // Fallback: Teleport to the collision point if no targets are found
                 player.transform.position = point;
             }
         }
 
-        private void SpawnPlatform(Vector3 point)
+        // Draw magnetic field in Scene View for easy tuning
+        private void OnDrawGizmosSelected()
         {
-            if (platformPrefab)
-            {
-                Instantiate(platformPrefab, point, Quaternion.identity);
-            }
+            Gizmos.color = Color.cyan;
+            Gizmos.DrawWireSphere(transform.position, magneticRadius);
         }
     }
 }
