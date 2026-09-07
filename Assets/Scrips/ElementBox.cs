@@ -53,13 +53,25 @@ namespace Scrips
 
         private void TriggerExplosion(Vector3 point)
         {
+            // 1. Spawn explosion visuals/particles if assigned
             if (explosionEffectPrefab) 
                 Instantiate(explosionEffectPrefab, point, Quaternion.identity);
 
-            // Apply push force to nearby rigidbodies
-            Collider2D[] affected = Physics2D.OverlapCircleAll(point, 3f);
+            // 2. Define explosion radius
+            float explosionRadius = 4f;
+
+            // Find all colliders within the explosion area
+            Collider2D[] affected = Physics2D.OverlapCircleAll(point, explosionRadius);
+
             foreach (var col in affected)
             {
+                // Check if the affected object is a Breakable Wall
+                if (col.TryGetComponent<BreakableWall>(out var wall))
+                {
+                    wall.Break();
+                }
+
+                // Apply knockback force to rigidbodies (Player, other boxes, physics props)
                 if (col.TryGetComponent<Rigidbody2D>(out var rb))
                 {
                     Vector2 forceDir = (col.transform.position - point).normalized;
