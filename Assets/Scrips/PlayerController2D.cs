@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.InputSystem; // Required for New Input System
+using UnityEngine.InputSystem;
 
 namespace Scrips
 {
@@ -10,7 +10,10 @@ namespace Scrips
         [SerializeField] private float moveSpeed = 8f;
         [SerializeField] private float jumpForce = 14f;
         [SerializeField] private float fallMultiplier = 2.5f;
-        [SerializeField] private float lowJumpMultiplier = 2f;
+
+        [Header("Jump Assist")]
+        [SerializeField] private float coyoteTime = 0.15f;
+        private float _coyoteTimeCounter;
 
         [Header("Ground Check")]
         [SerializeField] private Transform groundCheck;
@@ -20,10 +23,10 @@ namespace Scrips
         [Header("Touch UI References")]
         [SerializeField] private TouchButton leftButton;
         [SerializeField] private TouchButton rightButton;
+        [SerializeField] private TouchButton jumpButton;
 
         private Rigidbody2D _rb;
         private bool _isGrounded;
-        private bool _jumpRequested;
 
         private void Awake()
         {
@@ -35,18 +38,27 @@ namespace Scrips
             // Ground detection
             if (groundCheck != null)
             {
-                _isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+                Collider2D[] hitColliders = Physics2D.OverlapCircleAll(groundCheck.position, groundCheckRadius, groundLayer);
+                _isGrounded = false;
+
+                foreach (var col in hitColliders)
+                {
+                    if (col.gameObject != gameObject)
+                    {
+                        _isGrounded = true;
+                        break;
+                    }
+                }
             }
 
-            // Keyboard testing fallback for Unity Editor (New Input System)
-            if (Keyboard.current != null)
+            // Coyote time calculation
+            if (_isGrounded)
             {
-                if (Keyboard.current.spaceKey.wasPressedThisFrame || 
-                    Keyboard.current.wKey.wasPressedThisFrame || 
-                    Keyboard.current.upArrowKey.wasPressedThisFrame)
-                {
-                    OnJumpPressed();
-                }
+                _coyoteTimeCounter = coyoteTime;
+            }
+            else
+            {
+                _coyoteTimeCounter -= Time.deltaTime;
             }
         }
 
@@ -54,7 +66,7 @@ namespace Scrips
         {
             HandleHorizontalMovement();
             HandleJump();
-            ApplyJumpGravityScaling();
+            ApplyFallGravityScaling();
         }
 
         private void HandleHorizontalMovement()
@@ -65,47 +77,44 @@ namespace Scrips
             if (leftButton && leftButton.IsPressed) direction -= 1f;
             if (rightButton && rightButton.IsPressed) direction += 1f;
 
-            // Editor Keyboard Input Override (New Input System)
+            // Editor Keyboard Input Override
             if (direction == 0f && Keyboard.current != null)
             {
                 if (Keyboard.current.aKey.isPressed || Keyboard.current.leftArrowKey.isPressed) direction -= 1f;
                 if (Keyboard.current.dKey.isPressed || Keyboard.current.rightArrowKey.isPressed) direction += 1f;
             }
 
-            // Direct velocity assignment
             _rb.linearVelocity = new Vector2(direction * moveSpeed, _rb.linearVelocity.y);
         }
 
-        // Must be PUBLIC so the UI Button component can trigger it
-        public void OnJumpPressed()
+        private bool IsJumpHeld()
         {
-            if (_isGrounded)
-            {
-                _jumpRequested = true;
-            }
+            bool UIHeld = jumpButton != null && jumpButton.IsPressed;
+            bool keyboardHeld = Keyboard.current != null && (
+                Keyboard.current.spaceKey.isPressed ||
+                Keyboard.current.wKey.isPressed ||
+                Keyboard.current.upArrowKey.isPressed
+            );
+
+            return UIHeld || keyboardHeld;
         }
 
         private void HandleJump()
         {
-            if (_jumpRequested)
+            // Jump continuously if button is held down and player touches the ground
+            if (IsJumpHeld() && _coyoteTimeCounter > 0f)
             {
                 _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, jumpForce);
-                _jumpRequested = false;
+                _coyoteTimeCounter = 0f; // Reset coyote timer so it triggers once per land
             }
         }
 
-        private void ApplyJumpGravityScaling()
+        private void ApplyFallGravityScaling()
         {
-            bool jumpHeld = Keyboard.current != null && Keyboard.current.spaceKey.isPressed;
-
-            // Snappy falling physics
+            // Standard fixed jump height with snappy falling feel
             if (_rb.linearVelocity.y < 0)
             {
                 _rb.linearVelocity += Vector2.up * (Physics2D.gravity.y * (fallMultiplier - 1) * Time.fixedDeltaTime);
-            }
-            else if (_rb.linearVelocity.y > 0 && !jumpHeld)
-            {
-                _rb.linearVelocity += Vector2.up * (Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.fixedDeltaTime);
             }
         }
 
