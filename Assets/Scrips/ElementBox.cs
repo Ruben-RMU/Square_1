@@ -110,20 +110,18 @@ namespace Scrips
 
             foreach (var col in affectedColliders)
             {
-                if (col.TryGetComponent<BreakableWall>(out var wall))
+                // 1. Break the wall if the component exists on this object OR any of its parents
+                BreakableWall wall = col.GetComponentInParent<BreakableWall>();
+                if (wall != null)
                 {
-                    Vector2 direction = col.transform.position - point;
-                    RaycastHit2D hit = Physics2D.Raycast(point, direction.normalized, direction.magnitude);
-
-                    if (hit.collider != null && hit.collider.gameObject == col.gameObject)
-                    {
-                        wall.Break();
-                    }
+                    wall.Break();
+                    continue; // Skip force application if the wall is destroyed
                 }
 
+                // 2. Apply knockback force to other rigidbodies in range
                 if (col.TryGetComponent<Rigidbody2D>(out var rb))
                 {
-                    Vector2 forceDir = (col.transform.position - point).normalized;
+                    Vector2 forceDir = ((Vector2)col.transform.position - (Vector2)point).normalized;
                     rb.AddForce(forceDir * 15f, ForceMode2D.Impulse);
                 }
             }
