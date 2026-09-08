@@ -43,7 +43,10 @@
 *.DotSettings.user
 
 # Visual Studio cache directory
-.vs/
+.vs
+
+# IDE generated files
+.idea/
 
 # Gradle cache directory
 .gradle/
