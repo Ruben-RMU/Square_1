@@ -1,13 +1,12 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace Scrips
 {
     public class Hazard : MonoBehaviour
     {
         [Header("Hazard Settings")]
-        [SerializeField] private bool reloadSceneOnTouch = true;
-        [SerializeField] private GameObject deathEffectPrefab;
+        [SerializeField] private int damageAmount = 1;
+        [SerializeField] private GameObject hitEffectPrefab;
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
@@ -23,20 +22,16 @@ namespace Scrips
         {
             if (target.CompareTag("Player"))
             {
-                // Optional: Spawn blood/sparks effect on death
-                if (deathEffectPrefab != null)
-                {
-                    Instantiate(deathEffectPrefab, target.transform.position, Quaternion.identity);
-                }
+                PlayerController2D player = target.GetComponentInParent<PlayerController2D>();
 
-                if (reloadSceneOnTouch)
+                if (player != null)
                 {
-                    // Instant restart on touching hazard
-                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-                }
-                else
-                {
-                    Destroy(target);
+                    if (hitEffectPrefab != null)
+                    {
+                        Instantiate(hitEffectPrefab, target.transform.position, Quaternion.identity);
+                    }
+
+                    player.TakeDamage(damageAmount);
                 }
             }
         }

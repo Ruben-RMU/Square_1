@@ -5,7 +5,7 @@ namespace Scrips
     public enum BoxType { Light, Dark }
 
     [RequireComponent(typeof(BoxCollider2D), typeof(Rigidbody2D))]
-    public class PushableBox : MonoBehaviour
+    public class ElementBox : MonoBehaviour
     {
         [Header("Box Identity")]
         public BoxType boxType;
@@ -40,7 +40,7 @@ namespace Scrips
                 // Skip checking ourselves
                 if (col.gameObject == gameObject) continue;
 
-                if (col.TryGetComponent<PushableBox>(out var otherBox))
+                if (col.TryGetComponent<ElementBox>(out var otherBox))
                 {
                     // Only apply repulsion between Light and Dark
                     if (IsLightAndDarkPair(this.boxType, otherBox.boxType))
@@ -64,7 +64,7 @@ namespace Scrips
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            if (collision.gameObject.TryGetComponent<PushableBox>(out var otherBox))
+            if (collision.gameObject.TryGetComponent<ElementBox>(out var otherBox))
             {
                 // Light + Light or Dark + Dark combination logic
                 if (this.boxType == otherBox.boxType)
