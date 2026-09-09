@@ -97,7 +97,8 @@ namespace Scrips
         private IEnumerator RestartSceneRoutine()
         {
             this.enabled = false;
-            if (_rb == null)
+
+            if (_rb != null)
             {
                 _rb.simulated = false;
             }
@@ -108,8 +109,7 @@ namespace Scrips
             }
 
             yield return new WaitForSeconds(1.0f);
-            Scene currentScene = SceneManager.GetActiveScene();
-            SceneManager.LoadScene(currentScene.name);
+            SceneManager.LoadScene("Death Screen");
         }
 
         public void TakeDamage(int damageAmount = 1)
