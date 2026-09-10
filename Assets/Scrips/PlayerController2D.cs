@@ -25,7 +25,7 @@ namespace Scrips
 
         [Header("Ground Check")]
         [SerializeField] private Transform groundCheck;
-        [SerializeField] private float groundCheckRadius = 0.2f;
+        [SerializeField] private float groundCheckDistance = 0.2f;
         [SerializeField] private LayerMask groundLayer;
 
         [Header("Touch UI References")]
@@ -54,20 +54,11 @@ namespace Scrips
 
         private void Update()
         {
-            // Ground detection
+            // Ground detection via downward Raycast
             if (groundCheck != null)
             {
-                Collider2D[] hitColliders = Physics2D.OverlapCircleAll(groundCheck.position, groundCheckRadius, groundLayer);
-                _isGrounded = false;
-
-                foreach (var col in hitColliders)
-                {
-                    if (col.gameObject != gameObject)
-                    {
-                        _isGrounded = true;
-                        break;
-                    }
-                }
+                RaycastHit2D hit = Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, groundLayer);
+                _isGrounded = hit.collider != null && hit.collider.gameObject != gameObject;
             }
 
             // Coyote time calculation
@@ -204,7 +195,7 @@ namespace Scrips
             if (groundCheck != null)
             {
                 Gizmos.color = Color.red;
-                Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
+                Gizmos.DrawLine(groundCheck.position, groundCheck.position + Vector3.down * groundCheckDistance);
             }
         }
     }
