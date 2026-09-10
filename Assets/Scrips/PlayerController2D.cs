@@ -36,7 +36,9 @@ namespace Scrips
         private Rigidbody2D _rb;
         private SpriteRenderer _spriteRenderer;
         private bool _isGrounded;
-        
+        private bool _isKnockedBack; // Knockback state flag
+        private Coroutine _knockbackCoroutine;
+
         public int CurrentLives => _currentLives;
         public System.Action<int> OnLivesChanged;
 
@@ -54,6 +56,8 @@ namespace Scrips
 
         private void Update()
         {
+            if (_isKnockedBack) return; // Skip input processing during knockback
+
             // Ground detection via downward Raycast
             if (groundCheck != null)
             {
@@ -74,9 +78,63 @@ namespace Scrips
 
         private void FixedUpdate()
         {
+            if (_isKnockedBack) return; // Stop movement code from overriding physics during knockback
+
             HandleHorizontalMovement();
             HandleJump();
             ApplyFallGravityScaling();
+        }
+
+        // Public method called by ElementBox.cs
+        public void ApplyKnockback(Vector2 force, float duration = 0.25f)
+        {
+            if (_knockbackCoroutine != null) StopCoroutine(_knockbackCoroutine);
+            _knockbackCoroutine = StartCoroutine(KnockbackRoutine(force, duration));
+        }
+
+        private IEnumerator KnockbackRoutine(Vector2 force, float duration)
+        {
+            _isKnockedBack = true;
+
+            _rb.linearVelocity = Vector2.zero;
+            _rb.AddForce(force, ForceMode2D.Impulse);
+
+            yield return new WaitForSeconds(duration);
+
+            float recoveryDuration = 0.67f;
+            float elapsed = 0f;
+
+            Vector2 startVelocity = _rb.linearVelocity;
+
+            while (elapsed < recoveryDuration)
+            {
+                elapsed += Time.deltaTime;
+                float t = elapsed / recoveryDuration;
+                float smoothT = Mathf.SmoothStep(0f, 1f, t);
+                float moveInput = GetHorizontalInput();
+                Vector2 targetInputVelocity = new Vector2(moveInput * moveSpeed, _rb.linearVelocity.y);
+
+                _rb.linearVelocity = Vector2.Lerp(startVelocity, targetInputVelocity, smoothT);
+
+                yield return null;
+            }
+
+            _isKnockedBack = false;
+        }
+
+// Helper method to read movement direction safely during recovery
+        private float GetHorizontalInput()
+        {
+            float direction = 0f;
+            if (leftButton && leftButton.IsPressed) direction -= 1f;
+            if (rightButton && rightButton.IsPressed) direction += 1f;
+
+            if (direction == 0f && Keyboard.current != null)
+            {
+                if (Keyboard.current.aKey.isPressed || Keyboard.current.leftArrowKey.isPressed) direction -= 1f;
+                if (Keyboard.current.dKey.isPressed || Keyboard.current.rightArrowKey.isPressed) direction += 1f;
+            }
+            return direction;
         }
 
         private void Die()
