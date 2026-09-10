@@ -1,29 +1,33 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace Scrips
 {
     public class DeathBorder : MonoBehaviour
     {
-        [SerializeField] private bool reloadSceneOnPlayerDeath = true;
+        [Header("Settings")]
+        [SerializeField] private bool instantKill = true;
+        [SerializeField] private int damageAmount = 1;
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            // 1. If Player falls out, reload current scene
             if (collision.CompareTag("Player"))
             {
-                if (reloadSceneOnPlayerDeath)
+                PlayerController2D player = collision.GetComponentInParent<PlayerController2D>();
+
+                if (player != null)
                 {
-                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-                }
-                else
-                {
-                    Destroy(collision.gameObject);
+                    if (instantKill)
+                    {
+                        player.TakeDamage(player.CurrentLives);
+                    }
+                    else
+                    {
+                        player.TakeDamage(damageAmount);
+                    }
                 }
                 return;
             }
-
-            // 2. Destroy any falling boxes or debris to keep the scene clean
+            
             Destroy(collision.gameObject);
         }
     }

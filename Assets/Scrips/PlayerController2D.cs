@@ -1,11 +1,19 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 namespace Scrips
 {
     [RequireComponent(typeof(Rigidbody2D))]
     public class PlayerController2D : MonoBehaviour
     {
+        [Header("Lives & Health")]
+        [SerializeField] private int maxLives = 3;
+        [SerializeField] private float invincibilityDuration = 1.5f;
+        private int _currentLives;
+        private bool _isInvincible;
+
         [Header("Movement Tuning")]
         [SerializeField] private float moveSpeed = 8f;
         [SerializeField] private float jumpForce = 14f;
@@ -26,11 +34,22 @@ namespace Scrips
         [SerializeField] private TouchButton jumpButton;
 
         private Rigidbody2D _rb;
+        private SpriteRenderer _spriteRenderer;
         private bool _isGrounded;
+        
+        public int CurrentLives => _currentLives;
+        public System.Action<int> OnLivesChanged;
 
         private void Awake()
         {
             _rb = GetComponent<Rigidbody2D>();
+            _spriteRenderer = GetComponent<SpriteRenderer>();
+            _currentLives = maxLives;
+        }
+
+        private void Start()
+        {
+            OnLivesChanged?.Invoke(_currentLives);
         }
 
         private void Update()
@@ -69,6 +88,70 @@ namespace Scrips
             ApplyFallGravityScaling();
         }
 
+        private void Die()
+        {
+            Debug.Log("You Died");
+            StartCoroutine(RestartSceneRoutine());
+        }
+
+        private IEnumerator RestartSceneRoutine()
+        {
+            this.enabled = false;
+
+            if (_rb != null)
+            {
+                _rb.simulated = false;
+            }
+
+            if (_spriteRenderer != null)
+            {
+                _spriteRenderer.enabled = false;
+            }
+
+            yield return new WaitForSeconds(1.0f);
+            SceneManager.LoadScene("Death Screen");
+        }
+
+        public void TakeDamage(int damageAmount = 1)
+        {
+            if (_currentLives <= 0 || _isInvincible) return;
+
+            _currentLives -= damageAmount;
+            OnLivesChanged?.Invoke(_currentLives);
+
+            if (_currentLives <= 0)
+            {
+                Die();
+            }
+            else
+            {
+                StartCoroutine(InvincibilityRoutine());
+            }
+        }
+
+        private IEnumerator InvincibilityRoutine()
+        {
+            _isInvincible = true;
+            
+            if (_spriteRenderer != null)
+            {
+                float elapsed = 0f;
+                while (elapsed < invincibilityDuration)
+                {
+                    _spriteRenderer.enabled = !_spriteRenderer.enabled;
+                    yield return new WaitForSeconds(0.1f);
+                    elapsed += 0.1f;
+                }
+                _spriteRenderer.enabled = true;
+            }
+            else
+            {
+                yield return new WaitForSeconds(invincibilityDuration);
+            }
+
+            _isInvincible = false;
+        }
+
         private void HandleHorizontalMovement()
         {
             float direction = 0f;
@@ -101,17 +184,15 @@ namespace Scrips
 
         private void HandleJump()
         {
-            // Jump continuously if button is held down and player touches the ground
             if (IsJumpHeld() && _coyoteTimeCounter > 0f)
             {
                 _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, jumpForce);
-                _coyoteTimeCounter = 0f; // Reset coyote timer so it triggers once per land
+                _coyoteTimeCounter = 0f;
             }
         }
 
         private void ApplyFallGravityScaling()
         {
-            // Standard fixed jump height with snappy falling feel
             if (_rb.linearVelocity.y < 0)
             {
                 _rb.linearVelocity += Vector2.up * (Physics2D.gravity.y * (fallMultiplier - 1) * Time.fixedDeltaTime);
