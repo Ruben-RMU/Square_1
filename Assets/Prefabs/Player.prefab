@@ -186,7 +186,7 @@ MonoBehaviour:
   fallMultiplier: 2.5
   coyoteTime: 0.15
   groundCheck: {fileID: 139239042625816266}
-  groundCheckRadius: 0.55
+  groundCheckDistance: 0.55
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
