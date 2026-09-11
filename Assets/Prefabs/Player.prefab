@@ -185,13 +185,8 @@ MonoBehaviour:
   jumpForce: 6
   fallMultiplier: 2.5
   coyoteTime: 0.15
-<<<<<<< Updated upstream
   groundCheck: {fileID: 139239042625816266}
-  groundCheckRadius: 0.55
-=======
-  groundCheck: {fileID: 5730360082177853330}
   groundCheckDistance: 0.55
->>>>>>> Stashed changes
   groundLayer:
     serializedVersion: 2
     m_Bits: 8

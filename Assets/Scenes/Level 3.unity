@@ -2128,6 +2128,14 @@ PrefabInstance:
       propertyPath: m_enableAutoSizing
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4850907868743747698, guid: 543e6acf7864f2e49ae6d2bd37f06503, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -285.0221
+      objectReference: {fileID: 0}
+    - target: {fileID: 4850907868743747698, guid: 543e6acf7864f2e49ae6d2bd37f06503, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -190.00316
+      objectReference: {fileID: 0}
     - target: {fileID: 5875037023793151943, guid: 543e6acf7864f2e49ae6d2bd37f06503, type: 3}
       propertyPath: m_fontSize
       value: 45.2
