@@ -179,15 +179,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 697e17c37337fc2428438949e74a1409, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Scrips.PlayerController2D
+  maxLives: 3
+  invincibilityDuration: 1.5
   moveSpeed: 5
   jumpForce: 6
   fallMultiplier: 2.5
   coyoteTime: 0.15
   groundCheck: {fileID: 139239042625816266}
-  groundCheckRadius: 0.55
+  groundCheckDistance: 0.55
   groundLayer:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 8
   leftButton: {fileID: 0}
   rightButton: {fileID: 0}
   jumpButton: {fileID: 0}
