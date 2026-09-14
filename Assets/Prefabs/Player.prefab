@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7809042714750510126}
   - component: {fileID: 808401063504006037}
   - component: {fileID: 7217827265721038871}
+  - component: {fileID: 91722422711016856}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -186,10 +187,29 @@ MonoBehaviour:
   fallMultiplier: 2.5
   coyoteTime: 0.15
   groundCheck: {fileID: 139239042625816266}
-  groundCheckDistance: 0.55
+  groundCheckDistance: 1
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
   leftButton: {fileID: 0}
   rightButton: {fileID: 0}
   jumpButton: {fileID: 0}
+--- !u!114 &91722422711016856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7833867270432446068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eefb768949b03fe4cbe954504a6bd746, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerGroundAligner2D
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  rayDistance: 1.2
+  rayOffset: 0.45
+  rotationSpeed: 15
+  airborneResetSpeed: 5
