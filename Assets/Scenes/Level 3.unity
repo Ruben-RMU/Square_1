@@ -4515,13 +4515,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: DeathBorder
       objectReference: {fileID: 0}
+    - target: {fileID: 3047351748142132295, guid: ac7cb3305b1f6744298cd80fc3c7f790, type: 3}
+      propertyPath: damageAmount
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7731568257316038469, guid: ac7cb3305b1f6744298cd80fc3c7f790, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 7731568257316038469, guid: ac7cb3305b1f6744298cd80fc3c7f790, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.9257679
+      value: -0.85
       objectReference: {fileID: 0}
     - target: {fileID: 7731568257316038469, guid: ac7cb3305b1f6744298cd80fc3c7f790, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -6.6696377
+      value: -57
       objectReference: {fileID: 0}
     - target: {fileID: 7731568257316038469, guid: ac7cb3305b1f6744298cd80fc3c7f790, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4554,6 +4562,22 @@ PrefabInstance:
     - target: {fileID: 7731568257316038469, guid: ac7cb3305b1f6744298cd80fc3c7f790, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8314993124395946192, guid: ac7cb3305b1f6744298cd80fc3c7f790, type: 3}
+      propertyPath: m_Size.x
+      value: 0.36801827
+      objectReference: {fileID: 0}
+    - target: {fileID: 8314993124395946192, guid: ac7cb3305b1f6744298cd80fc3c7f790, type: 3}
+      propertyPath: m_Size.y
+      value: 3.230531
+      objectReference: {fileID: 0}
+    - target: {fileID: 8314993124395946192, guid: ac7cb3305b1f6744298cd80fc3c7f790, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.023333542
+      objectReference: {fileID: 0}
+    - target: {fileID: 8314993124395946192, guid: ac7cb3305b1f6744298cd80fc3c7f790, type: 3}
+      propertyPath: m_Offset.y
+      value: -1.1152655
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
