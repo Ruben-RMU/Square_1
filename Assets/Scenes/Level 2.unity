@@ -812,17 +812,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fb0d9fd4de00c1547b343e8caa727801, type: 3}
---- !u!114 &412339824 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 754046851449687182, guid: 543e6acf7864f2e49ae6d2bd37f06503, type: 3}
-  m_PrefabInstance: {fileID: 1246461391}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: edc9690df96b12b44b44804ad517aba5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TouchButton
 --- !u!1 &432427807
 GameObject:
   m_ObjectHideFlags: 0
@@ -929,17 +918,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fb0d9fd4de00c1547b343e8caa727801, type: 3}
---- !u!114 &450988042 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4683230681198865354, guid: 543e6acf7864f2e49ae6d2bd37f06503, type: 3}
-  m_PrefabInstance: {fileID: 1246461391}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: edc9690df96b12b44b44804ad517aba5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TouchButton
 --- !u!1001 &601608401
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2408,6 +2386,38 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -335.3
       objectReference: {fileID: 0}
+    - target: {fileID: 3169735663505537273, guid: 543e6acf7864f2e49ae6d2bd37f06503, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3169735663505537273, guid: 543e6acf7864f2e49ae6d2bd37f06503, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3169735663505537273, guid: 543e6acf7864f2e49ae6d2bd37f06503, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3169735663505537273, guid: 543e6acf7864f2e49ae6d2bd37f06503, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3626403409301677858, guid: 543e6acf7864f2e49ae6d2bd37f06503, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3626403409301677858, guid: 543e6acf7864f2e49ae6d2bd37f06503, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3626403409301677858, guid: 543e6acf7864f2e49ae6d2bd37f06503, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3626403409301677858, guid: 543e6acf7864f2e49ae6d2bd37f06503, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4850907868743747698, guid: 543e6acf7864f2e49ae6d2bd37f06503, type: 3}
       propertyPath: m_SizeDelta.x
       value: 277.1284
@@ -2440,11 +2450,60 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -336
       objectReference: {fileID: 0}
+    - target: {fileID: 5668596193260981991, guid: 543e6acf7864f2e49ae6d2bd37f06503, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5668596193260981991, guid: 543e6acf7864f2e49ae6d2bd37f06503, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5668596193260981991, guid: 543e6acf7864f2e49ae6d2bd37f06503, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5668596193260981991, guid: 543e6acf7864f2e49ae6d2bd37f06503, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 543e6acf7864f2e49ae6d2bd37f06503, type: 3}
+--- !u!114 &1246461392 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3132003440997743189, guid: 543e6acf7864f2e49ae6d2bd37f06503, type: 3}
+  m_PrefabInstance: {fileID: 1246461391}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edc9690df96b12b44b44804ad517aba5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TouchButton
+--- !u!114 &1246461393 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2081542118857768832, guid: 543e6acf7864f2e49ae6d2bd37f06503, type: 3}
+  m_PrefabInstance: {fileID: 1246461391}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edc9690df96b12b44b44804ad517aba5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TouchButton
+--- !u!114 &1246461394 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3163766299610913698, guid: 543e6acf7864f2e49ae6d2bd37f06503, type: 3}
+  m_PrefabInstance: {fileID: 1246461391}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edc9690df96b12b44b44804ad517aba5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TouchButton
 --- !u!1 &1453926217
 GameObject:
   m_ObjectHideFlags: 0
@@ -3124,15 +3183,15 @@ PrefabInstance:
     - target: {fileID: 7217827265721038871, guid: 25ff0187399bc154c9fdc796481ba7ff, type: 3}
       propertyPath: jumpButton
       value: 
-      objectReference: {fileID: 1968373879}
+      objectReference: {fileID: 1246461392}
     - target: {fileID: 7217827265721038871, guid: 25ff0187399bc154c9fdc796481ba7ff, type: 3}
       propertyPath: leftButton
       value: 
-      objectReference: {fileID: 450988042}
+      objectReference: {fileID: 1246461394}
     - target: {fileID: 7217827265721038871, guid: 25ff0187399bc154c9fdc796481ba7ff, type: 3}
       propertyPath: rightButton
       value: 
-      objectReference: {fileID: 412339824}
+      objectReference: {fileID: 1246461393}
     - target: {fileID: 7833867270432446068, guid: 25ff0187399bc154c9fdc796481ba7ff, type: 3}
       propertyPath: m_Name
       value: Player
@@ -3210,17 +3269,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fb0d9fd4de00c1547b343e8caa727801, type: 3}
---- !u!114 &1968373879 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 942420305484861208, guid: 543e6acf7864f2e49ae6d2bd37f06503, type: 3}
-  m_PrefabInstance: {fileID: 1246461391}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: edc9690df96b12b44b44804ad517aba5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TouchButton
 --- !u!1001 &1974578805
 PrefabInstance:
   m_ObjectHideFlags: 0
