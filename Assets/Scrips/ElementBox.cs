@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 namespace Scrips
@@ -12,12 +13,15 @@ namespace Scrips
 
         [Header("Combination Settings")]
         [SerializeField] private GameObject explosionEffectPrefab;
+        [SerializeField] private float lightCombineDelay = 0.2f; // Delay for Light + Light explosion
+        [SerializeField] private float darkCombineDelay = 0.5f;  // Delay for Dark + Dark teleportation
 
         [Header("Magnetic Repulsion")]
         [SerializeField] private float magneticRadius = 3f;  // Distance where magnetic force starts
         [SerializeField] private float maxRepelForce = 15f; // Push strength at point-blank range
 
         private Rigidbody2D _rb;
+        private bool _isCombining;
 
         private void Awake()
         {
@@ -26,6 +30,9 @@ namespace Scrips
 
         private void FixedUpdate()
         {
+            // Skip magnetic checks if already queued for destruction/combination
+            if (_isCombining) return;
+
             // Continuously scan for opposite-type boxes nearby
             ApplyMagneticRepulsion();
         }
@@ -42,6 +49,8 @@ namespace Scrips
 
                 if (col.TryGetComponent<ElementBox>(out var otherBox))
                 {
+                    if (otherBox._isCombining) continue;
+
                     // Only apply repulsion between Light and Dark
                     if (IsLightAndDarkPair(this.boxType, otherBox.boxType))
                     {
@@ -64,21 +73,43 @@ namespace Scrips
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
+            if (_isCombining) return;
+
             if (collision.gameObject.TryGetComponent<ElementBox>(out var otherBox))
             {
+                if (otherBox._isCombining) return;
+
                 // Light + Light or Dark + Dark combination logic
                 if (this.boxType == otherBox.boxType)
                 {
                     if (GetInstanceID() < otherBox.GetInstanceID())
                     {
-                        Vector3 contactPoint = collision.GetContact(0).point;
-                        CombineBoxes(this.boxType, otherBox.boxType, contactPoint);
+                        // Lock both boxes so they don't trigger combination twice
+                        _isCombining = true;
+                        otherBox._isCombining = true;
 
-                        Destroy(otherBox.gameObject);
-                        Destroy(gameObject);
+                        Vector3 contactPoint = collision.GetContact(0).point;
+
+                        // Choose delay based on box type
+                        float targetDelay = (this.boxType == BoxType.Light) ? lightCombineDelay : darkCombineDelay;
+
+                        StartCoroutine(DelayedCombineRoutine(otherBox, contactPoint, targetDelay));
                     }
                 }
             }
+        }
+
+        private IEnumerator DelayedCombineRoutine(ElementBox otherBox, Vector3 contactPoint, float delay)
+        {
+            yield return new WaitForSeconds(delay);
+
+            CombineBoxes(this.boxType, (otherBox != null ? otherBox.boxType : this.boxType), contactPoint);
+
+            if (otherBox != null)
+            {
+                Destroy(otherBox.gameObject);
+            }
+            Destroy(gameObject);
         }
 
         private bool IsLightAndDarkPair(BoxType a, BoxType b)
