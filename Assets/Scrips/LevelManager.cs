@@ -9,4 +9,10 @@ public class LevelManager : MonoBehaviour
         Scene currentScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(currentScene.name);
     }
+    
+    public void LoadMainMenu()
+    {
+        Time.timeScale = 1f; // Unpause time if it was paused
+        SceneManager.LoadScene("Main Menu");
+    }
 }
