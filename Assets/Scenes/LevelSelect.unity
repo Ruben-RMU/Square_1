@@ -378,8 +378,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -2, y: 231}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 69, y: 268}
+  m_SizeDelta: {x: 775.4231, y: 193.86}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &181773779
 MonoBehaviour:
@@ -401,17 +401,17 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Level Select
+  m_text: 'Select Level '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: db7da443b713a264c8417c4145fcce84, type: 2}
-  m_sharedMaterial: {fileID: -6006049109950251449, guid: db7da443b713a264c8417c4145fcce84, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b8245c0653000334ca43ca2186ed46f7, type: 2}
+  m_sharedMaterial: {fileID: 306058565614490409, guid: b8245c0653000334ca43ca2186ed46f7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -428,10 +428,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 33.4
-  m_fontSizeBase: 36
+  m_fontSize: 120
+  m_fontSizeBase: 120
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -467,7 +467,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: -29.56369, z: 0, w: 0}
+  m_margin: {x: 0, y: -29.56369, z: -222.77853, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1597,7 +1597,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -2
+  m_SortingOrder: -10
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.6039216, g: 0.6039216, b: 0.6039216, a: 1}
@@ -1618,8 +1618,8 @@ Transform:
   m_GameObject: {fileID: 1096497130}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0976, y: 0.0475, z: 0}
-  m_LocalScale: {x: 23.39953, y: 13.986837, z: 1}
+  m_LocalPosition: {x: -0.0044, y: 0.0475, z: 0}
+  m_LocalScale: {x: 23.586727, y: 13.986837, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
