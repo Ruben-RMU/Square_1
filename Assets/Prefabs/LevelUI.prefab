@@ -751,7 +751,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd4ba47eea4c62349929b2ef989af982, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Scrips.LivesDisplay
-  player: {fileID: 0}
+  player: {fileID: 7217827265721038871, guid: 25ff0187399bc154c9fdc796481ba7ff, type: 3}
   livesText: {fileID: 1547395843255420285}
 --- !u!1 &8310291470229007445
 GameObject:
