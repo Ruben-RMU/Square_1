@@ -1868,6 +1868,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DarkBox
       objectReference: {fileID: 0}
+    - target: {fileID: 6666285617766740291, guid: 334a5334a0e01ff45a6efea4b7c91b0e, type: 3}
+      propertyPath: maxRepelForce
+      value: 70
+      objectReference: {fileID: 0}
     - target: {fileID: 7692569382199691218, guid: 334a5334a0e01ff45a6efea4b7c91b0e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.393
@@ -4057,6 +4061,14 @@ PrefabInstance:
     - target: {fileID: 1365149959156904557, guid: 851c2f0b4a4dd9c40947d6acd8edf71e, type: 3}
       propertyPath: m_Color.r
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2953851140786768066, guid: 851c2f0b4a4dd9c40947d6acd8edf71e, type: 3}
+      propertyPath: maxRepelForce
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 4600738291005572008, guid: 851c2f0b4a4dd9c40947d6acd8edf71e, type: 3}
+      propertyPath: m_Mass
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6377643837623462968, guid: 851c2f0b4a4dd9c40947d6acd8edf71e, type: 3}
       propertyPath: m_Name
