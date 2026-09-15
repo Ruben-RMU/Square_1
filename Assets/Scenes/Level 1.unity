@@ -1960,17 +1960,14 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7833867270432446068, guid: 25ff0187399bc154c9fdc796481ba7ff, type: 3}
-      insertIndex: 6
-      addedObject: {fileID: 2012585879}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 25ff0187399bc154c9fdc796481ba7ff, type: 3}
 --- !u!114 &917362279 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7217827265721038871, guid: 25ff0187399bc154c9fdc796481ba7ff, type: 3}
   m_PrefabInstance: {fileID: 917362278}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1081905592}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 697e17c37337fc2428438949e74a1409, type: 3}
@@ -2185,11 +2182,6 @@ PolygonCollider2D:
       - {x: -0.26004183, y: -2.3724728}
       - {x: -0.24642123, y: -2.3588521}
   m_UseDelaunayMesh: 1
---- !u!1 &1081905592 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7833867270432446068, guid: 25ff0187399bc154c9fdc796481ba7ff, type: 3}
-  m_PrefabInstance: {fileID: 917362278}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1115210769
 GameObject:
   m_ObjectHideFlags: 0
@@ -3381,7 +3373,7 @@ Transform:
   m_GameObject: {fileID: 2002320786}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 24.79, y: -3.6, z: 0}
+  m_LocalPosition: {x: 14.05, y: -3.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3392,19 +3384,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 139239042625816266, guid: 25ff0187399bc154c9fdc796481ba7ff, type: 3}
   m_PrefabInstance: {fileID: 917362278}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2012585879
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1081905592}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97c4d7f539a02004cb53d60507d4de9e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::IdleTimerController
-  idleThreshold: 5
 --- !u!1 &2098654367
 GameObject:
   m_ObjectHideFlags: 0
