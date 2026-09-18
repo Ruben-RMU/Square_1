@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 public class NextLevel : MonoBehaviour
 {
     [SerializeField] private string targetTag = "Player";
+    [SerializeField] private int currentLevelNumber = 1;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -12,10 +13,14 @@ public class NextLevel : MonoBehaviour
             LoadNextScene();
         }
     }
-    
 
     private void LoadNextScene()
     {
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.CompleteLevel(currentLevelNumber);
+        }
+
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         int nextSceneIndex = currentSceneIndex + 1;
 

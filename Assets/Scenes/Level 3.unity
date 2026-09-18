@@ -4355,6 +4355,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   targetTag: Player
+  currentLevelNumber: 3
 --- !u!61 &2002320788
 BoxCollider2D:
   m_ObjectHideFlags: 0
