@@ -180,5 +180,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Scrips.PushableBox
   boxType: 0
-  explosionEffectPrefab: {fileID: 0}
-  platformPrefab: {fileID: 0}
+  explosionEffectPrefab: {fileID: 8905632023283218023, guid: d7fd2d62c334b4940b9df9b0d05e3e61, type: 3}
+  teleportEffectPrefab: {fileID: 0}
+  lightCombineDelay: 0.7
+  darkCombineDelay: 0.5
+  magneticRadius: 3
+  maxRepelForce: 15

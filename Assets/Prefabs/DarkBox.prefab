@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 4200353582592644231}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.16, y: -0.35, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -180,5 +180,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Scrips.PushableBox
   boxType: 1
-  explosionEffectPrefab: {fileID: 0}
-  platformPrefab: {fileID: 0}
+  explosionEffectPrefab: {fileID: 1095413968606714452, guid: 7ec89d038c0d4404cb9ea96858af9cc9, type: 3}
+  lightCombineDelay: 0.2
+  darkCombineDelay: 0.8
+  anim1Prefab: {fileID: 1095413968606714452, guid: 7ec89d038c0d4404cb9ea96858af9cc9, type: 3}
+  anim2Prefab: {fileID: 1361338965330492700, guid: c3d124d9e9ed92a49a87668fc5069070, type: 3}
+  anim3Prefab: {fileID: 0}
+  pullDuration: 0.3
+  anim1StartDelay: 0
+  anim1Duration: 0.3
+  anim2StartDelay: 0.5
+  anim2Duration: 0.2
+  anim3StartDelay: 0
+  anim3Duration: 4
+  magneticRadius: 3
+  maxRepelForce: 15
