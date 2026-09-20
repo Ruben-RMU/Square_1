@@ -1,36 +1,58 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class NextLevel : MonoBehaviour
 {
     [SerializeField] private string targetTag = "Player";
-    [SerializeField] private int currentLevelNumber = 1;
+    [SerializeField] private float delaySeconds = 5f;
+
+    // Static variable persists across scenes to remember the destination level
+    private static int nextLevelIndex = 0;
+
+    private void Start()
+    {
+        int totalScenes = SceneManager.sceneCountInBuildSettings;
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        int loadingSceneIndex = totalScenes - 2;
+
+        // If we are currently on the Loading Screen, wait 5 seconds then load the stored next level
+        if (totalScenes >= 2 && currentSceneIndex == loadingSceneIndex)
+        {
+            StartCoroutine(WaitAndLoadNextLevel());
+        }
+    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag(targetTag))
         {
-            LoadNextScene();
+            GoToLoadingScreen();
         }
     }
 
-    private void LoadNextScene()
+    private void GoToLoadingScreen()
     {
-        if (GameManager.Instance != null)
-        {
-            GameManager.Instance.CompleteLevel(currentLevelNumber);
-        }
-
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        int nextSceneIndex = currentSceneIndex + 1;
+        int totalScenes = SceneManager.sceneCountInBuildSettings;
+        int loadingSceneIndex = totalScenes - 2;
 
-        if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
+        // Calculate the next level after the current scene
+        nextLevelIndex = currentSceneIndex + 1;
+
+        // Loop back to index 0 if the next level reaches the loading screen or goes out of bounds
+        if (nextLevelIndex >= loadingSceneIndex)
         {
-            SceneManager.LoadScene(nextSceneIndex);
+            nextLevelIndex = 0;
         }
-        else
-        {
-            SceneManager.LoadScene(0); 
-        }
+
+        // Load the Loading Screen scene (second-to-last in Build Settings)
+        SceneManager.LoadScene(loadingSceneIndex);
+    }
+
+    private IEnumerator WaitAndLoadNextLevel()
+    {
+        yield return new WaitForSeconds(delaySeconds);
+        SceneManager.LoadScene(nextLevelIndex);
     }
 }
