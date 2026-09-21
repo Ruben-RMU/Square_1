@@ -262,6 +262,10 @@ namespace Scrips
             }
 
             yield return new WaitForSeconds(1.0f);
+
+            // Record current level name before changing scenes
+            DeathScreenManager.RecordCurrentLevel();
+
             SceneManager.LoadScene("Death Screen");
         }
 
