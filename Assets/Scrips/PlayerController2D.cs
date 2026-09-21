@@ -14,6 +14,7 @@ namespace Scrips
         [SerializeField] private float invincibilityDuration = 1.5f;
         private int _currentLives;
         private bool _isInvincible;
+        private bool _isDead;
 
         [Header("Movement Tuning")] [SerializeField]
         private float moveSpeed = 8f;
@@ -62,8 +63,8 @@ namespace Scrips
 
         private void Update()
         {
-            if (_isKnockedBack) return;
-
+            if (_isKnockedBack || _isDead) return;
+            
             if (groundCheck != null)
             {
                 RaycastHit2D hit =
@@ -88,7 +89,7 @@ namespace Scrips
 
         private void FixedUpdate()
         {
-            if (_isKnockedBack) return;
+            if (_isKnockedBack || _isDead) return;
 
             HandleHorizontalMovement();
             HandleJump();
@@ -160,6 +161,8 @@ namespace Scrips
 
         public void ApplyKnockback(Vector2 force, float duration = 0.25f)
         {
+            if (_isDead) return;
+
             if (_knockbackCoroutine != null) StopCoroutine(_knockbackCoroutine);
             _knockbackCoroutine = StartCoroutine(KnockbackRoutine(force, duration));
         }
@@ -178,7 +181,7 @@ namespace Scrips
 
             Vector2 startVelocity = _rb.linearVelocity;
 
-            while (elapsed < recoveryDuration)
+            while (elapsed < recoveryDuration && !_isDead)
             {
                 elapsed += Time.deltaTime;
                 float t = elapsed / recoveryDuration;
@@ -196,7 +199,7 @@ namespace Scrips
 
         public void TakeDamage(int damageAmount = 1)
         {
-            if (_currentLives <= 0 || _isInvincible) return;
+            if (_currentLives <= 0 || _isInvincible || _isDead) return;
 
             _currentLives -= damageAmount;
             OnLivesChanged?.Invoke(_currentLives);
@@ -218,14 +221,17 @@ namespace Scrips
             if (_spriteRenderer != null)
             {
                 float elapsed = 0f;
-                while (elapsed < invincibilityDuration)
+                while (elapsed < invincibilityDuration && !_isDead)
                 {
                     _spriteRenderer.enabled = !_spriteRenderer.enabled;
                     yield return new WaitForSeconds(0.1f);
                     elapsed += 0.1f;
                 }
-
-                _spriteRenderer.enabled = true;
+                
+                if (!_isDead)
+                {
+                    _spriteRenderer.enabled = true;
+                }
             }
             else
             {
@@ -235,24 +241,24 @@ namespace Scrips
             _isInvincible = false;
         }
 
-        private void Die()
+        public void Die()
         {
-            Debug.Log("You Died");
+            if (_isDead) return;
 
-            if (GameManager.Instance != null)
-            {
-                GameManager.Instance.OnPlayerDeath();
-            }
+            _isDead = true;
+            _currentLives = 0;
+            OnLivesChanged?.Invoke(_currentLives);
 
-            StartCoroutine(RestartSceneRoutine());
+            StartCoroutine(DieRoutine());
         }
 
-        private IEnumerator RestartSceneRoutine()
+        private IEnumerator DieRoutine()
         {
             this.enabled = false;
 
             if (_rb != null)
             {
+                _rb.linearVelocity = Vector2.zero;
                 _rb.simulated = false;
             }
 

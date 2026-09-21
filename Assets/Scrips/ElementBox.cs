@@ -48,26 +48,34 @@ namespace Scrips
         [SerializeField] private float maxRepelForce = 15f;
 
         private Rigidbody2D _rb;
+        private Transform _transform;
         private bool _isCombining;
+
+        private static readonly Collider2D[] RepulsionResults = new Collider2D[16];
+        private static readonly Collider2D[] ExplosionResults = new Collider2D[32];
 
         private void Awake()
         {
             _rb = GetComponent<Rigidbody2D>();
+            _transform = transform;
         }
 
         private void FixedUpdate()
         {
             if (_isCombining) return;
+
             ApplyMagneticRepulsion();
         }
 
         private void ApplyMagneticRepulsion()
         {
+            int hitCount = Physics2D.OverlapCircleNonAlloc(_transform.position, magneticRadius, RepulsionResults);
             Collider2D[] nearbyColliders = Physics2D.OverlapCircleAll(transform.position, magneticRadius);
 
-            foreach (var col in nearbyColliders)
+            for (int i = 0; i < hitCount; i++)
             {
-                if (col.gameObject == gameObject) continue;
+                var col = RepulsionResults[i];
+                if (col == null || col.gameObject == gameObject) continue;
 
                 if (col.TryGetComponent<ElementBox>(out var otherBox))
                 {
@@ -75,10 +83,10 @@ namespace Scrips
 
                     if (IsLightAndDarkPair(this.boxType, otherBox.boxType))
                     {
-                        Vector2 directionAway = transform.position - col.transform.position;
+                        Vector2 directionAway = (Vector2)_transform.position - (Vector2)col.transform.position;
                         float distance = directionAway.magnitude;
 
-                        if (distance > 0)
+                        if (distance > 0f)
                         {
                             float proximityFactor = 4f - Mathf.Clamp01(distance / magneticRadius);
                             float forceMagnitude = maxRepelForce * proximityFactor;
@@ -91,11 +99,21 @@ namespace Scrips
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            if (_isCombining) return;
+            // Always deal exactly 1 damage if the box is currently combining/exploding
+            if (_isCombining)
+            {
+                if (collision.gameObject.TryGetComponent<PlayerController2D>(out var player))
+                {
+                    Vector2 forceDir = ((Vector2)collision.transform.position - (Vector2)_transform.position).normalized;
+                    player.TakeDamage(1);
+                    player.ApplyKnockback(forceDir * 15f, 0.3f);
+                }
+                return;
+            }
 
             if (collision.gameObject.TryGetComponent<ElementBox>(out var otherBox))
             {
-                if (otherBox._isCombining) return;
+                if (otherBox._isCombining) return;                
 
                 if (this.boxType == otherBox.boxType)
                 {
@@ -135,7 +153,7 @@ namespace Scrips
             Destroy(gameObject);
         }
 
-        private bool IsLightAndDarkPair(BoxType a, BoxType b)
+        private static bool IsLightAndDarkPair(BoxType a, BoxType b)
         {
             return (a == BoxType.Light && b == BoxType.Dark) || (a == BoxType.Dark && b == BoxType.Light);
         }
@@ -272,21 +290,25 @@ namespace Scrips
                 Instantiate(explosionEffectPrefab, point, Quaternion.identity);
 
             float explosionRadius = 3.5f;
-            Collider2D[] affectedColliders = Physics2D.OverlapCircleAll(point, explosionRadius);
+            int hitCount = Physics2D.OverlapCircleNonAlloc(point, explosionRadius, ExplosionResults);
 
-            foreach (var col in affectedColliders)
+            for (int i = 0; i < hitCount; i++)
             {
+                var col = ExplosionResults[i];
+                if (col == null) continue;
+
                 BreakableWall wall = col.GetComponentInParent<BreakableWall>();
                 if (wall != null)
                 {
                     wall.Break();
                     continue;
                 }
-
+                
                 if (col.TryGetComponent<PlayerController2D>(out var player))
                 {
                     Vector2 forceDir = ((Vector2)col.transform.position - (Vector2)point).normalized;
-                    player.ApplyKnockback(forceDir * 15f, 0.3f);
+                    player.TakeDamage(1);
+                    player.ApplyKnockback(forceDir * 15f, 0.3f); 
                 }
                 else if (col.TryGetComponent<Rigidbody2D>(out var rb))
                 {
@@ -299,6 +321,10 @@ namespace Scrips
 
         private void TriggerImplosion(Vector3 point)
         {
+            PlayerController2D player = Object.FindFirstObjectByType<PlayerController2D>();
+            if (player == null) return;
+
+            GameObject[] targets = GameObject.FindGameObjectsWithTag("TeleportTarget");
             float implosionRadius = 3.5f;
             Collider2D[] affectedColliders = Physics2D.OverlapCircleAll(point, implosionRadius);
 
@@ -307,6 +333,13 @@ namespace Scrips
                 BreakableWall wall = col.GetComponentInParent<BreakableWall>();
                 if (wall != null)
                 {
+                    if (target == null) continue;
+                    float distance = Vector2.Distance(point, target.transform.position);
+                    if (distance < shortestDistance)
+                    {
+                        shortestDistance = distance;
+                        nearestTarget = target;
+                    }
                     wall.Break();
                     continue;
                 }
