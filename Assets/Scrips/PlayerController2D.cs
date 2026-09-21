@@ -15,6 +15,7 @@ namespace Scrips
         private int _currentLives;
         private bool _isInvincible;
         private bool _isDead;
+        private bool _inputLocked;
 
         [Header("Movement Tuning")] [SerializeField]
         private float moveSpeed = 8f;
@@ -60,10 +61,19 @@ namespace Scrips
         {
             OnLivesChanged?.Invoke(_currentLives);
         }
+        
+        public void SetInputLock(bool locked)
+        {
+            _inputLocked = locked;
+            if (locked && _rb != null)
+            {
+                _rb.linearVelocity = Vector2.zero;
+            }
+        }
 
         private void Update()
         {
-            if (_isKnockedBack || _isDead) return;
+            if (_isKnockedBack || _isDead || _inputLocked) return;
             
             if (groundCheck != null)
             {
@@ -89,7 +99,7 @@ namespace Scrips
 
         private void FixedUpdate()
         {
-            if (_isKnockedBack || _isDead) return;
+            if (_isKnockedBack || _isDead || _inputLocked) return;
 
             HandleHorizontalMovement();
             HandleJump();

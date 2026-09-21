@@ -176,60 +176,101 @@ namespace Scrips
         private IEnumerator DarkTeleportSequenceRoutine(Vector3 mergePoint)
         {
             GameObject player = GameObject.FindWithTag("Player");
-
-            // 1. Get sucked in: Smoothly pull the player directly to the center of the merge point
-            TriggerImplosion(mergePoint);
-
+        
+            float entrySpeed = 0f;
+            Vector2 launchDirection = Vector2.up;
+            PlayerController2D playerController = null;
+            Rigidbody2D playerRb = null;
+        
             if (player != null)
             {
-                if (player.TryGetComponent<Rigidbody2D>(out var playerRb))
+                player.TryGetComponent(out playerController);
+                player.TryGetComponent(out playerRb);
+        
+                if (playerRb != null)
                 {
-                    playerRb.linearVelocity = Vector2.zero;
+                    entrySpeed = playerRb.linearVelocity.magnitude;
+                    Vector2 travelDirection = ((Vector2)mergePoint - (Vector2)player.transform.position).normalized;
+        
+                    if (entrySpeed > 0.1f)
+                    {
+                        Vector2 rawVelocityDir = playerRb.linearVelocity.normalized;
+                        launchDirection = (Vector2.Dot(rawVelocityDir, travelDirection) < 0f) ? -rawVelocityDir : rawVelocityDir;
+                    }
+                    else
+                    {
+                        launchDirection = travelDirection != Vector2.zero ? travelDirection : Vector2.up;
+                    }
                 }
-
+            }
+            
+            float originalGravityScale = 1f;
+            if (playerRb != null)
+            {
+                originalGravityScale = playerRb.gravityScale;
+                playerRb.gravityScale = 0f;
+                playerRb.linearVelocity = Vector2.zero;
+            }
+            
+            if (playerController != null)
+            {
+                playerController.SetInputLock(true);
+            }
+            
+            if (player != null)
+            {
                 Vector3 startPos = player.transform.position;
+                
+                float distance = Vector3.Distance(startPos, mergePoint);
+                float dynamicPullDuration = Mathf.Max(pullDuration, distance * 0.05f);
                 float elapsed = 0f;
-
-                while (elapsed < pullDuration)
+                
+                while (elapsed < dynamicPullDuration)
                 {
+                    if (player == null) yield break;
+        
                     elapsed += Time.deltaTime;
-                    float progress = (pullDuration > 0f) ? Mathf.Clamp01(elapsed / pullDuration) : 1f;
-                    player.transform.position = Vector3.Lerp(startPos, mergePoint, progress);
+                    float progress = Mathf.Clamp01(elapsed / dynamicPullDuration);
+                    float easeProgress = Mathf.SmoothStep(0f, 1f, progress);
+                    player.transform.position = Vector3.Lerp(startPos, mergePoint, easeProgress);
                     yield return null;
                 }
-
+        
                 player.transform.position = mergePoint;
             }
-            else
-            {
-                yield return new WaitForSeconds(pullDuration);
-            }
-
-            if (player == null) yield break;
-
+        
             Vector3 targetPosition = GetTeleportTarget(mergePoint);
-
-            // 2. Player disappears at merge point center
+            
             SetPlayerState(player, visible: false);
-
-            // 3. First animation (plays at merge point center)
+            
             if (anim1StartDelay > 0f) yield return new WaitForSeconds(anim1StartDelay);
             if (anim1Prefab != null) Instantiate(anim1Prefab, mergePoint, Quaternion.identity);
             yield return new WaitForSeconds(anim1Duration);
-
-            // 4. Second animation (plays at destination point)
+        
             if (anim2StartDelay > 0f) yield return new WaitForSeconds(anim2StartDelay);
             if (anim2Prefab != null) Instantiate(anim2Prefab, targetPosition, Quaternion.identity);
             yield return new WaitForSeconds(anim2Duration);
-
-            // 5. Third animation starts at destination point
+        
             if (anim3StartDelay > 0f) yield return new WaitForSeconds(anim3StartDelay);
             if (anim3Prefab != null) Instantiate(anim3Prefab, targetPosition, Quaternion.identity);
-
-            // Player appears in the middle of Anim 3
+            
             player.transform.position = targetPosition;
+            
+            if (playerRb != null)
+            {
+                playerRb.gravityScale = originalGravityScale;
+            }
+        
             SetPlayerState(player, visible: true);
-
+            
+            if (playerController != null)
+            {
+                playerController.SetInputLock(false);
+        
+                float launchSpeed = Mathf.Max(entrySpeed, 8f);
+                playerController.ApplyKnockback(launchDirection * launchSpeed, 0.3f);
+            }
+        
             if (anim3Duration > 0f) yield return new WaitForSeconds(anim3Duration);
         }
 
