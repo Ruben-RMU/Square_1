@@ -4,48 +4,68 @@ using UnityEngine.SceneManagement;
 
 public class LevelSelector : MonoBehaviour
 {
+    [Header("Level Settings")]
     public int level;
-    
-    [Header("UI Element References")]
-    [SerializeField] private GameObject lockIcon;
-    [SerializeField] private GameObject levelText;
+
+    [Header("Background Sprites")]
+    [SerializeField] private Sprite unlockedSprite;
+    [SerializeField] private Sprite currentLevelSprite;
+    [SerializeField] private Sprite lockedSprite;
+
+    [Header("UI Overlay Elements")]
+    [SerializeField] private GameObject lockIcon;        // Drag your Lock Icon child GameObject here
+    [SerializeField] private GameObject levelTextObject; // Drag your Level Text child GameObject here
 
     private Button button;
+    private Image backgroundImage;
 
     private void Start()
     {
         button = GetComponent<Button>();
+        backgroundImage = GetComponent<Image>();
 
-        // Auto-assign references if not set in Inspector
-        if (lockIcon == null && transform.Find("lock") != null)
+        UpdateLevelVisuals();
+    }
+
+    private void UpdateLevelVisuals()
+    {
+        if (GameManager.Instance == null || GameManager.Instance.Data == null) return;
+
+        int highestUnlocked = GameManager.Instance.Data.highestLevelUnlocked;
+        bool isUnlocked = level <= highestUnlocked;
+
+        // Enable or disable button interactions
+        if (button != null)
         {
-            lockIcon = transform.Find("lock").gameObject;
+            button.interactable = isUnlocked;
         }
 
-        if (levelText == null && transform.Find("Text (TMP)") != null)
+        // Show lock icon when locked, hide when unlocked
+        if (lockIcon != null)
         {
-            levelText = transform.Find("Text (TMP)").gameObject;
+            lockIcon.SetActive(!isUnlocked);
         }
 
-        if (GameManager.Instance != null && GameManager.Instance.Data != null)
+        // Hide level text when locked, show when unlocked
+        if (levelTextObject != null)
         {
-            bool isUnlocked = level <= GameManager.Instance.Data.highestLevelUnlocked;
+            levelTextObject.SetActive(isUnlocked);
+        }
 
-            // Disable button interaction if locked
-            if (button != null)
+        // Update the background sprite based on progress
+        if (backgroundImage != null)
+        {
+            if (level < highestUnlocked)
             {
-                button.interactable = isUnlocked;
+                if (unlockedSprite != null) backgroundImage.sprite = unlockedSprite;
             }
-
-            // Show text and hide lock if unlocked; hide text and show lock if locked
-            if (lockIcon != null)
+            else if (level == highestUnlocked)
             {
-                lockIcon.SetActive(!isUnlocked);
+                if (currentLevelSprite != null) backgroundImage.sprite = currentLevelSprite;
             }
-
-            if (levelText != null)
+            else
             {
-                levelText.SetActive(isUnlocked);
+                if (lockedSprite != null) backgroundImage.sprite = lockedSprite;
             }
         }
     }
