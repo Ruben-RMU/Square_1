@@ -190,7 +190,6 @@ MonoBehaviour:
   coyoteTime: 0.15
   groundCheck: {fileID: 139239042625816266}
   groundCheckDistance: 0.75
-  groundCheckOffset: 0.5
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
@@ -234,7 +233,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
-  rayDistance: 1
+  rayDistance: 1.2
   rayOffset: 0.45
   rotationSpeed: 15
   airborneResetSpeed: 5

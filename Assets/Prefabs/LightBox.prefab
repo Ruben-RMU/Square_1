@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4600738291005572008}
   - component: {fileID: 1037237174124734157}
   - component: {fileID: 2953851140786768066}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: LightBox
   m_TagString: ElementBox
   m_Icon: {fileID: 0}
@@ -180,9 +180,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Scrips.PushableBox
   boxType: 0
-  explosionEffectPrefab: {fileID: 8905632023283218023, guid: d7fd2d62c334b4940b9df9b0d05e3e61, type: 3}
-  teleportEffectPrefab: {fileID: 0}
-  lightCombineDelay: 0.7
+  explosionEffectPrefab: {fileID: 0}
+  lightCombineDelay: 0.2
   darkCombineDelay: 0.5
   magneticRadius: 3
   maxRepelForce: 15
