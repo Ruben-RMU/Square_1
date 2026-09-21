@@ -70,7 +70,6 @@ namespace Scrips
         private void ApplyMagneticRepulsion()
         {
             int hitCount = Physics2D.OverlapCircleNonAlloc(_transform.position, magneticRadius, RepulsionResults);
-            Collider2D[] nearbyColliders = Physics2D.OverlapCircleAll(transform.position, magneticRadius);
 
             for (int i = 0; i < hitCount; i++)
             {
@@ -88,7 +87,7 @@ namespace Scrips
 
                         if (distance > 0f)
                         {
-                            float proximityFactor = 4f - Mathf.Clamp01(distance / magneticRadius);
+                            float proximityFactor = 1f - Mathf.Clamp01(distance / magneticRadius);
                             float forceMagnitude = maxRepelForce * proximityFactor;
                             _rb.AddForce(directionAway.normalized * forceMagnitude, ForceMode2D.Force);
                         }
@@ -113,7 +112,7 @@ namespace Scrips
 
             if (collision.gameObject.TryGetComponent<ElementBox>(out var otherBox))
             {
-                if (otherBox._isCombining) return;                
+                if (otherBox._isCombining) return;
 
                 if (this.boxType == otherBox.boxType)
                 {
@@ -229,6 +228,8 @@ namespace Scrips
             // Player appears in the middle of Anim 3
             player.transform.position = targetPosition;
             SetPlayerState(player, visible: true);
+
+            if (anim3Duration > 0f) yield return new WaitForSeconds(anim3Duration);
         }
 
         private void SetPlayerState(GameObject player, bool visible)
@@ -303,12 +304,12 @@ namespace Scrips
                     wall.Break();
                     continue;
                 }
-                
+
                 if (col.TryGetComponent<PlayerController2D>(out var player))
                 {
                     Vector2 forceDir = ((Vector2)col.transform.position - (Vector2)point).normalized;
                     player.TakeDamage(1);
-                    player.ApplyKnockback(forceDir * 15f, 0.3f); 
+                    player.ApplyKnockback(forceDir * 15f, 0.3f);
                 }
                 else if (col.TryGetComponent<Rigidbody2D>(out var rb))
                 {
@@ -321,25 +322,17 @@ namespace Scrips
 
         private void TriggerImplosion(Vector3 point)
         {
-            PlayerController2D player = Object.FindFirstObjectByType<PlayerController2D>();
-            if (player == null) return;
-
-            GameObject[] targets = GameObject.FindGameObjectsWithTag("TeleportTarget");
             float implosionRadius = 3.5f;
-            Collider2D[] affectedColliders = Physics2D.OverlapCircleAll(point, implosionRadius);
+            int hitCount = Physics2D.OverlapCircleNonAlloc(point, implosionRadius, ExplosionResults);
 
-            foreach (var col in affectedColliders)
+            for (int i = 0; i < hitCount; i++)
             {
+                var col = ExplosionResults[i];
+                if (col == null) continue;
+
                 BreakableWall wall = col.GetComponentInParent<BreakableWall>();
                 if (wall != null)
                 {
-                    if (target == null) continue;
-                    float distance = Vector2.Distance(point, target.transform.position);
-                    if (distance < shortestDistance)
-                    {
-                        shortestDistance = distance;
-                        nearestTarget = target;
-                    }
                     wall.Break();
                     continue;
                 }
