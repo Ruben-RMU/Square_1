@@ -70,16 +70,17 @@ namespace Scrips
         private void ApplyMagneticRepulsion()
         {
             int hitCount = Physics2D.OverlapCircleNonAlloc(_transform.position, magneticRadius, RepulsionResults);
+            Collider2D[] nearbyColliders = Physics2D.OverlapCircleAll(transform.position, magneticRadius);
 
             for (int i = 0; i < hitCount; i++)
             {
                 var col = RepulsionResults[i];
                 if (col == null || col.gameObject == gameObject) continue;
-
+                
                 if (col.TryGetComponent<ElementBox>(out var otherBox))
                 {
                     if (otherBox._isCombining) continue;
-
+                    
                     if (IsLightAndDarkPair(this.boxType, otherBox.boxType))
                     {
                         Vector2 directionAway = (Vector2)_transform.position - (Vector2)col.transform.position;
@@ -87,7 +88,7 @@ namespace Scrips
 
                         if (distance > 0f)
                         {
-                            float proximityFactor = 1f - Mathf.Clamp01(distance / magneticRadius);
+                            float proximityFactor = 4f - Mathf.Clamp01(distance / magneticRadius);
                             float forceMagnitude = maxRepelForce * proximityFactor;
                             _rb.AddForce(directionAway.normalized * forceMagnitude, ForceMode2D.Force);
                         }
