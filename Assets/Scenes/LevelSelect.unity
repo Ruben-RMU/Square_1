@@ -172,6 +172,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   level: 1
+  lockIcon: {fileID: 0}
+  levelText: {fileID: 0}
 --- !u!114 &79674360
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1617,6 +1619,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelSelector
   level: 2
+  lockIcon: {fileID: 1422154905}
+  levelText: {fileID: 1073095257}
 --- !u!1 &958347325
 GameObject:
   m_ObjectHideFlags: 0
@@ -2218,6 +2222,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   level: 6
+  lockIcon: {fileID: 1455739015}
+  levelText: {fileID: 958347325}
 --- !u!114 &1141023296
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2698,6 +2704,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   level: 4
+  lockIcon: {fileID: 107299838}
+  levelText: {fileID: 1695230102}
 --- !u!114 &1470569032
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3211,6 +3219,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   level: 5
+  lockIcon: {fileID: 2013435498}
+  levelText: {fileID: 2089493349}
 --- !u!114 &1985340766
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3847,6 +3857,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelSelector
   level: 3
+  lockIcon: {fileID: 341463295}
+  levelText: {fileID: 1741574957}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
