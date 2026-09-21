@@ -208,13 +208,9 @@ namespace Scrips
             if (anim3StartDelay > 0f) yield return new WaitForSeconds(anim3StartDelay);
             if (anim3Prefab != null) Instantiate(anim3Prefab, targetPosition, Quaternion.identity);
 
-            
-
             // Player appears in the middle of Anim 3
             player.transform.position = targetPosition;
             SetPlayerState(player, visible: true);
-
-            
         }
 
         private void SetPlayerState(GameObject player, bool visible)

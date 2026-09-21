@@ -961,6 +961,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TeleportPoint
       objectReference: {fileID: 0}
+    - target: {fileID: 6640429703900256095, guid: 7842f6d70d7a8b24baad3a97e94f7f72, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6992749870397189592, guid: 7842f6d70d7a8b24baad3a97e94f7f72, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7.84
@@ -3462,6 +3466,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: DarkBox
       objectReference: {fileID: 0}
+    - target: {fileID: 6666285617766740291, guid: 334a5334a0e01ff45a6efea4b7c91b0e, type: 3}
+      propertyPath: anim1Prefab
+      value: 
+      objectReference: {fileID: 1095413968606714452, guid: 7ec89d038c0d4404cb9ea96858af9cc9, type: 3}
+    - target: {fileID: 6666285617766740291, guid: 334a5334a0e01ff45a6efea4b7c91b0e, type: 3}
+      propertyPath: anim2Prefab
+      value: 
+      objectReference: {fileID: 1361338965330492700, guid: c3d124d9e9ed92a49a87668fc5069070, type: 3}
     - target: {fileID: 6666285617766740291, guid: 334a5334a0e01ff45a6efea4b7c91b0e, type: 3}
       propertyPath: teleportEffectPrefab
       value: 
