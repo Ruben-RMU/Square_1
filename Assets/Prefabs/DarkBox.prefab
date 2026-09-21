@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7884197284903116864}
   - component: {fileID: 8775011073826445217}
   - component: {fileID: 6666285617766740291}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: DarkBox
   m_TagString: ElementBox
   m_Icon: {fileID: 0}
@@ -181,4 +181,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Scrips.PushableBox
   boxType: 1
   explosionEffectPrefab: {fileID: 0}
-  platformPrefab: {fileID: 0}
+  lightCombineDelay: 0.2
+  darkCombineDelay: 0.5
+  magneticRadius: 3
+  maxRepelForce: 15

@@ -8,30 +8,35 @@ namespace Scrips
     [RequireComponent(typeof(Rigidbody2D))]
     public class PlayerController2D : MonoBehaviour
     {
-        [Header("Lives & Health")]
-        [SerializeField] private int maxLives = 3;
+        [Header("Lives & Health")] [SerializeField]
+        private int maxLives = 3;
+
         [SerializeField] private float invincibilityDuration = 1.5f;
         private int _currentLives;
         private bool _isInvincible;
         private bool _isDead;
 
-        [Header("Movement Tuning")]
-        [SerializeField] private float moveSpeed = 8f;
+        [Header("Movement Tuning")] [SerializeField]
+        private float moveSpeed = 8f;
+
         [SerializeField] private float jumpForce = 14f;
         [SerializeField] private float fallMultiplier = 2.5f;
 
-        [Header("Jump Assist")]
-        [SerializeField] private float coyoteTime = 0.15f;
+        [Header("Jump Assist")] [SerializeField]
+        private float coyoteTime = 0.15f;
+
         private float _coyoteTimeCounter;
         private bool _jumpRequested;
 
-        [Header("Ground Check")]
-        [SerializeField] private Transform groundCheck;
+        [Header("Ground Check")] [SerializeField]
+        private Transform groundCheck;
+
         [SerializeField] private float groundCheckDistance = 0.2f;
         [SerializeField] private LayerMask groundLayer;
 
-        [Header("Touch UI References")]
-        [SerializeField] private TouchButton leftButton;
+        [Header("Touch UI References")] [SerializeField]
+        private TouchButton leftButton;
+
         [SerializeField] private TouchButton rightButton;
         [SerializeField] private TouchButton jumpButton;
 
@@ -62,10 +67,11 @@ namespace Scrips
             
             if (groundCheck != null)
             {
-                RaycastHit2D hit = Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, groundLayer);
+                RaycastHit2D hit =
+                    Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, groundLayer);
                 _isGrounded = hit.collider != null && !hit.collider.transform.IsChildOf(transform);
             }
-            
+
             if (_isGrounded)
             {
                 _coyoteTimeCounter = coyoteTime;
@@ -74,7 +80,7 @@ namespace Scrips
             {
                 _coyoteTimeCounter -= Time.deltaTime;
             }
-            
+
             if (WasJumpPressed())
             {
                 _jumpRequested = true;
@@ -109,6 +115,12 @@ namespace Scrips
                 _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, jumpForce);
                 _coyoteTimeCounter = 0f;
                 _jumpRequested = false;
+
+                // Record jump event
+                if (GameManager.Instance != null)
+                {
+                    GameManager.Instance.IncrementJumps();
+                }
             }
 
             if (_coyoteTimeCounter <= 0f)
