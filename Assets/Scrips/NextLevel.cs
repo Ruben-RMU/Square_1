@@ -4,7 +4,8 @@ using UnityEngine.SceneManagement;
 public class NextLevel : MonoBehaviour
 {
     [SerializeField] private string targetTag = "Player";
-    [SerializeField] private int currentLevelNumber = 1;
+    [Tooltip("Set to 0 to automatically use the current scene's build index.")]
+    [SerializeField] private int currentLevelNumber = 0;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -16,12 +17,15 @@ public class NextLevel : MonoBehaviour
 
     private void LoadNextScene()
     {
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        // Use manual level number if assigned > 0, otherwise fallback to buildIndex
+        int activeLevel = currentLevelNumber > 0 ? currentLevelNumber : currentSceneIndex;
+
         if (GameManager.Instance != null)
         {
-            GameManager.Instance.CompleteLevel(currentLevelNumber);
+            GameManager.Instance.CompleteLevel(activeLevel);
         }
 
-        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         int nextSceneIndex = currentSceneIndex + 1;
 
         if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
