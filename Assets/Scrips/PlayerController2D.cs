@@ -34,6 +34,7 @@ namespace Scrips
 
         [SerializeField] private float groundCheckDistance = 0.2f;
         [SerializeField] private LayerMask groundLayer;
+        [SerializeField] private float groundCheckWidth = 0.4f;
 
         [Header("Touch UI References")] [SerializeField]
         private TouchButton leftButton;
@@ -77,9 +78,7 @@ namespace Scrips
             
             if (groundCheck != null)
             {
-                RaycastHit2D hit =
-                    Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, groundLayer);
-                _isGrounded = hit.collider != null && !hit.collider.transform.IsChildOf(transform);
+                _isGrounded = CheckGrounded();
             }
 
             if (_isGrounded)
@@ -104,6 +103,21 @@ namespace Scrips
             HandleHorizontalMovement();
             HandleJump();
             ApplyFallGravityScaling();
+        }
+
+        private bool CheckGrounded()
+        {
+            Vector2 center = groundCheck.position;
+            Vector2 right = center + Vector2.right * (groundCheckWidth * 0.5f);
+            Vector2 left = center + Vector2.left * (groundCheckWidth * 0.5f);
+
+            return RayHitsGround(center) || RayHitsGround(left) || RayHitsGround(right);
+        }
+
+        private bool RayHitsGround(Vector2 origin)
+        {
+            RaycastHit2D hit = Physics2D.Raycast(origin, Vector2.down, groundCheckDistance, groundLayer);
+            return hit.collider != null && !hit.collider.transform.IsChildOf(transform);
         }
 
         private bool WasJumpPressed()
@@ -290,7 +304,13 @@ namespace Scrips
             if (groundCheck != null)
             {
                 Gizmos.color = Color.red;
-                Gizmos.DrawLine(groundCheck.position, groundCheck.position + Vector3.down * groundCheckDistance);
+                Vector3 center = groundCheck.position;
+                Vector3 right = center + Vector3.right * (groundCheckWidth * 0.5f);
+                Vector3 left = center + Vector3.left * (groundCheckWidth * 0.5f);
+
+                Gizmos.DrawLine(center, center + Vector3.down * groundCheckDistance);
+                Gizmos.DrawLine(left, left + Vector3.down * groundCheckDistance);
+                Gizmos.DrawLine(right, right + Vector3.down * groundCheckDistance);
             }
         }
     }
