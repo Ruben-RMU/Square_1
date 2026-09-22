@@ -4,28 +4,74 @@ using UnityEngine.SceneManagement;
 
 public class LevelSelector : MonoBehaviour
 {
+    [Header("Level Settings")]
     public int level;
+
+    [Header("Background Sprites")]
+    [SerializeField] private Sprite unlockedSprite;
+    [SerializeField] private Sprite currentLevelSprite;
+    [SerializeField] private Sprite lockedSprite;
+
+    [Header("UI Overlay Elements")]
+    [SerializeField] private GameObject lockIcon;        // Drag your Lock Icon child GameObject here
+    [SerializeField] private GameObject levelTextObject; // Drag your Level Text child GameObject here
+
     private Button button;
+    private Image backgroundImage;
 
     private void Start()
     {
         button = GetComponent<Button>();
+        backgroundImage = GetComponent<Image>();
 
-        if (GameManager.Instance != null && GameManager.Instance.Data != null)
+        UpdateLevelVisuals();
+    }
+
+    private void UpdateLevelVisuals()
+    {
+        if (GameManager.Instance == null || GameManager.Instance.Data == null) return;
+
+        int highestUnlocked = GameManager.Instance.Data.highestLevelUnlocked;
+        bool isUnlocked = level <= highestUnlocked;
+
+        // Enable or disable button interactions
+        if (button != null)
         {
-            bool isUnlocked = level <= GameManager.Instance.Data.highestLevelUnlocked;
+            button.interactable = isUnlocked;
+        }
 
-            // Gray out and disable UI button if locked
-            if (button != null)
+        // Show lock icon when locked, hide when unlocked
+        if (lockIcon != null)
+        {
+            lockIcon.SetActive(!isUnlocked);
+        }
+
+        // Hide level text when locked, show when unlocked
+        if (levelTextObject != null)
+        {
+            levelTextObject.SetActive(isUnlocked);
+        }
+
+        // Update the background sprite based on progress
+        if (backgroundImage != null)
+        {
+            if (level < highestUnlocked)
             {
-                button.interactable = isUnlocked;
+                if (unlockedSprite != null) backgroundImage.sprite = unlockedSprite;
+            }
+            else if (level == highestUnlocked)
+            {
+                if (currentLevelSprite != null) backgroundImage.sprite = currentLevelSprite;
+            }
+            else
+            {
+                if (lockedSprite != null) backgroundImage.sprite = lockedSprite;
             }
         }
     }
 
     public void OpenScene()
     {
-        // Guard check to prevent loading locked levels
         if (GameManager.Instance != null && GameManager.Instance.Data != null)
         {
             if (level > GameManager.Instance.Data.highestLevelUnlocked)

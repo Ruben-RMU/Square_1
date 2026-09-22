@@ -193,6 +193,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
+  groundCheckWidth: 1
   leftButton: {fileID: 0}
   rightButton: {fileID: 0}
   jumpButton: {fileID: 0}

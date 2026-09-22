@@ -14,6 +14,8 @@ namespace Scrips
         [SerializeField] private float invincibilityDuration = 1.5f;
         private int _currentLives;
         private bool _isInvincible;
+        private bool _isDead;
+        private bool _inputLocked;
 
         [Header("Movement Tuning")] [SerializeField]
         private float moveSpeed = 8f;
@@ -32,6 +34,7 @@ namespace Scrips
 
         [SerializeField] private float groundCheckDistance = 0.2f;
         [SerializeField] private LayerMask groundLayer;
+        [SerializeField] private float groundCheckWidth = 0.4f;
 
         [Header("Touch UI References")] [SerializeField]
         private TouchButton leftButton;
@@ -59,16 +62,23 @@ namespace Scrips
         {
             OnLivesChanged?.Invoke(_currentLives);
         }
+        
+        public void SetInputLock(bool locked)
+        {
+            _inputLocked = locked;
+            if (locked && _rb != null)
+            {
+                _rb.linearVelocity = Vector2.zero;
+            }
+        }
 
         private void Update()
         {
-            if (_isKnockedBack) return;
-
+            if (_isKnockedBack || _isDead || _inputLocked) return;
+            
             if (groundCheck != null)
             {
-                RaycastHit2D hit =
-                    Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, groundLayer);
-                _isGrounded = hit.collider != null && !hit.collider.transform.IsChildOf(transform);
+                _isGrounded = CheckGrounded();
             }
 
             if (_isGrounded)
@@ -88,11 +98,26 @@ namespace Scrips
 
         private void FixedUpdate()
         {
-            if (_isKnockedBack) return;
+            if (_isKnockedBack || _isDead || _inputLocked) return;
 
             HandleHorizontalMovement();
             HandleJump();
             ApplyFallGravityScaling();
+        }
+
+        private bool CheckGrounded()
+        {
+            Vector2 center = groundCheck.position;
+            Vector2 right = center + Vector2.right * (groundCheckWidth * 0.5f);
+            Vector2 left = center + Vector2.left * (groundCheckWidth * 0.5f);
+
+            return RayHitsGround(center) || RayHitsGround(left) || RayHitsGround(right);
+        }
+
+        private bool RayHitsGround(Vector2 origin)
+        {
+            RaycastHit2D hit = Physics2D.Raycast(origin, Vector2.down, groundCheckDistance, groundLayer);
+            return hit.collider != null && !hit.collider.transform.IsChildOf(transform);
         }
 
         private bool WasJumpPressed()
@@ -160,6 +185,8 @@ namespace Scrips
 
         public void ApplyKnockback(Vector2 force, float duration = 0.25f)
         {
+            if (_isDead) return;
+
             if (_knockbackCoroutine != null) StopCoroutine(_knockbackCoroutine);
             _knockbackCoroutine = StartCoroutine(KnockbackRoutine(force, duration));
         }
@@ -178,7 +205,7 @@ namespace Scrips
 
             Vector2 startVelocity = _rb.linearVelocity;
 
-            while (elapsed < recoveryDuration)
+            while (elapsed < recoveryDuration && !_isDead)
             {
                 elapsed += Time.deltaTime;
                 float t = elapsed / recoveryDuration;
@@ -196,7 +223,7 @@ namespace Scrips
 
         public void TakeDamage(int damageAmount = 1)
         {
-            if (_currentLives <= 0 || _isInvincible) return;
+            if (_currentLives <= 0 || _isInvincible || _isDead) return;
 
             _currentLives -= damageAmount;
             OnLivesChanged?.Invoke(_currentLives);
@@ -218,14 +245,17 @@ namespace Scrips
             if (_spriteRenderer != null)
             {
                 float elapsed = 0f;
-                while (elapsed < invincibilityDuration)
+                while (elapsed < invincibilityDuration && !_isDead)
                 {
                     _spriteRenderer.enabled = !_spriteRenderer.enabled;
                     yield return new WaitForSeconds(0.1f);
                     elapsed += 0.1f;
                 }
-
-                _spriteRenderer.enabled = true;
+                
+                if (!_isDead)
+                {
+                    _spriteRenderer.enabled = true;
+                }
             }
             else
             {
@@ -235,24 +265,24 @@ namespace Scrips
             _isInvincible = false;
         }
 
-        private void Die()
+        public void Die()
         {
-            Debug.Log("You Died");
+            if (_isDead) return;
 
-            if (GameManager.Instance != null)
-            {
-                GameManager.Instance.OnPlayerDeath();
-            }
+            _isDead = true;
+            _currentLives = 0;
+            OnLivesChanged?.Invoke(_currentLives);
 
-            StartCoroutine(RestartSceneRoutine());
+            StartCoroutine(DieRoutine());
         }
 
-        private IEnumerator RestartSceneRoutine()
+        private IEnumerator DieRoutine()
         {
             this.enabled = false;
 
             if (_rb != null)
             {
+                _rb.linearVelocity = Vector2.zero;
                 _rb.simulated = false;
             }
 
@@ -262,6 +292,10 @@ namespace Scrips
             }
 
             yield return new WaitForSeconds(1.0f);
+
+            // Record current level name before changing scenes
+            DeathScreenManager.RecordCurrentLevel();
+
             SceneManager.LoadScene("Death Screen");
         }
 
@@ -270,7 +304,13 @@ namespace Scrips
             if (groundCheck != null)
             {
                 Gizmos.color = Color.red;
-                Gizmos.DrawLine(groundCheck.position, groundCheck.position + Vector3.down * groundCheckDistance);
+                Vector3 center = groundCheck.position;
+                Vector3 right = center + Vector3.right * (groundCheckWidth * 0.5f);
+                Vector3 left = center + Vector3.left * (groundCheckWidth * 0.5f);
+
+                Gizmos.DrawLine(center, center + Vector3.down * groundCheckDistance);
+                Gizmos.DrawLine(left, left + Vector3.down * groundCheckDistance);
+                Gizmos.DrawLine(right, right + Vector3.down * groundCheckDistance);
             }
         }
     }

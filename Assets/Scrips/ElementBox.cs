@@ -17,11 +17,14 @@ namespace Scrips
         [SerializeField] private float darkCombineDelay = 0.5f;
 
         [Header("Dark Combination Prefabs")]
-        [SerializeField] private GameObject anim1Prefab; // Spawned at merge point after player disappears
+        [SerializeField] private GameObject anim1Prefab; // Spawned at merge point (Portal Effect)
         [SerializeField] private GameObject anim2Prefab; // Spawned at destination before player appears
         [SerializeField] private GameObject anim3Prefab; // Spawned at destination after player appears
 
         [Header("Dark Combination Delays & Timings")]
+        [Tooltip("Max distance from the portal center to start sucking the player in. The portal stays open until player steps into range.")]
+        [SerializeField] private float portalTriggerRadius = 3.5f;
+
         [Tooltip("Suck-in force and pull duration moving player to center before disappearing.")]
         [SerializeField] private float pullDuration = 0.3f;
 
@@ -48,37 +51,44 @@ namespace Scrips
         [SerializeField] private float maxRepelForce = 15f;
 
         private Rigidbody2D _rb;
+        private Transform _transform;
         private bool _isCombining;
+
+        private static readonly Collider2D[] RepulsionResults = new Collider2D[16];
+        private static readonly Collider2D[] ExplosionResults = new Collider2D[32];
 
         private void Awake()
         {
             _rb = GetComponent<Rigidbody2D>();
+            _transform = transform;
         }
 
         private void FixedUpdate()
         {
             if (_isCombining) return;
+
             ApplyMagneticRepulsion();
         }
 
         private void ApplyMagneticRepulsion()
         {
-            Collider2D[] nearbyColliders = Physics2D.OverlapCircleAll(transform.position, magneticRadius);
+            int hitCount = Physics2D.OverlapCircleNonAlloc(_transform.position, magneticRadius, RepulsionResults);
 
-            foreach (var col in nearbyColliders)
+            for (int i = 0; i < hitCount; i++)
             {
-                if (col.gameObject == gameObject) continue;
-
+                var col = RepulsionResults[i];
+                if (col == null || col.gameObject == gameObject) continue;
+                
                 if (col.TryGetComponent<ElementBox>(out var otherBox))
                 {
                     if (otherBox._isCombining) continue;
-
+                    
                     if (IsLightAndDarkPair(this.boxType, otherBox.boxType))
                     {
-                        Vector2 directionAway = transform.position - col.transform.position;
+                        Vector2 directionAway = (Vector2)_transform.position - (Vector2)col.transform.position;
                         float distance = directionAway.magnitude;
 
-                        if (distance > 0)
+                        if (distance > 0f)
                         {
                             float proximityFactor = 4f - Mathf.Clamp01(distance / magneticRadius);
                             float forceMagnitude = maxRepelForce * proximityFactor;
@@ -91,7 +101,16 @@ namespace Scrips
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            if (_isCombining) return;
+            if (_isCombining)
+            {
+                if (collision.gameObject.TryGetComponent<PlayerController2D>(out var player))
+                {
+                    Vector2 forceDir = ((Vector2)collision.transform.position - (Vector2)_transform.position).normalized;
+                    player.TakeDamage(1);
+                    player.ApplyKnockback(forceDir * 15f, 0.3f);
+                }
+                return;
+            }
 
             if (collision.gameObject.TryGetComponent<ElementBox>(out var otherBox))
             {
@@ -135,7 +154,7 @@ namespace Scrips
             Destroy(gameObject);
         }
 
-        private bool IsLightAndDarkPair(BoxType a, BoxType b)
+        private static bool IsLightAndDarkPair(BoxType a, BoxType b)
         {
             return (a == BoxType.Light && b == BoxType.Dark) || (a == BoxType.Dark && b == BoxType.Light);
         }
@@ -158,59 +177,143 @@ namespace Scrips
         private IEnumerator DarkTeleportSequenceRoutine(Vector3 mergePoint)
         {
             GameObject player = GameObject.FindWithTag("Player");
-
-            // 1. Get sucked in: Smoothly pull the player directly to the center of the merge point
-            TriggerImplosion(mergePoint);
-
-            if (player != null)
+        
+            // -----------------------------------------------------------------
+            // 1. SPAWN LOOPING PORTAL & WAIT FOR PLAYER
+            // -----------------------------------------------------------------
+            GameObject activePortalFX = null;
+            ParticleSystem portalParticles = null;
+            
+            // Spawn portal effect instantly upon merge
+            if (anim1Prefab != null)
             {
-                if (player.TryGetComponent<Rigidbody2D>(out var playerRb))
-                {
-                    playerRb.linearVelocity = Vector2.zero;
-                }
-
-                Vector3 startPos = player.transform.position;
-                float elapsed = 0f;
-
-                while (elapsed < pullDuration)
-                {
-                    elapsed += Time.deltaTime;
-                    float progress = (pullDuration > 0f) ? Mathf.Clamp01(elapsed / pullDuration) : 1f;
-                    player.transform.position = Vector3.Lerp(startPos, mergePoint, progress);
-                    yield return null;
-                }
-
-                player.transform.position = mergePoint;
+                activePortalFX = Instantiate(anim1Prefab, mergePoint, Quaternion.identity);
+                // Grab ParticleSystem component to handle smooth stopping later
+                portalParticles = activePortalFX.GetComponentInChildren<ParticleSystem>();
             }
-            else
+        
+            // Keep portal active while waiting for player to step into range
+            while (player != null && Vector3.Distance(player.transform.position, mergePoint) > portalTriggerRadius)
             {
-                yield return new WaitForSeconds(pullDuration);
+                yield return null; 
             }
-
-            if (player == null) yield break;
-
+        
+            if (player == null) 
+            {
+                if (activePortalFX != null) Destroy(activePortalFX);
+                yield break;
+            }
+        
+            // -----------------------------------------------------------------
+            // 2. SUCK-IN PHASE: Pull player into portal
+            // -----------------------------------------------------------------
+            float entrySpeed = 0f;
+            Vector2 launchDirection = Vector2.up;
+            PlayerController2D playerController = null;
+            Rigidbody2D playerRb = null;
+        
+            player.TryGetComponent(out playerController);
+            player.TryGetComponent(out playerRb);
+        
+            float originalGravityScale = 1f;
+        
+            if (playerRb != null)
+            {
+                originalGravityScale = playerRb.gravityScale;
+                entrySpeed = playerRb.linearVelocity.magnitude;
+                Vector2 travelDirection = ((Vector2)mergePoint - (Vector2)player.transform.position).normalized;
+        
+                if (entrySpeed > 0.1f)
+                {
+                    Vector2 rawVelocityDir = playerRb.linearVelocity.normalized;
+                    launchDirection = (Vector2.Dot(rawVelocityDir, travelDirection) < 0f) ? -rawVelocityDir : rawVelocityDir;
+                }
+                else
+                {
+                    launchDirection = travelDirection != Vector2.zero ? travelDirection : Vector2.up;
+                }
+        
+                playerRb.gravityScale = 0f;
+                playerRb.linearVelocity = Vector2.zero;
+            }
+        
+            if (playerController != null)
+            {
+                playerController.SetInputLock(true);
+            }
+        
+            Vector3 startPos = player.transform.position;
+            float distance = Vector3.Distance(startPos, mergePoint);
+            float dynamicPullDuration = Mathf.Max(pullDuration, distance * 0.05f);
+            float elapsed = 0f;
+        
+            while (elapsed < dynamicPullDuration)
+            {
+                if (player == null) 
+                {
+                    if (activePortalFX != null) Destroy(activePortalFX);
+                    yield break;
+                }
+        
+                elapsed += Time.deltaTime;
+                float progress = Mathf.Clamp01(elapsed / dynamicPullDuration);
+                float easeProgress = Mathf.SmoothStep(0f, 1f, progress);
+                player.transform.position = Vector3.Lerp(startPos, mergePoint, easeProgress);
+                yield return null;
+            }
+        
+            player.transform.position = mergePoint;
+        
+            // -----------------------------------------------------------------
+            // STOP & CLEAN UP PORTAL VISUALS SMOOTHLY
+            // -----------------------------------------------------------------
+            if (portalParticles != null)
+            {
+                // Stop producing new particles but let existing ones fade out naturally
+                portalParticles.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+                Destroy(activePortalFX, 1.5f); // Clean up game object after fade
+            }
+            else if (activePortalFX != null)
+            {
+                Destroy(activePortalFX);
+            }
+        
+            // -----------------------------------------------------------------
+            // 3. TELEPORT & DESTINATION SEQUENCE
+            // -----------------------------------------------------------------
             Vector3 targetPosition = GetTeleportTarget(mergePoint);
-
-            // 2. Player disappears at merge point center
+        
             SetPlayerState(player, visible: false);
-
-            // 3. First animation (plays at merge point center)
+        
             if (anim1StartDelay > 0f) yield return new WaitForSeconds(anim1StartDelay);
-            if (anim1Prefab != null) Instantiate(anim1Prefab, mergePoint, Quaternion.identity);
             yield return new WaitForSeconds(anim1Duration);
-
-            // 4. Second animation (plays at destination point)
+        
             if (anim2StartDelay > 0f) yield return new WaitForSeconds(anim2StartDelay);
             if (anim2Prefab != null) Instantiate(anim2Prefab, targetPosition, Quaternion.identity);
             yield return new WaitForSeconds(anim2Duration);
-
-            // 5. Third animation starts at destination point
+        
             if (anim3StartDelay > 0f) yield return new WaitForSeconds(anim3StartDelay);
             if (anim3Prefab != null) Instantiate(anim3Prefab, targetPosition, Quaternion.identity);
-
-            // Player appears in the middle of Anim 3
+        
+            // Move Player to Teleport Target
             player.transform.position = targetPosition;
+        
+            if (playerRb != null)
+            {
+                playerRb.gravityScale = originalGravityScale;
+            }
+        
             SetPlayerState(player, visible: true);
+        
+            if (playerController != null)
+            {
+                playerController.SetInputLock(false);
+        
+                float launchSpeed = Mathf.Max(entrySpeed, 8f);
+                playerController.ApplyKnockback(launchDirection * launchSpeed, 0.3f);
+            }
+        
+            if (anim3Duration > 0f) yield return new WaitForSeconds(anim3Duration);
         }
 
         private void SetPlayerState(GameObject player, bool visible)
@@ -272,10 +375,13 @@ namespace Scrips
                 Instantiate(explosionEffectPrefab, point, Quaternion.identity);
 
             float explosionRadius = 3.5f;
-            Collider2D[] affectedColliders = Physics2D.OverlapCircleAll(point, explosionRadius);
+            int hitCount = Physics2D.OverlapCircleNonAlloc(point, explosionRadius, ExplosionResults);
 
-            foreach (var col in affectedColliders)
+            for (int i = 0; i < hitCount; i++)
             {
+                var col = ExplosionResults[i];
+                if (col == null) continue;
+
                 BreakableWall wall = col.GetComponentInParent<BreakableWall>();
                 if (wall != null)
                 {
@@ -286,6 +392,7 @@ namespace Scrips
                 if (col.TryGetComponent<PlayerController2D>(out var player))
                 {
                     Vector2 forceDir = ((Vector2)col.transform.position - (Vector2)point).normalized;
+                    player.TakeDamage(1);
                     player.ApplyKnockback(forceDir * 15f, 0.3f);
                 }
                 else if (col.TryGetComponent<Rigidbody2D>(out var rb))
@@ -300,10 +407,13 @@ namespace Scrips
         private void TriggerImplosion(Vector3 point)
         {
             float implosionRadius = 3.5f;
-            Collider2D[] affectedColliders = Physics2D.OverlapCircleAll(point, implosionRadius);
+            int hitCount = Physics2D.OverlapCircleNonAlloc(point, implosionRadius, ExplosionResults);
 
-            foreach (var col in affectedColliders)
+            for (int i = 0; i < hitCount; i++)
             {
+                var col = ExplosionResults[i];
+                if (col == null) continue;
+
                 BreakableWall wall = col.GetComponentInParent<BreakableWall>();
                 if (wall != null)
                 {
@@ -327,8 +437,13 @@ namespace Scrips
 
         private void OnDrawGizmosSelected()
         {
+            // Cyan ring for magnetic repulsion radius
             Gizmos.color = Color.cyan;
             Gizmos.DrawWireSphere(transform.position, magneticRadius);
+
+            // Magenta ring for dark portal player trigger radius
+            Gizmos.color = Color.magenta;
+            Gizmos.DrawWireSphere(transform.position, portalTriggerRadius);
         }
     }
 }
