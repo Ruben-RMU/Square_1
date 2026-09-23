@@ -15,28 +15,34 @@ EditorBuildSettings:
     path: Assets/Scenes/LevelSelect.unity
     guid: 305e6d7cfa039a345a386d2061f3fce8
   - enabled: 1
-    path: Assets/Scenes/Level 1.unity
+    path: Assets/Scenes/1_Intro/Level 1.unity
     guid: f187da14d0980a94296615cd5bf1418a
   - enabled: 1
-    path: Assets/Scenes/Level 2.unity
+    path: Assets/Scenes/1_Intro/Level 2.unity
+    guid: 13d7febeb7b4d03d89d4abc5f80e5588
+  - enabled: 1
+    path: Assets/Scenes/1_Intro/Level 3.unity
     guid: dcd2e71a4d3c2304c8ece09c0b2ddd12
   - enabled: 1
-    path: Assets/Scenes/Level Dark.unity
+    path: Assets/Scenes/1_Intro/Level 4.unity
     guid: 9684e098f1d0e717a887af66185db7d3
   - enabled: 1
-    path: Assets/Scenes/Level 3.unity
+    path: Assets/Scenes/1_Intro/Level 5.unity
     guid: a45a9081c1220394cb4f7bc6b076aab3
   - enabled: 1
-    path: Assets/Scenes/1_Intro/Level 5.unity
+    path: Assets/Scenes/1_Intro/Level 6.unity
     guid: f17143230d25e74d9aaf781b9077b1d4
   - enabled: 1
-    path: Assets/Scenes/1_Intro/Level 6.unity
+    path: Assets/Scenes/1_Intro/Level 7.unity
     guid: 2ecb787835c2574e29669865d2e385c2
   - enabled: 1
-    path: Assets/Scenes/3_Advanced/Level 7.unity
+    path: Assets/Scenes/3_Advanced/Level 8.unity
     guid: 05fc9bae074f40d7ab4509283fc559e9
   - enabled: 1
-    path: Assets/Scenes/5_In_Reverse_Out_The_Box/Level 8.unity
+    path: Assets/Scenes/3_Advanced/Level 9.unity
+    guid: eb2b460d831a168ca812a5b2598841bd
+  - enabled: 1
+    path: Assets/Scenes/5_In_Reverse_Out_The_Box/Level 10.unity
     guid: c0b40a2890a801f3c995dc855c65309c
   - enabled: 0
     path: Assets/Scenes/0_Achievement/Level 9.unity
