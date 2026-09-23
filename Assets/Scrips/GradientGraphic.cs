@@ -2,10 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Sprites;
 using UnityEngine.UI;
-#if UNITY_2017_4 || UNITY_2018_2_OR_NEWER
 using UnityEngine.U2D;
-#endif
-using Sprites = UnityEngine.Sprites;
 
 [RequireComponent(typeof(CanvasRenderer))]
 [AddComponentMenu("UI/Gradient Graphic", 12)]
@@ -14,22 +11,83 @@ public class GradientGraphic : MaskableGraphic, ILayoutElement
     private static readonly Vector2[] s_SlicedVertices = new Vector2[4];
     private static readonly Vector2[] s_SlicedUVs = new Vector2[4];
 
-    public Sprite sprite;
+    [SerializeField] private Sprite m_Sprite;
+    public Sprite sprite
+    {
+        get => m_Sprite;
+        set
+        {
+            if (m_Sprite == value) return;
+
+            if (m_Tracked) UnTrackImage();
+            m_Sprite = value;
+            if (isActiveAndEnabled) TrackImage();
+
+            SetVerticesDirty();
+            SetMaterialDirty();
+        }
+    }
+
     public override Texture mainTexture { get { return sprite ? sprite.texture : s_WhiteTexture; } }
 
-    public Color topLeftColor = Color.white;
-    public Color topRightColor = Color.white;
-    public Color bottomLeftColor = Color.white;
-    public Color bottomRightColor = Color.white;
+    [SerializeField] private Color m_TopLeftColor = Color.white;
+    public Color topLeftColor
+    {
+        get => m_TopLeftColor;
+        set { m_TopLeftColor = value; SetVerticesDirty(); }
+    }
+
+    [SerializeField] private Color m_TopRightColor = Color.white;
+    public Color topRightColor
+    {
+        get => m_TopRightColor;
+        set { m_TopRightColor = value; SetVerticesDirty(); }
+    }
+
+    [SerializeField] private Color m_BottomLeftColor = Color.white;
+    public Color bottomLeftColor
+    {
+        get => m_BottomLeftColor;
+        set { m_BottomLeftColor = value; SetVerticesDirty(); }
+    }
+
+    [SerializeField] private Color m_BottomRightColor = Color.white;
+    public Color bottomRightColor
+    {
+        get => m_BottomRightColor;
+        set { m_BottomRightColor = value; SetVerticesDirty(); }
+    }
 
     [Range(1, 5)]
     [Tooltip("Increasing this value will make the gradient smoother by generating more vertices for the UI mesh; increase it only when needed")]
-    public int gradientSmoothness = 1;
+    [SerializeField] private int m_GradientSmoothness = 1;
+    public int gradientSmoothness
+    {
+        get => m_GradientSmoothness;
+        set { m_GradientSmoothness = Mathf.Max(value, 1); SetVerticesDirty(); }
+    }
 
-    public bool useSlicedSprite = true;
-    public bool fillCenter = true;
+    [SerializeField] private bool m_UseSlicedSprite = true;
+    public bool useSlicedSprite
+    {
+        get => m_UseSlicedSprite;
+        set { m_UseSlicedSprite = value; SetVerticesDirty(); }
+    }
 
-    public float pixelsPerUnitMultiplier = 1f;
+    [SerializeField] private bool m_FillCenter = true;
+    public bool fillCenter
+    {
+        get => m_FillCenter;
+        set { m_FillCenter = value; SetVerticesDirty(); }
+    }
+
+    [SerializeField] private float m_PixelsPerUnitMultiplier = 1f;
+    public float pixelsPerUnitMultiplier
+    {
+        get => m_PixelsPerUnitMultiplier;
+        set { m_PixelsPerUnitMultiplier = Mathf.Max(value, 0.01f); SetVerticesDirty(); }
+    }
+
     public float pixelsPerUnit
     {
         get
@@ -82,12 +140,14 @@ public class GradientGraphic : MaskableGraphic, ILayoutElement
             UnTrackImage();
     }
 
+#if UNITY_EDITOR
     protected override void OnValidate()
     {
         base.OnValidate();
-        gradientSmoothness = Mathf.Max(gradientSmoothness, 1);
-        pixelsPerUnitMultiplier = Mathf.Max(pixelsPerUnitMultiplier, 0.01f);
+        m_GradientSmoothness = Mathf.Max(m_GradientSmoothness, 1);
+        m_PixelsPerUnitMultiplier = Mathf.Max(m_PixelsPerUnitMultiplier, 0.01f);
     }
+#endif
 
     protected override void OnPopulateMesh(VertexHelper vh)
     {
@@ -322,16 +382,13 @@ public class GradientGraphic : MaskableGraphic, ILayoutElement
     // Whether this is being tracked for Atlas Binding
     private bool m_Tracked = false;
 
-#if UNITY_2017_4 || UNITY_2018_2_OR_NEWER
     private static List<GradientGraphic> m_TrackedTexturelessImages = new List<GradientGraphic>();
     private static bool s_Initialized;
-#endif
 
     private void TrackImage()
     {
         if (sprite != null && sprite.texture == null)
         {
-#if UNITY_2017_4 || UNITY_2018_2_OR_NEWER
             if (!s_Initialized)
             {
                 SpriteAtlasManager.atlasRegistered += RebuildImage;
@@ -339,20 +396,16 @@ public class GradientGraphic : MaskableGraphic, ILayoutElement
             }
 
             m_TrackedTexturelessImages.Add(this);
-#endif
             m_Tracked = true;
         }
     }
 
     private void UnTrackImage()
     {
-#if UNITY_2017_4 || UNITY_2018_2_OR_NEWER
         m_TrackedTexturelessImages.Remove(this);
-#endif
         m_Tracked = false;
     }
 
-#if UNITY_2017_4 || UNITY_2018_2_OR_NEWER
     private static void RebuildImage(SpriteAtlas spriteAtlas)
     {
         for (int i = m_TrackedTexturelessImages.Count - 1; i >= 0; i--)
@@ -365,5 +418,4 @@ public class GradientGraphic : MaskableGraphic, ILayoutElement
             }
         }
     }
-#endif
 }
