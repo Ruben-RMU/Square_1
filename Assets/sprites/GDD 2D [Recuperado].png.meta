@@ -1,0 +1,546 @@
+fileFormatVersion: 2
+guid: 683f24535f5140b4a84d61d896001827
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -4555704700576739689
+    second: GDD 2D [Recuperado]_0
+  - first:
+      213: -5646620557666438867
+    second: GDD 2D [Recuperado]_1
+  - first:
+      213: 6194321170020600438
+    second: GDD 2D [Recuperado]_2
+  - first:
+      213: 4980488671443650291
+    second: GDD 2D [Recuperado]_3
+  - first:
+      213: 1613784748546534328
+    second: GDD 2D [Recuperado]_4
+  - first:
+      213: -326303330640592606
+    second: GDD 2D [Recuperado]_5
+  - first:
+      213: -3033532753853642458
+    second: GDD 2D [Recuperado]_6
+  - first:
+      213: 9020148134950034633
+    second: GDD 2D [Recuperado]_7
+  - first:
+      213: -6886712142589718195
+    second: GDD 2D [Recuperado]_8
+  - first:
+      213: -9202114112843487546
+    second: GDD 2D [Recuperado]_9
+  - first:
+      213: 7261781342397962982
+    second: GDD 2D [Recuperado]_10
+  - first:
+      213: 6105697098109014700
+    second: GDD 2D [Recuperado]_11
+  - first:
+      213: 5640538596044826744
+    second: GDD 2D [Recuperado]_12
+  - first:
+      213: -7812665103075885682
+    second: GDD 2D [Recuperado]_13
+  - first:
+      213: 6968650742731951850
+    second: GDD 2D [Recuperado]_14
+  - first:
+      213: -7230340275827496485
+    second: GDD 2D [Recuperado]_15
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: GDD 2D [Recuperado]_0
+      rect:
+        serializedVersion: 2
+        x: 679
+        y: 6939
+        width: 4158
+        height: 2769
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 79ecb8446b2e6c0c0800000000000000
+      internalID: -4555704700576739689
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GDD 2D [Recuperado]_1
+      rect:
+        serializedVersion: 2
+        x: 5395
+        y: 7799
+        width: 1922
+        height: 1892
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d21bfd6158c23a1b0800000000000000
+      internalID: -5646620557666438867
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GDD 2D [Recuperado]_2
+      rect:
+        serializedVersion: 2
+        x: 7867
+        y: 7556
+        width: 1547
+        height: 2411
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 67a82c30946a6f550800000000000000
+      internalID: 6194321170020600438
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GDD 2D [Recuperado]_3
+      rect:
+        serializedVersion: 2
+        x: 1201
+        y: 4766
+        width: 2695
+        height: 1525
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f681451f004e1540800000000000000
+      internalID: 4980488671443650291
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GDD 2D [Recuperado]_4
+      rect:
+        serializedVersion: 2
+        x: 4898
+        y: 5416
+        width: 5103
+        height: 1781
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8bb2f09bda0556610800000000000000
+      internalID: 1613784748546534328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GDD 2D [Recuperado]_5
+      rect:
+        serializedVersion: 2
+        x: 10730
+        y: 3667
+        width: 2463
+        height: 1935
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 221042089dcb87bf0800000000000000
+      internalID: -326303330640592606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GDD 2D [Recuperado]_6
+      rect:
+        serializedVersion: 2
+        x: 984
+        y: 3145
+        width: 2587
+        height: 1371
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6298a00680ab6e5d0800000000000000
+      internalID: -3033532753853642458
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GDD 2D [Recuperado]_7
+      rect:
+        serializedVersion: 2
+        x: 4628
+        y: 3464
+        width: 3034
+        height: 1434
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9cc591d10f00e2d70800000000000000
+      internalID: 9020148134950034633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GDD 2D [Recuperado]_8
+      rect:
+        serializedVersion: 2
+        x: 8013
+        y: 3496
+        width: 1778
+        height: 1725
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d41129e2bcb7d60a0800000000000000
+      internalID: -6886712142589718195
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GDD 2D [Recuperado]_9
+      rect:
+        serializedVersion: 2
+        x: 761
+        y: 791
+        width: 941
+        height: 1467
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c6ea5128f58b4080800000000000000
+      internalID: -9202114112843487546
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GDD 2D [Recuperado]_10
+      rect:
+        serializedVersion: 2
+        x: 2212
+        y: 918
+        width: 455
+        height: 1282
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ea903608a707c460800000000000000
+      internalID: 7261781342397962982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GDD 2D [Recuperado]_11
+      rect:
+        serializedVersion: 2
+        x: 3246
+        y: 1046
+        width: 791
+        height: 1216
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ca2dbee492bcbb450800000000000000
+      internalID: 6105697098109014700
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GDD 2D [Recuperado]_12
+      rect:
+        serializedVersion: 2
+        x: 4459
+        y: 1122
+        width: 874
+        height: 1103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 878e12fd7f7374e40800000000000000
+      internalID: 5640538596044826744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GDD 2D [Recuperado]_13
+      rect:
+        serializedVersion: 2
+        x: 5740
+        y: 989
+        width: 1656
+        height: 1066
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e8d32166b76d39390800000000000000
+      internalID: -7812665103075885682
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GDD 2D [Recuperado]_14
+      rect:
+        serializedVersion: 2
+        x: 8033
+        y: 1020
+        width: 1125
+        height: 1222
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aeecc44ddee95b060800000000000000
+      internalID: 6968650742731951850
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GDD 2D [Recuperado]_15
+      rect:
+        serializedVersion: 2
+        x: 9631
+        y: 1162
+        width: 2422
+        height: 883
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd92a1eb3dba8ab90800000000000000
+      internalID: -7230340275827496485
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      GDD 2D [Recuperado]_0: -4555704700576739689
+      GDD 2D [Recuperado]_1: -5646620557666438867
+      GDD 2D [Recuperado]_10: 7261781342397962982
+      GDD 2D [Recuperado]_11: 6105697098109014700
+      GDD 2D [Recuperado]_12: 5640538596044826744
+      GDD 2D [Recuperado]_13: -7812665103075885682
+      GDD 2D [Recuperado]_14: 6968650742731951850
+      GDD 2D [Recuperado]_15: -7230340275827496485
+      GDD 2D [Recuperado]_2: 6194321170020600438
+      GDD 2D [Recuperado]_3: 4980488671443650291
+      GDD 2D [Recuperado]_4: 1613784748546534328
+      GDD 2D [Recuperado]_5: -326303330640592606
+      GDD 2D [Recuperado]_6: -3033532753853642458
+      GDD 2D [Recuperado]_7: 9020148134950034633
+      GDD 2D [Recuperado]_8: -6886712142589718195
+      GDD 2D [Recuperado]_9: -9202114112843487546
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
