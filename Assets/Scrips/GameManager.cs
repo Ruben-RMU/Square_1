@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         Data = SaveSystem.Load();
+        Debug.Log(Application.persistentDataPath);
     }
 
     // Call from your Player movement script when jumping
