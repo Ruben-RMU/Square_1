@@ -2629,6 +2629,10 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 2953851140786768066, guid: 851c2f0b4a4dd9c40947d6acd8edf71e, type: 3}
+      propertyPath: explosionEffectPrefab
+      value: 
+      objectReference: {fileID: 8905632023283218023, guid: d7fd2d62c334b4940b9df9b0d05e3e61, type: 3}
     - target: {fileID: 4600738291005572008, guid: 851c2f0b4a4dd9c40947d6acd8edf71e, type: 3}
       propertyPath: m_Material
       value: 
@@ -2726,6 +2730,10 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 2953851140786768066, guid: 851c2f0b4a4dd9c40947d6acd8edf71e, type: 3}
+      propertyPath: explosionEffectPrefab
+      value: 
+      objectReference: {fileID: 8905632023283218023, guid: d7fd2d62c334b4940b9df9b0d05e3e61, type: 3}
     - target: {fileID: 6377643837623462968, guid: 851c2f0b4a4dd9c40947d6acd8edf71e, type: 3}
       propertyPath: m_Name
       value: LightBox (2)
@@ -3371,6 +3379,10 @@ PrefabInstance:
     - target: {fileID: 4200353582592644231, guid: 334a5334a0e01ff45a6efea4b7c91b0e, type: 3}
       propertyPath: m_Name
       value: DarkBox
+      objectReference: {fileID: 0}
+    - target: {fileID: 6666285617766740291, guid: 334a5334a0e01ff45a6efea4b7c91b0e, type: 3}
+      propertyPath: anim2Duration
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7692569382199691218, guid: 334a5334a0e01ff45a6efea4b7c91b0e, type: 3}
       propertyPath: m_LocalScale.x
@@ -6197,6 +6209,10 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 2953851140786768066, guid: 851c2f0b4a4dd9c40947d6acd8edf71e, type: 3}
+      propertyPath: explosionEffectPrefab
+      value: 
+      objectReference: {fileID: 8905632023283218023, guid: d7fd2d62c334b4940b9df9b0d05e3e61, type: 3}
     - target: {fileID: 4600738291005572008, guid: 851c2f0b4a4dd9c40947d6acd8edf71e, type: 3}
       propertyPath: m_Material
       value: 
