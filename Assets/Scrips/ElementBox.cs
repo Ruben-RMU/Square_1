@@ -177,22 +177,16 @@ namespace Scrips
         private IEnumerator DarkTeleportSequenceRoutine(Vector3 mergePoint)
         {
             GameObject player = GameObject.FindWithTag("Player");
-        
-            // -----------------------------------------------------------------
-            // 1. SPAWN LOOPING PORTAL & WAIT FOR PLAYER
-            // -----------------------------------------------------------------
+            
             GameObject activePortalFX = null;
             ParticleSystem portalParticles = null;
             
-            // Spawn portal effect instantly upon merge
             if (anim1Prefab != null)
             {
                 activePortalFX = Instantiate(anim1Prefab, mergePoint, Quaternion.identity);
-                // Grab ParticleSystem component to handle smooth stopping later
                 portalParticles = activePortalFX.GetComponentInChildren<ParticleSystem>();
             }
-        
-            // Keep portal active while waiting for player to step into range
+            
             while (player != null && Vector3.Distance(player.transform.position, mergePoint) > portalTriggerRadius)
             {
                 yield return null; 
@@ -203,10 +197,7 @@ namespace Scrips
                 if (activePortalFX != null) Destroy(activePortalFX);
                 yield break;
             }
-        
-            // -----------------------------------------------------------------
-            // 2. SUCK-IN PHASE: Pull player into portal
-            // -----------------------------------------------------------------
+            
             float entrySpeed = 0f;
             Vector2 launchDirection = Vector2.up;
             PlayerController2D playerController = null;
@@ -263,24 +254,17 @@ namespace Scrips
             }
         
             player.transform.position = mergePoint;
-        
-            // -----------------------------------------------------------------
-            // STOP & CLEAN UP PORTAL VISUALS SMOOTHLY
-            // -----------------------------------------------------------------
+            
             if (portalParticles != null)
             {
-                // Stop producing new particles but let existing ones fade out naturally
                 portalParticles.Stop(true, ParticleSystemStopBehavior.StopEmitting);
-                Destroy(activePortalFX, 1.5f); // Clean up game object after fade
+                Destroy(activePortalFX, 1.5f);
             }
             else if (activePortalFX != null)
             {
                 Destroy(activePortalFX);
             }
-        
-            // -----------------------------------------------------------------
-            // 3. TELEPORT & DESTINATION SEQUENCE
-            // -----------------------------------------------------------------
+            
             Vector3 targetPosition = GetTeleportTarget(mergePoint);
         
             SetPlayerState(player, visible: false);
@@ -294,8 +278,7 @@ namespace Scrips
         
             if (anim3StartDelay > 0f) yield return new WaitForSeconds(anim3StartDelay);
             if (anim3Prefab != null) Instantiate(anim3Prefab, targetPosition, Quaternion.identity);
-        
-            // Move Player to Teleport Target
+            
             player.transform.position = targetPosition;
         
             if (playerRb != null)
@@ -310,7 +293,7 @@ namespace Scrips
                 playerController.SetInputLock(false);
         
                 float launchSpeed = Mathf.Max(entrySpeed, 8f);
-                playerController.ApplyKnockback(launchDirection * launchSpeed, 0.3f);
+                playerController.ApplyKnockback(launchDirection * 0.6f * launchSpeed, 0.3f);
             }
         
             if (anim3Duration > 0f) yield return new WaitForSeconds(anim3Duration);
