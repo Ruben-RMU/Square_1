@@ -1707,7 +1707,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &286060960
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2036,7 +2036,6 @@ MonoBehaviour:
   pages:
   - {fileID: 269708259}
   - {fileID: 928639483}
-  - {fileID: 0}
 --- !u!1 &407718458
 GameObject:
   m_ObjectHideFlags: 0
@@ -2682,7 +2681,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &674651569
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3273,7 +3272,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &928639484
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3991,9 +3990,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1141023293}
+      - m_Target: {fileID: 1141023295}
         m_TargetAssemblyTypeName: LevelSelector, Assembly-CSharp
-        m_MethodName: 
+        m_MethodName: OpenScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4060,7 +4059,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1186203404
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4213,7 +4212,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1187532804
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4366,7 +4365,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1189875949
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5100,7 +5099,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1387517582
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5253,7 +5252,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1399396861
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5782,7 +5781,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1470436315
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6005,9 +6004,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1470569029}
+      - m_Target: {fileID: 1470569031}
         m_TargetAssemblyTypeName: LevelSelector, Assembly-CSharp
-        m_MethodName: 
+        m_MethodName: OpenScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6158,9 +6157,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1565690210}
+      - m_Target: {fileID: 1565690212}
         m_TargetAssemblyTypeName: LevelSelector, Assembly-CSharp
-        m_MethodName: 
+        m_MethodName: OpenScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6779,7 +6778,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1762757771
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7242,7 +7241,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1942819959
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7459,9 +7458,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1985340763}
+      - m_Target: {fileID: 1985340765}
         m_TargetAssemblyTypeName: LevelSelector, Assembly-CSharp
-        m_MethodName: 
+        m_MethodName: OpenScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
