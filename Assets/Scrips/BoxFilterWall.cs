@@ -1,4 +1,4 @@
-fixusing UnityEngine;
+using UnityEngine;
 
 namespace Scrips
 {
