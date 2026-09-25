@@ -49,18 +49,26 @@ namespace Scrips
         [Header("Magnetic Repulsion")]
         [SerializeField] private float magneticRadius = 3f;
         [SerializeField] private float maxRepelForce = 15f;
+        [Tooltip("Layers considered obstacles (walls/ground). If something on this mask sits between two boxes, they won't repel each other.")]
+        [SerializeField] private LayerMask obstacleMask;
 
         private Rigidbody2D _rb;
         private Transform _transform;
         private bool _isCombining;
+        private ContactFilter2D _obstacleFilter;
 
         private static readonly Collider2D[] RepulsionResults = new Collider2D[16];
         private static readonly Collider2D[] ExplosionResults = new Collider2D[32];
+        private static readonly RaycastHit2D[] LinecastResults = new RaycastHit2D[8];
 
         private void Awake()
         {
             _rb = GetComponent<Rigidbody2D>();
             _transform = transform;
+
+            _obstacleFilter = new ContactFilter2D();
+            _obstacleFilter.SetLayerMask(obstacleMask);
+            _obstacleFilter.useTriggers = false;
         }
 
         private void FixedUpdate()
@@ -85,7 +93,13 @@ namespace Scrips
                     
                     if (IsLightAndDarkPair(this.boxType, otherBox.boxType))
                     {
-                        Vector2 directionAway = (Vector2)_transform.position - (Vector2)col.transform.position;
+                        Vector2 selfPos = _transform.position;
+                        Vector2 otherPos = col.transform.position;
+
+                        // Skip repulsion if a wall/ground obstacle sits between the two boxes.
+                        if (IsPathBlocked(selfPos, otherPos, otherBox.gameObject)) continue;
+
+                        Vector2 directionAway = selfPos - otherPos;
                         float distance = directionAway.magnitude;
 
                         if (distance > 0f)
@@ -97,6 +111,28 @@ namespace Scrips
                     }
                 }
             }
+        }
+
+        /// <summary>
+        /// Returns true if any collider on the obstacle mask (other than the two boxes'
+        /// own colliders) sits on the line between the two given points.
+        /// </summary>
+        private bool IsPathBlocked(Vector2 from, Vector2 to, GameObject otherGameObject)
+        {
+            int hitCount = Physics2D.Linecast(from, to, _obstacleFilter, LinecastResults);
+
+            for (int i = 0; i < hitCount; i++)
+            {
+                var hit = LinecastResults[i];
+                if (hit.collider == null) continue;
+
+                // Ignore hits on either box's own collider(s) - only real obstacles count.
+                if (hit.collider.gameObject == gameObject || hit.collider.gameObject == otherGameObject) continue;
+
+                return true;
+            }
+
+            return false;
         }
 
         private void OnCollisionEnter2D(Collision2D collision)

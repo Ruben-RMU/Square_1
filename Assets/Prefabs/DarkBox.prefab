@@ -186,6 +186,7 @@ MonoBehaviour:
   anim1Prefab: {fileID: 1095413968606714452, guid: 7ec89d038c0d4404cb9ea96858af9cc9, type: 3}
   anim2Prefab: {fileID: 1361338965330492700, guid: c3d124d9e9ed92a49a87668fc5069070, type: 3}
   anim3Prefab: {fileID: 0}
+  portalTriggerRadius: 3.5
   pullDuration: 0.3
   anim1StartDelay: 0
   anim1Duration: 0.4
@@ -195,3 +196,6 @@ MonoBehaviour:
   anim3Duration: 0.2
   magneticRadius: 3
   maxRepelForce: 15
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 8

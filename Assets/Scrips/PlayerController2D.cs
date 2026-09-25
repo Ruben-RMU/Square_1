@@ -34,6 +34,7 @@ namespace Scrips
 
         [SerializeField] private float groundCheckDistance = 0.2f;
         [SerializeField] private LayerMask groundLayer;
+        [SerializeField] private LayerMask groundLayer2;
         [SerializeField] private float groundCheckWidth = 0.4f;
 
         [Header("Touch UI References")] [SerializeField]
@@ -116,7 +117,8 @@ namespace Scrips
 
         private bool RayHitsGround(Vector2 origin)
         {
-            RaycastHit2D hit = Physics2D.Raycast(origin, Vector2.down, groundCheckDistance, groundLayer);
+            LayerMask combinedGroundMask = groundLayer | groundLayer2;
+            RaycastHit2D hit = Physics2D.Raycast(origin, Vector2.down, groundCheckDistance, combinedGroundMask);
             return hit.collider != null && !hit.collider.transform.IsChildOf(transform);
         }
 
