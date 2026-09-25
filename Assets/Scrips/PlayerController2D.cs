@@ -48,6 +48,7 @@ namespace Scrips
         private bool _isGrounded;
         private bool _isTouchingWall;
         private bool _isClimbing;
+        private float _wallDirection; // +1 if wall is on Right, -1 if wall is on Left
         private float _originalGravityScale;
         private bool _isKnockedBack;
         private Coroutine _knockbackCoroutine;
@@ -90,13 +91,10 @@ namespace Scrips
 
             float horizontalInput = GetHorizontalInput();
 
-            // CLIMBING STATE CONDITIONAL:
-            // 1. Must be touching a climbable wall.
-            // 2. If grounded and pressing Left (-1), release climb so player can walk away/down smoothly.
-            // 3. Otherwise, engage climbing whenever pressing input or airborne against a wall.
             if (_isTouchingWall)
             {
-                if (_isGrounded && horizontalInput < 0f)
+                // Disengage climbing if grounded and pushing away from the wall
+                if (_isGrounded && ((_wallDirection > 0 && horizontalInput < 0) || (_wallDirection < 0 && horizontalInput > 0)))
                 {
                     _isClimbing = false;
                 }
@@ -110,7 +108,6 @@ namespace Scrips
                 _isClimbing = false;
             }
 
-            // Coyote time active during ground touch OR climbing state
             if (_isGrounded || _isClimbing)
             {
                 _coyoteTimeCounter = coyoteTime;
@@ -166,8 +163,19 @@ namespace Scrips
             RaycastHit2D hitRight = Physics2D.Raycast(position, Vector2.right, wallCheckDistance, climbableLayer);
             RaycastHit2D hitLeft = Physics2D.Raycast(position, Vector2.left, wallCheckDistance, climbableLayer);
 
-            return (hitRight.collider != null && !hitRight.collider.transform.IsChildOf(transform)) ||
-                   (hitLeft.collider != null && !hitLeft.collider.transform.IsChildOf(transform));
+            bool touchRight = hitRight.collider != null && !hitRight.collider.transform.IsChildOf(transform);
+            bool touchLeft = hitLeft.collider != null && !hitLeft.collider.transform.IsChildOf(transform);
+
+            if (touchRight)
+            {
+                _wallDirection = 1f; // Wall is to the Right
+            }
+            else if (touchLeft)
+            {
+                _wallDirection = -1f; // Wall is to the Left
+            }
+
+            return touchRight || touchLeft;
         }
 
         private bool WasJumpPressed()
@@ -213,15 +221,16 @@ namespace Scrips
         {
             _rb.gravityScale = 0f;
 
-            float inputDirection = GetHorizontalInput();
-            float verticalVelocity = inputDirection * climbSpeed;
+            float horizontalInput = GetHorizontalInput();
 
-            // If moving down and about to hit the ground, apply a subtle outward push 
-            // to disengage smoothly without getting clipped on wall corners
+            // Pushing TOWARDS the wall moves UP (+climbSpeed)
+            // Pushing AWAY from the wall moves DOWN (-climbSpeed)
+            float verticalVelocity = (horizontalInput * _wallDirection) * climbSpeed;
+
             float horizontalPush = 0f;
-            if (_isGrounded && inputDirection < 0f)
+            if (_isGrounded && verticalVelocity < 0f)
             {
-                horizontalPush = -0.1f;
+                horizontalPush = -_wallDirection * 0.1f;
             }
 
             _rb.linearVelocity = new Vector2(horizontalPush, verticalVelocity);
