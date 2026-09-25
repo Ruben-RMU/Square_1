@@ -130,11 +130,7 @@ namespace Scrips
                 }
             }
         }
-
-        /// <summary>
-        /// Returns true if any collider on the obstacle mask (other than the two boxes'
-        /// own colliders) sits on the line between the two given points.
-        /// </summary>
+        
         private bool IsPathBlocked(Vector2 from, Vector2 to, GameObject otherGameObject)
         {
             int hitCount = Physics2D.Linecast(from, to, _obstacleFilter, LinecastResults);
@@ -157,8 +153,6 @@ namespace Scrips
         {
             if (_isCombining)
             {
-                // Only the Light+Light (explosion) combo is dangerous to touch while combining.
-                // Dark+Dark combines into a portal, so bumping the boxes shouldn't hurt the player.
                 if (boxType == BoxType.Light &&
                     collision.gameObject.TryGetComponent<PlayerController2D>(out var player))
                 {
@@ -248,22 +242,17 @@ namespace Scrips
             }
 
             // Computed once up front so any box sucked in early teleports to the same place as the player.
-            Vector3 targetPosition = GetTeleportTarget(mergePoint);
-            var boxSuckCooldowns = new Dictionary<ElementBox, float>();
+            Transform teleportTarget = GetTeleportTarget(mergePoint);
+            Vector3 targetPosition = teleportTarget != null ? teleportTarget.position : mergePoint;
+            
+            Quaternion exitRotation = teleportTarget != null ? teleportTarget.rotation : Quaternion.identity;
 
-            // The portal never closes on its own, so the player can walk back through it
-            // and go through again as many times as they like.
+            var boxSuckCooldowns = new Dictionary<ElementBox, float>();
+            
             bool firstPass = true;
 
             while (true)
             {
-                // If the destination happens to land inside the trigger radius, make sure the
-                // player actually walks back out of it before the portal watches for them
-                // entering again - otherwise they'd get teleported right back immediately.
-                // Skipped on the very first pass: the player is usually the one who just pushed
-                // the boxes together, so they're already standing inside the radius when the
-                // portal spawns, and that first activation shouldn't require them to step out
-                // and back in again.
                 if (!firstPass)
                 {
                     while (player != null && Vector3.Distance(player.transform.position, mergePoint) <= portalTriggerRadius)
@@ -287,20 +276,15 @@ namespace Scrips
                 }
 
                 yield return StartCoroutine(
-                    TeleportPlayerThroughPortalRoutine(player, mergePoint, targetPosition, activePortalFX));
+                    TeleportPlayerThroughPortalRoutine(player, mergePoint, targetPosition, exitRotation, activePortalFX));
             }
         }
-
-        /// <summary>
-        /// Pulls the player into the portal center and warps them to the destination.
-        /// Runs once per pass through the portal; the caller loops this so the player
-        /// can go through the same portal multiple times.
-        /// </summary>
+        
         private IEnumerator TeleportPlayerThroughPortalRoutine(GameObject player, Vector3 mergePoint,
-            Vector3 targetPosition, GameObject activePortalFX)
+            Vector3 targetPosition, Quaternion exitRotation, GameObject activePortalFX)
         {
             float entrySpeed = 0f;
-            Vector2 launchDirection = Vector2.up;
+            Vector2 entryDirection = Vector2.up;
             PlayerController2D playerController = null;
             Rigidbody2D playerRb = null;
 
@@ -318,18 +302,21 @@ namespace Scrips
                 if (entrySpeed > 0.1f)
                 {
                     Vector2 rawVelocityDir = playerRb.linearVelocity.normalized;
-                    launchDirection = (Vector2.Dot(rawVelocityDir, travelDirection) < 0f)
+                    entryDirection = (Vector2.Dot(rawVelocityDir, travelDirection) < 0f)
                         ? -rawVelocityDir
                         : rawVelocityDir;
                 }
                 else
                 {
-                    launchDirection = travelDirection != Vector2.zero ? travelDirection : Vector2.up;
+                    entryDirection = travelDirection != Vector2.zero ? travelDirection : Vector2.up;
                 }
 
                 playerRb.gravityScale = 0f;
                 playerRb.linearVelocity = Vector2.zero;
             }
+            
+            Vector2 launchDirection = (Vector2)(exitRotation * (Vector3)entryDirection);
+            if (launchDirection == Vector2.zero) launchDirection = Vector2.up;
 
             if (playerController != null)
             {
@@ -391,11 +378,7 @@ namespace Scrips
 
             if (anim3Duration > 0f) yield return new WaitForSeconds(anim3Duration);
         }
-
-        /// <summary>
-        /// While the portal is open, finds any other ElementBox within the portal's trigger
-        /// radius (that isn't already part of a combination) and starts pulling it in.
-        /// </summary>
+        
         private void SuckInNearbyBoxes(Vector3 mergePoint, Vector3 targetPosition,
             Dictionary<ElementBox, float> boxSuckCooldowns)
         {
@@ -410,25 +393,14 @@ namespace Scrips
 
                 // Skip the two boxes that are combining (they're already flagged _isCombining).
                 if (box._isCombining) continue;
-
-                // Skip a box that's currently being sucked in, or that landed here recently and
-                // is still within its re-suck cooldown - this stops gravity/physics settling at
-                // the destination from immediately re-triggering the suck, while still letting
-                // the box go through again once the cooldown passes.
+                
                 if (boxSuckCooldowns.TryGetValue(box, out float eligibleAt) && Time.time < eligibleAt) continue;
-
-                // Block re-entry for the whole active suck+teleport; refreshed with the real
-                // cooldown once it lands.
+                
                 boxSuckCooldowns[box] = float.MaxValue;
                 StartCoroutine(SuckInOtherBoxRoutine(box, mergePoint, targetPosition, boxSuckCooldowns));
             }
         }
-
-        /// <summary>
-        /// Pulls a nearby box into the portal center and teleports it to the destination,
-        /// mirroring the player's pull-in. Unlike the player, the box is never hidden,
-        /// disabled, or destroyed - it stays visible and active the whole time.
-        /// </summary>
+        
         private IEnumerator SuckInOtherBoxRoutine(ElementBox box, Vector3 mergePoint, Vector3 targetPosition,
             Dictionary<ElementBox, float> boxSuckCooldowns)
         {
@@ -486,11 +458,11 @@ namespace Scrips
                 }
             }
         }
-
-        private Vector3 GetTeleportTarget(Vector3 originPoint)
+        
+        private Transform GetTeleportTarget(Vector3 originPoint)
         {
             GameObject[] targets = GameObject.FindGameObjectsWithTag("TeleportTarget");
-            if (targets.Length == 0) return originPoint;
+            if (targets.Length == 0) return null;
 
             GameObject nearestTarget = null;
             float shortestDistance = float.MaxValue;
@@ -505,7 +477,7 @@ namespace Scrips
                 }
             }
 
-            return nearestTarget != null ? nearestTarget.transform.position : originPoint;
+            return nearestTarget != null ? nearestTarget.transform : null;
         }
 
         private void HideAndDisableBox(ElementBox box)
