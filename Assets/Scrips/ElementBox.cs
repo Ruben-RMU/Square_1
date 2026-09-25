@@ -1,56 +1,73 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Scrips
 {
-    public enum BoxType { Light, Dark }
+    public enum BoxType
+    {
+        Light,
+        Dark
+    }
 
     [RequireComponent(typeof(BoxCollider2D), typeof(Rigidbody2D))]
     public class ElementBox : MonoBehaviour
     {
-        [Header("Box Identity")]
-        public BoxType boxType;
+        [Header("Box Identity")] public BoxType boxType;
 
-        [Header("Combination Settings")]
-        [SerializeField] private GameObject explosionEffectPrefab;
+        [Header("Combination Settings")] [SerializeField]
+        private GameObject explosionEffectPrefab;
+
         [SerializeField] private float lightCombineDelay = 0.2f;
         [SerializeField] private float darkCombineDelay = 0.5f;
 
-        [Header("Dark Combination Prefabs")]
-        [SerializeField] private GameObject anim1Prefab; // Spawned at merge point (Portal Effect)
+        [Header("Dark Combination Prefabs")] [SerializeField]
+        private GameObject anim1Prefab; // Spawned at merge point (Portal Effect)
+
         [SerializeField] private GameObject anim2Prefab; // Spawned at destination before player appears
         [SerializeField] private GameObject anim3Prefab; // Spawned at destination after player appears
 
         [Header("Dark Combination Delays & Timings")]
-        [Tooltip("Max distance from the portal center to start sucking the player in. The portal stays open until player steps into range.")]
-        [SerializeField] private float portalTriggerRadius = 3.5f;
+        [Tooltip(
+            "Max distance from the portal center to start sucking the player in. The portal stays open until player steps into range.")]
+        [SerializeField]
+        private float portalTriggerRadius = 3.5f;
 
-        [Tooltip("Suck-in force and pull duration moving player to center before disappearing.")]
-        [SerializeField] private float pullDuration = 0.3f;
+        [Tooltip("Suck-in force and pull duration moving player to center before disappearing.")] [SerializeField]
+        private float pullDuration = 0.3f;
 
-        [Tooltip("Delay after player disappears before Anim 1 plays.")]
-        [SerializeField] private float anim1StartDelay = 0.0f;
+        [Tooltip("Delay after player disappears before Anim 1 plays.")] [SerializeField]
+        private float anim1StartDelay = 0.0f;
 
-        [Tooltip("Duration to wait while Anim 1 plays.")]
-        [SerializeField] private float anim1Duration = 0.4f;
+        [Tooltip("Duration to wait while Anim 1 plays.")] [SerializeField]
+        private float anim1Duration = 0.4f;
 
-        [Tooltip("Delay before Anim 2 plays at destination.")]
-        [SerializeField] private float anim2StartDelay = 0.0f;
+        [Tooltip("Delay before Anim 2 plays at destination.")] [SerializeField]
+        private float anim2StartDelay = 0.0f;
 
-        [Tooltip("Duration to wait while Anim 2 plays before player appears.")]
-        [SerializeField] private float anim2Duration = 0.4f;
+        [Tooltip("Duration to wait while Anim 2 plays before player appears.")] [SerializeField]
+        private float anim2Duration = 0.4f;
 
-        [Tooltip("Delay after player appears before Anim 3 plays.")]
-        [SerializeField] private float anim3StartDelay = 0.0f;
+        [Tooltip("Delay after player appears before Anim 3 plays.")] [SerializeField]
+        private float anim3StartDelay = 0.0f;
 
-        [Tooltip("Duration to wait for Anim 3 to finish before destroying boxes.")]
-        [SerializeField] private float anim3Duration = 0.2f;
+        [Tooltip("Duration to wait for Anim 3 to finish before destroying boxes.")] [SerializeField]
+        private float anim3Duration = 0.2f;
 
-        [Header("Magnetic Repulsion")]
-        [SerializeField] private float magneticRadius = 3f;
+        [Tooltip(
+            "How long a box is immune from being sucked in again by this same portal after it lands at the destination. Prevents physics drift or gravity at the destination from immediately re-triggering the suck, while still allowing the box to go through again later.")]
+        [SerializeField]
+        private float boxReSuckCooldown = 1f;
+
+        [Header("Magnetic Repulsion")] [SerializeField]
+        private float magneticRadius = 3f;
+
         [SerializeField] private float maxRepelForce = 15f;
-        [Tooltip("Layers considered obstacles (walls/ground). If something on this mask sits between two boxes, they won't repel each other.")]
-        [SerializeField] private LayerMask obstacleMask;
+
+        [Tooltip(
+            "Layers considered obstacles (walls/ground). If something on this mask sits between two boxes, they won't repel each other.")]
+        [SerializeField]
+        private LayerMask obstacleMask;
 
         private Rigidbody2D _rb;
         private Transform _transform;
@@ -60,6 +77,7 @@ namespace Scrips
         private static readonly Collider2D[] RepulsionResults = new Collider2D[16];
         private static readonly Collider2D[] ExplosionResults = new Collider2D[32];
         private static readonly RaycastHit2D[] LinecastResults = new RaycastHit2D[8];
+        private static readonly Collider2D[] PortalSuckResults = new Collider2D[16];
 
         private void Awake()
         {
@@ -86,11 +104,11 @@ namespace Scrips
             {
                 var col = RepulsionResults[i];
                 if (col == null || col.gameObject == gameObject) continue;
-                
+
                 if (col.TryGetComponent<ElementBox>(out var otherBox))
                 {
                     if (otherBox._isCombining) continue;
-                    
+
                     if (IsLightAndDarkPair(this.boxType, otherBox.boxType))
                     {
                         Vector2 selfPos = _transform.position;
@@ -139,12 +157,17 @@ namespace Scrips
         {
             if (_isCombining)
             {
-                if (collision.gameObject.TryGetComponent<PlayerController2D>(out var player))
+                // Only the Light+Light (explosion) combo is dangerous to touch while combining.
+                // Dark+Dark combines into a portal, so bumping the boxes shouldn't hurt the player.
+                if (boxType == BoxType.Light &&
+                    collision.gameObject.TryGetComponent<PlayerController2D>(out var player))
                 {
-                    Vector2 forceDir = ((Vector2)collision.transform.position - (Vector2)_transform.position).normalized;
+                    Vector2 forceDir = ((Vector2)collision.transform.position - (Vector2)_transform.position)
+                        .normalized;
                     player.TakeDamage(1);
                     player.ApplyKnockback(forceDir * 15f, 0.3f);
                 }
+
                 return;
             }
 
@@ -187,6 +210,7 @@ namespace Scrips
             {
                 Destroy(otherBox.gameObject);
             }
+
             Destroy(gameObject);
         }
 
@@ -213,126 +237,236 @@ namespace Scrips
         private IEnumerator DarkTeleportSequenceRoutine(Vector3 mergePoint)
         {
             GameObject player = GameObject.FindWithTag("Player");
-            
+
             GameObject activePortalFX = null;
             ParticleSystem portalParticles = null;
-            
+
             if (anim1Prefab != null)
             {
                 activePortalFX = Instantiate(anim1Prefab, mergePoint, Quaternion.identity);
                 portalParticles = activePortalFX.GetComponentInChildren<ParticleSystem>();
             }
-            
-            while (player != null && Vector3.Distance(player.transform.position, mergePoint) > portalTriggerRadius)
+
+            // Computed once up front so any box sucked in early teleports to the same place as the player.
+            Vector3 targetPosition = GetTeleportTarget(mergePoint);
+            var boxSuckCooldowns = new Dictionary<ElementBox, float>();
+
+            // The portal never closes on its own, so the player can walk back through it
+            // and go through again as many times as they like.
+            bool firstPass = true;
+
+            while (true)
             {
-                yield return null; 
+                // If the destination happens to land inside the trigger radius, make sure the
+                // player actually walks back out of it before the portal watches for them
+                // entering again - otherwise they'd get teleported right back immediately.
+                // Skipped on the very first pass: the player is usually the one who just pushed
+                // the boxes together, so they're already standing inside the radius when the
+                // portal spawns, and that first activation shouldn't require them to step out
+                // and back in again.
+                if (!firstPass)
+                {
+                    while (player != null && Vector3.Distance(player.transform.position, mergePoint) <= portalTriggerRadius)
+                    {
+                        yield return null;
+                    }
+                }
+
+                firstPass = false;
+
+                while (player != null && Vector3.Distance(player.transform.position, mergePoint) > portalTriggerRadius)
+                {
+                    SuckInNearbyBoxes(mergePoint, targetPosition, boxSuckCooldowns);
+                    yield return null;
+                }
+
+                if (player == null)
+                {
+                    if (activePortalFX != null) Destroy(activePortalFX);
+                    yield break;
+                }
+
+                yield return StartCoroutine(
+                    TeleportPlayerThroughPortalRoutine(player, mergePoint, targetPosition, activePortalFX));
             }
-        
-            if (player == null) 
-            {
-                if (activePortalFX != null) Destroy(activePortalFX);
-                yield break;
-            }
-            
+        }
+
+        /// <summary>
+        /// Pulls the player into the portal center and warps them to the destination.
+        /// Runs once per pass through the portal; the caller loops this so the player
+        /// can go through the same portal multiple times.
+        /// </summary>
+        private IEnumerator TeleportPlayerThroughPortalRoutine(GameObject player, Vector3 mergePoint,
+            Vector3 targetPosition, GameObject activePortalFX)
+        {
             float entrySpeed = 0f;
             Vector2 launchDirection = Vector2.up;
             PlayerController2D playerController = null;
             Rigidbody2D playerRb = null;
-        
+
             player.TryGetComponent(out playerController);
             player.TryGetComponent(out playerRb);
-        
+
             float originalGravityScale = 1f;
-        
+
             if (playerRb != null)
             {
                 originalGravityScale = playerRb.gravityScale;
                 entrySpeed = playerRb.linearVelocity.magnitude;
                 Vector2 travelDirection = ((Vector2)mergePoint - (Vector2)player.transform.position).normalized;
-        
+
                 if (entrySpeed > 0.1f)
                 {
                     Vector2 rawVelocityDir = playerRb.linearVelocity.normalized;
-                    launchDirection = (Vector2.Dot(rawVelocityDir, travelDirection) < 0f) ? -rawVelocityDir : rawVelocityDir;
+                    launchDirection = (Vector2.Dot(rawVelocityDir, travelDirection) < 0f)
+                        ? -rawVelocityDir
+                        : rawVelocityDir;
                 }
                 else
                 {
                     launchDirection = travelDirection != Vector2.zero ? travelDirection : Vector2.up;
                 }
-        
+
                 playerRb.gravityScale = 0f;
                 playerRb.linearVelocity = Vector2.zero;
             }
-        
+
             if (playerController != null)
             {
                 playerController.SetInputLock(true);
             }
-        
+
             Vector3 startPos = player.transform.position;
             float distance = Vector3.Distance(startPos, mergePoint);
             float dynamicPullDuration = Mathf.Max(pullDuration, distance * 0.05f);
             float elapsed = 0f;
-        
+
             while (elapsed < dynamicPullDuration)
             {
-                if (player == null) 
+                if (player == null)
                 {
                     if (activePortalFX != null) Destroy(activePortalFX);
                     yield break;
                 }
-        
+
                 elapsed += Time.deltaTime;
                 float progress = Mathf.Clamp01(elapsed / dynamicPullDuration);
                 float easeProgress = Mathf.SmoothStep(0f, 1f, progress);
                 player.transform.position = Vector3.Lerp(startPos, mergePoint, easeProgress);
                 yield return null;
             }
-        
+
             player.transform.position = mergePoint;
-            
-            if (portalParticles != null)
-            {
-                portalParticles.Stop(true, ParticleSystemStopBehavior.StopEmitting);
-                Destroy(activePortalFX, 1.5f);
-            }
-            else if (activePortalFX != null)
-            {
-                Destroy(activePortalFX);
-            }
-            
-            Vector3 targetPosition = GetTeleportTarget(mergePoint);
-        
+
+            // Portal stays open and keeps playing even after the player passes through it.
+
             SetPlayerState(player, visible: false);
-        
+
             if (anim1StartDelay > 0f) yield return new WaitForSeconds(anim1StartDelay);
             yield return new WaitForSeconds(anim1Duration);
-        
+
             if (anim2StartDelay > 0f) yield return new WaitForSeconds(anim2StartDelay);
             if (anim2Prefab != null) Instantiate(anim2Prefab, targetPosition, Quaternion.identity);
             yield return new WaitForSeconds(anim2Duration);
-        
+
             if (anim3StartDelay > 0f) yield return new WaitForSeconds(anim3StartDelay);
             if (anim3Prefab != null) Instantiate(anim3Prefab, targetPosition, Quaternion.identity);
-            
+
             player.transform.position = targetPosition;
-        
+
             if (playerRb != null)
             {
                 playerRb.gravityScale = originalGravityScale;
             }
-        
+
             SetPlayerState(player, visible: true);
-        
+
             if (playerController != null)
             {
                 playerController.SetInputLock(false);
-        
+
                 float launchSpeed = Mathf.Max(entrySpeed, 8f);
                 playerController.ApplyKnockback(launchDirection * 0.6f * launchSpeed, 0.3f);
             }
-        
+
             if (anim3Duration > 0f) yield return new WaitForSeconds(anim3Duration);
+        }
+
+        /// <summary>
+        /// While the portal is open, finds any other ElementBox within the portal's trigger
+        /// radius (that isn't already part of a combination) and starts pulling it in.
+        /// </summary>
+        private void SuckInNearbyBoxes(Vector3 mergePoint, Vector3 targetPosition,
+            Dictionary<ElementBox, float> boxSuckCooldowns)
+        {
+            int hitCount = Physics2D.OverlapCircleNonAlloc(mergePoint, portalTriggerRadius, PortalSuckResults);
+
+            for (int i = 0; i < hitCount; i++)
+            {
+                var col = PortalSuckResults[i];
+                if (col == null) continue;
+
+                if (!col.TryGetComponent<ElementBox>(out var box)) continue;
+
+                // Skip the two boxes that are combining (they're already flagged _isCombining).
+                if (box._isCombining) continue;
+
+                // Skip a box that's currently being sucked in, or that landed here recently and
+                // is still within its re-suck cooldown - this stops gravity/physics settling at
+                // the destination from immediately re-triggering the suck, while still letting
+                // the box go through again once the cooldown passes.
+                if (boxSuckCooldowns.TryGetValue(box, out float eligibleAt) && Time.time < eligibleAt) continue;
+
+                // Block re-entry for the whole active suck+teleport; refreshed with the real
+                // cooldown once it lands.
+                boxSuckCooldowns[box] = float.MaxValue;
+                StartCoroutine(SuckInOtherBoxRoutine(box, mergePoint, targetPosition, boxSuckCooldowns));
+            }
+        }
+
+        /// <summary>
+        /// Pulls a nearby box into the portal center and teleports it to the destination,
+        /// mirroring the player's pull-in. Unlike the player, the box is never hidden,
+        /// disabled, or destroyed - it stays visible and active the whole time.
+        /// </summary>
+        private IEnumerator SuckInOtherBoxRoutine(ElementBox box, Vector3 mergePoint, Vector3 targetPosition,
+            Dictionary<ElementBox, float> boxSuckCooldowns)
+        {
+            if (box == null) yield break;
+
+            Transform boxTransform = box.transform;
+            Rigidbody2D boxRb = box._rb;
+
+            Vector3 startPos = boxTransform.position;
+            float distance = Vector3.Distance(startPos, mergePoint);
+            float dynamicPullDuration = Mathf.Max(pullDuration, distance * 0.05f);
+            float elapsed = 0f;
+
+            if (boxRb != null) boxRb.linearVelocity = Vector2.zero;
+
+            while (elapsed < dynamicPullDuration)
+            {
+                if (box == null)
+                {
+                    yield break;
+                }
+
+                elapsed += Time.deltaTime;
+                float progress = Mathf.Clamp01(elapsed / dynamicPullDuration);
+                float easeProgress = Mathf.SmoothStep(0f, 1f, progress);
+                boxTransform.position = Vector3.Lerp(startPos, mergePoint, easeProgress);
+
+                if (boxRb != null) boxRb.linearVelocity = Vector2.zero;
+
+                yield return null;
+            }
+
+            if (box != null)
+            {
+                boxTransform.position = targetPosition;
+                if (boxRb != null) boxRb.linearVelocity = Vector2.zero;
+                boxSuckCooldowns[box] = Time.time + boxReSuckCooldown;
+            }
         }
 
         private void SetPlayerState(GameObject player, bool visible)
