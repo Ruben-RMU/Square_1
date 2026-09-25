@@ -21,6 +21,9 @@ namespace Scrips
         [SerializeField] private float lightCombineDelay = 0.2f;
         [SerializeField] private float darkCombineDelay = 0.5f;
 
+        [SerializeField] private AudioSource explosionSource;
+        [SerializeField] private AudioClip explosionSfx;
+
         [Header("Dark Combination Prefabs")] [SerializeField]
         private GameObject anim1Prefab; // Spawned at merge point (Portal Effect)
 
@@ -87,6 +90,12 @@ namespace Scrips
             _obstacleFilter = new ContactFilter2D();
             _obstacleFilter.SetLayerMask(obstacleMask);
             _obstacleFilter.useTriggers = false;
+
+            // FIX 1: Ensure assigned AudioSource doesn't auto-play when box spawns
+            if (explosionSource != null)
+            {
+                explosionSource.playOnAwake = false;
+            }
         }
 
         private void FixedUpdate()
@@ -114,7 +123,6 @@ namespace Scrips
                         Vector2 selfPos = _transform.position;
                         Vector2 otherPos = col.transform.position;
 
-                        // Skip repulsion if a wall/ground obstacle sits between the two boxes.
                         if (IsPathBlocked(selfPos, otherPos, otherBox.gameObject)) continue;
 
                         Vector2 directionAway = selfPos - otherPos;
@@ -130,7 +138,7 @@ namespace Scrips
                 }
             }
         }
-        
+
         private bool IsPathBlocked(Vector2 from, Vector2 to, GameObject otherGameObject)
         {
             int hitCount = Physics2D.Linecast(from, to, _obstacleFilter, LinecastResults);
@@ -140,7 +148,6 @@ namespace Scrips
                 var hit = LinecastResults[i];
                 if (hit.collider == null) continue;
 
-                // Ignore hits on either box's own collider(s) - only real obstacles count.
                 if (hit.collider.gameObject == gameObject || hit.collider.gameObject == otherGameObject) continue;
 
                 return true;
@@ -233,22 +240,17 @@ namespace Scrips
             GameObject player = GameObject.FindWithTag("Player");
 
             GameObject activePortalFX = null;
-            ParticleSystem portalParticles = null;
 
             if (anim1Prefab != null)
             {
                 activePortalFX = Instantiate(anim1Prefab, mergePoint, Quaternion.identity);
-                portalParticles = activePortalFX.GetComponentInChildren<ParticleSystem>();
             }
 
-            // Computed once up front so any box sucked in early teleports to the same place as the player.
             Transform teleportTarget = GetTeleportTarget(mergePoint);
             Vector3 targetPosition = teleportTarget != null ? teleportTarget.position : mergePoint;
-            
             Quaternion exitRotation = teleportTarget != null ? teleportTarget.rotation : Quaternion.identity;
 
             var boxSuckCooldowns = new Dictionary<ElementBox, float>();
-            
             bool firstPass = true;
 
             while (true)
@@ -279,7 +281,7 @@ namespace Scrips
                     TeleportPlayerThroughPortalRoutine(player, mergePoint, targetPosition, exitRotation, activePortalFX));
             }
         }
-        
+
         private IEnumerator TeleportPlayerThroughPortalRoutine(GameObject player, Vector3 mergePoint,
             Vector3 targetPosition, Quaternion exitRotation, GameObject activePortalFX)
         {
@@ -314,7 +316,7 @@ namespace Scrips
                 playerRb.gravityScale = 0f;
                 playerRb.linearVelocity = Vector2.zero;
             }
-            
+
             Vector2 launchDirection = (Vector2)(exitRotation * (Vector3)entryDirection);
             if (launchDirection == Vector2.zero) launchDirection = Vector2.up;
 
@@ -344,8 +346,6 @@ namespace Scrips
             }
 
             player.transform.position = mergePoint;
-
-            // Portal stays open and keeps playing even after the player passes through it.
 
             SetPlayerState(player, visible: false);
 
@@ -378,7 +378,7 @@ namespace Scrips
 
             if (anim3Duration > 0f) yield return new WaitForSeconds(anim3Duration);
         }
-        
+
         private void SuckInNearbyBoxes(Vector3 mergePoint, Vector3 targetPosition,
             Dictionary<ElementBox, float> boxSuckCooldowns)
         {
@@ -391,16 +391,15 @@ namespace Scrips
 
                 if (!col.TryGetComponent<ElementBox>(out var box)) continue;
 
-                // Skip the two boxes that are combining (they're already flagged _isCombining).
                 if (box._isCombining) continue;
-                
+
                 if (boxSuckCooldowns.TryGetValue(box, out float eligibleAt) && Time.time < eligibleAt) continue;
-                
+
                 boxSuckCooldowns[box] = float.MaxValue;
                 StartCoroutine(SuckInOtherBoxRoutine(box, mergePoint, targetPosition, boxSuckCooldowns));
             }
         }
-        
+
         private IEnumerator SuckInOtherBoxRoutine(ElementBox box, Vector3 mergePoint, Vector3 targetPosition,
             Dictionary<ElementBox, float> boxSuckCooldowns)
         {
@@ -458,7 +457,7 @@ namespace Scrips
                 }
             }
         }
-        
+
         private Transform GetTeleportTarget(Vector3 originPoint)
         {
             GameObject[] targets = GameObject.FindGameObjectsWithTag("TeleportTarget");
@@ -496,6 +495,14 @@ namespace Scrips
 
         private void TriggerExplosion(Vector3 point)
         {
+            // Fix: Play sound as a 2D clip so distance attenuation doesn't make it quiet
+            AudioClip clipToPlay = explosionSfx != null ? explosionSfx : (explosionSource != null ? explosionSource.clip : null);
+    
+            if (clipToPlay != null)
+            {
+                Play2DSfx(clipToPlay, 1.0f);
+            }
+
             if (explosionEffectPrefab)
                 Instantiate(explosionEffectPrefab, point, Quaternion.identity);
 
@@ -528,45 +535,25 @@ namespace Scrips
                 }
             }
         }
-
-        private void TriggerImplosion(Vector3 point)
+        
+        private static void Play2DSfx(AudioClip clip, float volume = 1.0f)
         {
-            float implosionRadius = 3.5f;
-            int hitCount = Physics2D.OverlapCircleNonAlloc(point, implosionRadius, ExplosionResults);
-
-            for (int i = 0; i < hitCount; i++)
-            {
-                var col = ExplosionResults[i];
-                if (col == null) continue;
-
-                BreakableWall wall = col.GetComponentInParent<BreakableWall>();
-                if (wall != null)
-                {
-                    wall.Break();
-                    continue;
-                }
-
-                Vector2 pullDir = ((Vector2)point - (Vector2)col.transform.position).normalized;
-
-                if (col.TryGetComponent<PlayerController2D>(out var player))
-                {
-                    player.ApplyKnockback(pullDir * 15f, 0.3f);
-                }
-                else if (col.TryGetComponent<Rigidbody2D>(out var rb))
-                {
-                    rb.linearVelocity = Vector2.zero;
-                    rb.AddForce(pullDir * 15f, ForceMode2D.Impulse);
-                }
-            }
+            GameObject audioObject = new GameObject("Temp2DAudio");
+            AudioSource source = audioObject.AddComponent<AudioSource>();
+            source.clip = clip;
+            source.volume = volume;
+            source.spatialBlend = 0f; // 0 = 2D (full volume everywhere), 1 = 3D (attenuated by distance)
+            source.playOnAwake = false;
+            source.Play();
+    
+            Destroy(audioObject, clip.length);
         }
 
         private void OnDrawGizmosSelected()
         {
-            // Cyan ring for magnetic repulsion radius
             Gizmos.color = Color.cyan;
             Gizmos.DrawWireSphere(transform.position, magneticRadius);
 
-            // Magenta ring for dark portal player trigger radius
             Gizmos.color = Color.magenta;
             Gizmos.DrawWireSphere(transform.position, portalTriggerRadius);
         }
