@@ -1201,8 +1201,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 872.09265, y: -168.91003}
-  m_SizeDelta: {x: 80.3296, y: 100.0162}
+  m_AnchoredPosition: {x: 857, y: -164}
+  m_SizeDelta: {x: 102, y: 142}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &234344555
 MonoBehaviour:
@@ -1273,14 +1273,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.75686276, g: 0.75686276, b: 0.75686276, a: 0.74509805}
+  m_Color: {r: 0.75686276, g: 0.75686276, b: 0.75686276, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1411337917833718571, guid: 09c2e3ca3cbaaa6409130b1b34ee6ff5, type: 3}
+  m_Sprite: {fileID: -4660398087549956037, guid: 2c6e3035a35121245849c6bd0f835913, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7259,7 +7259,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -957.1405, y: -137.04256}
-  m_SizeDelta: {x: 80.6485, y: 100.4133}
+  m_SizeDelta: {x: 102, y: 142}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1942819960
 MonoBehaviour:
@@ -7330,14 +7330,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.75686276, g: 0.75686276, b: 0.75686276, a: 0.74509805}
+  m_Color: {r: 0.75686276, g: 0.75686276, b: 0.75686276, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1411337917833718571, guid: 09c2e3ca3cbaaa6409130b1b34ee6ff5, type: 3}
+  m_Sprite: {fileID: -4660398087549956037, guid: 2c6e3035a35121245849c6bd0f835913, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7807,7 +7807,7 @@ Transform:
   m_GameObject: {fileID: 2026130118}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.04650177, w: 0.99891824}
-  m_LocalPosition: {x: -8.22, y: -3.33, z: 0}
+  m_LocalPosition: {x: -8.59, y: -3.37, z: 0}
   m_LocalScale: {x: 1.0271624, y: 0.69281155, z: 0.69281155}
   m_ConstrainProportionsScale: 0
   m_Children: []
