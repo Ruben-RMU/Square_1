@@ -8,43 +8,46 @@ namespace Scrips
     [RequireComponent(typeof(Rigidbody2D))]
     public class PlayerController2D : MonoBehaviour
     {
-        [Header("Lives & Health")] [SerializeField]
-        private int maxLives = 3;
-
+        [Header("Lives & Health")]
+        [SerializeField] private int maxLives = 3;
         [SerializeField] private float invincibilityDuration = 1.5f;
         private int _currentLives;
         private bool _isInvincible;
         private bool _isDead;
         private bool _inputLocked;
 
-        [Header("Movement Tuning")] [SerializeField]
-        private float moveSpeed = 8f;
-
+        [Header("Movement Tuning")]
+        [SerializeField] private float moveSpeed = 8f;
         [SerializeField] private float jumpForce = 14f;
         [SerializeField] private float fallMultiplier = 2.5f;
 
-        [Header("Jump Assist")] [SerializeField]
-        private float coyoteTime = 0.15f;
+        [Header("Climbing Tuning")]
+        [SerializeField] private float climbSpeed = 5f;
+        [SerializeField] private float wallCheckDistance = 0.55f;
+        [SerializeField] private LayerMask climbableLayer;
 
+        [Header("Jump Assist")]
+        [SerializeField] private float coyoteTime = 0.15f;
         private float _coyoteTimeCounter;
         private bool _jumpRequested;
 
-        [Header("Ground Check")] [SerializeField]
-        private Transform groundCheck;
-
+        [Header("Ground Check")]
+        [SerializeField] private Transform groundCheck;
         [SerializeField] private float groundCheckDistance = 0.2f;
         [SerializeField] private LayerMask groundLayer;
         [SerializeField] private float groundCheckWidth = 0.4f;
 
-        [Header("Touch UI References")] [SerializeField]
-        private TouchButton leftButton;
-
+        [Header("Touch UI References")]
+        [SerializeField] private TouchButton leftButton;
         [SerializeField] private TouchButton rightButton;
         [SerializeField] private TouchButton jumpButton;
 
         private Rigidbody2D _rb;
         private SpriteRenderer _spriteRenderer;
         private bool _isGrounded;
+        private bool _isTouchingWall;
+        private bool _isClimbing;
+        private float _originalGravityScale;
         private bool _isKnockedBack;
         private Coroutine _knockbackCoroutine;
 
@@ -56,13 +59,14 @@ namespace Scrips
             _rb = GetComponent<Rigidbody2D>();
             _spriteRenderer = GetComponent<SpriteRenderer>();
             _currentLives = maxLives;
+            _originalGravityScale = _rb.gravityScale;
         }
 
         private void Start()
         {
             OnLivesChanged?.Invoke(_currentLives);
         }
-        
+
         public void SetInputLock(bool locked)
         {
             _inputLocked = locked;
@@ -75,13 +79,38 @@ namespace Scrips
         private void Update()
         {
             if (_isKnockedBack || _isDead || _inputLocked) return;
-            
+
             if (groundCheck != null)
             {
                 _isGrounded = CheckGrounded();
             }
 
-            if (_isGrounded)
+            _isTouchingWall = CheckTouchingWall();
+
+            float horizontalInput = GetHorizontalInput();
+
+            // CLIMBING STATE CONDITIONAL:
+            // 1. Must be touching a climbable wall.
+            // 2. If grounded and pressing Left (-1), release climb so player can walk away/down smoothly.
+            // 3. Otherwise, engage climbing whenever pressing input or airborne against a wall.
+            if (_isTouchingWall)
+            {
+                if (_isGrounded && horizontalInput < 0f)
+                {
+                    _isClimbing = false;
+                }
+                else if (horizontalInput != 0f || !_isGrounded)
+                {
+                    _isClimbing = true;
+                }
+            }
+            else
+            {
+                _isClimbing = false;
+            }
+
+            // Coyote time active during ground touch OR climbing state
+            if (_isGrounded || _isClimbing)
             {
                 _coyoteTimeCounter = coyoteTime;
             }
@@ -100,9 +129,18 @@ namespace Scrips
         {
             if (_isKnockedBack || _isDead || _inputLocked) return;
 
-            HandleHorizontalMovement();
+            if (_isClimbing)
+            {
+                HandleClimbing();
+            }
+            else
+            {
+                _rb.gravityScale = _originalGravityScale;
+                HandleHorizontalMovement();
+                ApplyFallGravityScaling();
+            }
+
             HandleJump();
-            ApplyFallGravityScaling();
         }
 
         private bool CheckGrounded()
@@ -118,6 +156,16 @@ namespace Scrips
         {
             RaycastHit2D hit = Physics2D.Raycast(origin, Vector2.down, groundCheckDistance, groundLayer);
             return hit.collider != null && !hit.collider.transform.IsChildOf(transform);
+        }
+
+        private bool CheckTouchingWall()
+        {
+            Vector2 position = transform.position;
+            RaycastHit2D hitRight = Physics2D.Raycast(position, Vector2.right, wallCheckDistance, climbableLayer);
+            RaycastHit2D hitLeft = Physics2D.Raycast(position, Vector2.left, wallCheckDistance, climbableLayer);
+
+            return (hitRight.collider != null && !hitRight.collider.transform.IsChildOf(transform)) ||
+                   (hitLeft.collider != null && !hitLeft.collider.transform.IsChildOf(transform));
         }
 
         private bool WasJumpPressed()
@@ -139,8 +187,8 @@ namespace Scrips
                 _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, jumpForce);
                 _coyoteTimeCounter = 0f;
                 _jumpRequested = false;
+                _isClimbing = false;
 
-                // Record jump event
                 if (GameManager.Instance != null)
                 {
                     GameManager.Instance.IncrementJumps();
@@ -157,6 +205,24 @@ namespace Scrips
         {
             float direction = GetHorizontalInput();
             _rb.linearVelocity = new Vector2(direction * moveSpeed, _rb.linearVelocity.y);
+        }
+
+        private void HandleClimbing()
+        {
+            _rb.gravityScale = 0f;
+
+            float inputDirection = GetHorizontalInput();
+            float verticalVelocity = inputDirection * climbSpeed;
+
+            // If moving down and about to hit the ground, apply a subtle outward push 
+            // to disengage smoothly without getting clipped on wall corners
+            float horizontalPush = 0f;
+            if (_isGrounded && inputDirection < 0f)
+            {
+                horizontalPush = -0.1f;
+            }
+
+            _rb.linearVelocity = new Vector2(horizontalPush, verticalVelocity);
         }
 
         private float GetHorizontalInput()
@@ -194,6 +260,7 @@ namespace Scrips
         private IEnumerator KnockbackRoutine(Vector2 force, float duration)
         {
             _isKnockedBack = true;
+            _isClimbing = false;
 
             _rb.linearVelocity = Vector2.zero;
             _rb.AddForce(force, ForceMode2D.Impulse);
@@ -251,7 +318,7 @@ namespace Scrips
                     yield return new WaitForSeconds(0.1f);
                     elapsed += 0.1f;
                 }
-                
+
                 if (!_isDead)
                 {
                     _spriteRenderer.enabled = true;
@@ -293,9 +360,7 @@ namespace Scrips
 
             yield return new WaitForSeconds(1.0f);
 
-            // Record current level name before changing scenes
             DeathScreenManager.RecordCurrentLevel();
-
             SceneManager.LoadScene("Death Screen");
         }
 
@@ -312,6 +377,10 @@ namespace Scrips
                 Gizmos.DrawLine(left, left + Vector3.down * groundCheckDistance);
                 Gizmos.DrawLine(right, right + Vector3.down * groundCheckDistance);
             }
+
+            Gizmos.color = Color.blue;
+            Gizmos.DrawLine(transform.position, transform.position + Vector3.right * wallCheckDistance);
+            Gizmos.DrawLine(transform.position, transform.position + Vector3.left * wallCheckDistance);
         }
     }
 }
