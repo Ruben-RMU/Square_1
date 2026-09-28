@@ -85,7 +85,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 10
   m_MaskInteraction: 0
   m_Sprite: {fileID: -5198883330705476820, guid: ea3d4afbb92108f4c8c0dc51a2b735c1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -185,14 +185,22 @@ MonoBehaviour:
   maxLives: 3
   invincibilityDuration: 1.5
   moveSpeed: 5
-  jumpForce: 6
-  fallMultiplier: 2.5
+  jumpForce: 6.5
+  fallMultiplier: 3.5
+  climbSpeed: 5
+  wallCheckDistance: 0.55
+  climbableLayer:
+    serializedVersion: 2
+    m_Bits: 0
   coyoteTime: 0.15
   groundCheck: {fileID: 139239042625816266}
   groundCheckDistance: 0.75
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
+  groundLayer2:
+    serializedVersion: 2
+    m_Bits: 0
   groundCheckWidth: 1
   leftButton: {fileID: 0}
   rightButton: {fileID: 0}
