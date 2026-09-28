@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: bf03c2fcffb59ba499962f6f1d08d332
+guid: 2af4121bc16221347b0beed65b32a111
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -50,15 +50,6 @@ TextureImporter:
   - first:
       213: 2454918138326063247
     second: Trees_15
-  - first:
-      213: 5154625535158036097
-    second: Trees_16
-  - first:
-      213: 1265192627629875440
-    second: Trees_17
-  - first:
-      213: -1313724128672361882
-    second: Trees_18
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,7 +117,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -170,10 +161,10 @@ TextureImporter:
       name: Trees_0
       rect:
         serializedVersion: 2
-        x: 746
-        y: 7008
-        width: 406
-        height: 1566
+        x: 747
+        y: 6841
+        width: 779
+        height: 1533
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -192,10 +183,10 @@ TextureImporter:
       name: Trees_1
       rect:
         serializedVersion: 2
-        x: 1788
-        y: 6954
-        width: 303
-        height: 1550
+        x: 2087
+        y: 6740
+        width: 811
+        height: 1566
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -214,10 +205,10 @@ TextureImporter:
       name: Trees_2
       rect:
         serializedVersion: 2
-        x: 2888
-        y: 7075
-        width: 245
-        height: 1370
+        x: 3530
+        y: 6707
+        width: 858
+        height: 1718
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -236,10 +227,10 @@ TextureImporter:
       name: Trees_3
       rect:
         serializedVersion: 2
-        x: 4026
-        y: 7018
-        width: 273
-        height: 1411
+        x: 5043
+        y: 6654
+        width: 988
+        height: 1722
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -258,10 +249,10 @@ TextureImporter:
       name: Trees_4
       rect:
         serializedVersion: 2
-        x: 5072
-        y: 6992
-        width: 227
-        height: 1582
+        x: 817
+        y: 3844
+        width: 412
+        height: 1698
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -280,10 +271,10 @@ TextureImporter:
       name: Trees_5
       rect:
         serializedVersion: 2
-        x: 5781
-        y: 7066
-        width: 367
-        height: 1583
+        x: 2212
+        y: 3908
+        width: 335
+        height: 1401
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -302,10 +293,10 @@ TextureImporter:
       name: Trees_6
       rect:
         serializedVersion: 2
-        x: 6757
-        y: 7004
-        width: 311
-        height: 1558
+        x: 3563
+        y: 3895
+        width: 565
+        height: 1513
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -324,10 +315,10 @@ TextureImporter:
       name: Trees_7
       rect:
         serializedVersion: 2
-        x: 2009
-        y: 5017
-        width: 343
-        height: 1411
+        x: 5192
+        y: 3878
+        width: 462
+        height: 1445
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -346,10 +337,10 @@ TextureImporter:
       name: Trees_8
       rect:
         serializedVersion: 2
-        x: 3168
-        y: 5071
-        width: 278
-        height: 1163
+        x: 6558
+        y: 3830
+        width: 530
+        height: 1705
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -368,10 +359,10 @@ TextureImporter:
       name: Trees_9
       rect:
         serializedVersion: 2
-        x: 4289
-        y: 5060
-        width: 470
-        height: 1256
+        x: 1034
+        y: 764
+        width: 556
+        height: 2142
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -390,10 +381,10 @@ TextureImporter:
       name: Trees_10
       rect:
         serializedVersion: 2
-        x: 5642
-        y: 5045
-        width: 384
-        height: 1201
+        x: 2462
+        y: 690
+        width: 413
+        height: 2121
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -412,10 +403,10 @@ TextureImporter:
       name: Trees_11
       rect:
         serializedVersion: 2
-        x: 6776
-        y: 5006
-        width: 441
-        height: 1416
+        x: 3968
+        y: 856
+        width: 333
+        height: 1875
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -434,10 +425,10 @@ TextureImporter:
       name: Trees_12
       rect:
         serializedVersion: 2
-        x: 2608
-        y: 3011
-        width: 717
-        height: 1410
+        x: 5526
+        y: 777
+        width: 373
+        height: 1931
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -456,10 +447,10 @@ TextureImporter:
       name: Trees_13
       rect:
         serializedVersion: 2
-        x: 3841
-        y: 2918
-        width: 746
-        height: 1441
+        x: 6957
+        y: 742
+        width: 310
+        height: 2165
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -478,10 +469,10 @@ TextureImporter:
       name: Trees_14
       rect:
         serializedVersion: 2
-        x: 5169
-        y: 2887
-        width: 789
-        height: 1581
+        x: 7928
+        y: 843
+        width: 502
+        height: 2167
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -500,10 +491,10 @@ TextureImporter:
       name: Trees_15
       rect:
         serializedVersion: 2
-        x: 6560
-        y: 2839
-        width: 909
-        height: 1584
+        x: 9265
+        y: 759
+        width: 424
+        height: 2132
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -514,72 +505,6 @@ TextureImporter:
       bones: []
       spriteID: f8896934a0f911220800000000000000
       internalID: 2454918138326063247
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Trees_16
-      rect:
-        serializedVersion: 2
-        x: 4432
-        y: 355
-        width: 503
-        height: 1923
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 186a0452d98e88740800000000000000
-      internalID: 5154625535158036097
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Trees_17
-      rect:
-        serializedVersion: 2
-        x: 5050
-        y: 378
-        width: 1285
-        height: 2013
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0f06256ddfdde8110800000000000000
-      internalID: 1265192627629875440
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Trees_18
-      rect:
-        serializedVersion: 2
-        x: 6574
-        y: 262
-        width: 900
-        height: 2229
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 662df998dd6b4cde0800000000000000
-      internalID: -1313724128672361882
       vertices: []
       indices: 
       edges: []
@@ -606,9 +531,6 @@ TextureImporter:
       Trees_13: -8461400778624424836
       Trees_14: -1962202154345704850
       Trees_15: 2454918138326063247
-      Trees_16: 5154625535158036097
-      Trees_17: 1265192627629875440
-      Trees_18: -1313724128672361882
       Trees_2: -8911251428918342384
       Trees_3: 2656247834339299217
       Trees_4: -8876335399824902483
