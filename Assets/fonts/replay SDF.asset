@@ -455,7 +455,37 @@ MonoBehaviour:
     m_Scale: 1
     m_AtlasIndex: 0
     m_ClassDefinitionType: 0
-  - m_Index: 44
+  - m_Index: 28
+    m_Metrics:
+      m_Width: 35.546875
+      m_Height: 63
+      m_HorizontalBearingX: 0
+      m_HorizontalBearingY: 63
+      m_HorizontalAdvance: 39.15625
+    m_GlyphRect:
+      m_X: 129
+      m_Y: 74
+      m_Width: 36
+      m_Height: 63
+    m_Scale: 1
+    m_AtlasIndex: 0
+    m_ClassDefinitionType: 0
+  - m_Index: 38
+    m_Metrics:
+      m_Width: 35.546875
+      m_Height: 63
+      m_HorizontalBearingX: 0
+      m_HorizontalBearingY: 63
+      m_HorizontalAdvance: 39.15625
+    m_GlyphRect:
+      m_X: 39
+      m_Y: 92
+      m_Width: 36
+      m_Height: 63
+    m_Scale: 1
+    m_AtlasIndex: 0
+    m_ClassDefinitionType: 0
+  - m_Index: 25
     m_Metrics:
       m_Width: 34.109375
       m_Height: 45
@@ -680,10 +710,110 @@ MonoBehaviour:
     m_Scale: 1
     m_AtlasIndex: 0
     m_ClassDefinitionType: 0
+  - m_Index: 39
+    m_Metrics:
+      m_Width: 34.109375
+      m_Height: 45
+      m_HorizontalBearingX: 0
+      m_HorizontalBearingY: 45
+      m_HorizontalAdvance: 37.703125
+    m_GlyphRect:
+      m_X: 333
+      m_Y: 96
+      m_Width: 35
+      m_Height: 45
+    m_Scale: 1
+    m_AtlasIndex: 0
+    m_ClassDefinitionType: 0
+  - m_Index: 32
+    m_Metrics:
+      m_Width: 35.546875
+      m_Height: 63
+      m_HorizontalBearingX: 0
+      m_HorizontalBearingY: 63
+      m_HorizontalAdvance: 39.15625
+    m_GlyphRect:
+      m_X: 457
+      m_Y: 74
+      m_Width: 36
+      m_Height: 63
+    m_Scale: 1
+    m_AtlasIndex: 0
+    m_ClassDefinitionType: 0
+  - m_Index: 30
+    m_Metrics:
+      m_Width: 35.546875
+      m_Height: 63
+      m_HorizontalBearingX: 0
+      m_HorizontalBearingY: 63
+      m_HorizontalAdvance: 39.15625
+    m_GlyphRect:
+      m_X: 387
+      m_Y: 138
+      m_Width: 36
+      m_Height: 63
+    m_Scale: 1
+    m_AtlasIndex: 0
+    m_ClassDefinitionType: 0
+  - m_Index: 31
+    m_Metrics:
+      m_Width: 35.546875
+      m_Height: 63
+      m_HorizontalBearingX: 0
+      m_HorizontalBearingY: 63
+      m_HorizontalAdvance: 39.15625
+    m_GlyphRect:
+      m_X: 273
+      m_Y: 174
+      m_Width: 36
+      m_Height: 63
+    m_Scale: 1
+    m_AtlasIndex: 0
+    m_ClassDefinitionType: 0
   m_CharacterTable:
   - m_ElementType: 1
     m_Unicode: 95
     m_GlyphIndex: 88
+    m_Scale: 1
+  - m_ElementType: 1
+    m_Unicode: 76
+    m_GlyphIndex: 7
+    m_Scale: 1
+  - m_ElementType: 1
+    m_Unicode: 105
+    m_GlyphIndex: 40
+    m_Scale: 1
+  - m_ElementType: 1
+    m_Unicode: 118
+    m_GlyphIndex: 44
+    m_Scale: 1
+  - m_ElementType: 1
+    m_Unicode: 101
+    m_GlyphIndex: 65
+    m_Scale: 1
+  - m_ElementType: 1
+    m_Unicode: 115
+    m_GlyphIndex: 47
+    m_Scale: 1
+  - m_ElementType: 1
+    m_Unicode: 58
+    m_GlyphIndex: 82
+    m_Scale: 1
+  - m_ElementType: 1
+    m_Unicode: 32
+    m_GlyphIndex: 3
+    m_Scale: 1
+  - m_ElementType: 1
+    m_Unicode: 51
+    m_GlyphIndex: 29
+    m_Scale: 1
+  - m_ElementType: 1
+    m_Unicode: 50
+    m_GlyphIndex: 28
+    m_Scale: 1
+  - m_ElementType: 1
+    m_Unicode: 48
+    m_GlyphIndex: 38
     m_Scale: 1
   - m_ElementType: 1
     m_Unicode: 49
@@ -834,6 +964,38 @@ MonoBehaviour:
     m_Height: 25
   - m_X: 0
     m_Y: 25
+    m_Width: 29
+    m_Height: 77
+  - m_X: 119
+    m_Y: 0
+    m_Width: 54
+    m_Height: 64
+  - m_X: 173
+    m_Y: 0
+    m_Width: 54
+    m_Height: 64
+  - m_X: 227
+    m_Y: 0
+    m_Width: 54
+    m_Height: 64
+  - m_X: 29
+    m_Y: 25
+    m_Width: 30
+    m_Height: 52
+  - m_X: 281
+    m_Y: 0
+    m_Width: 55
+    m_Height: 82
+  - m_X: 119
+    m_Y: 64
+    m_Width: 55
+    m_Height: 82
+  - m_X: 29
+    m_Y: 82
+    m_Width: 55
+    m_Height: 82
+  - m_X: 174
+    m_Y: 64
     m_Width: 37
     m_Height: 82
   - m_X: 0
@@ -963,9 +1125,13 @@ MonoBehaviour:
   m_FreeGlyphRects:
   - m_X: 69
     m_Y: 0
-    m_Width: 25
-    m_Height: 25
-  - m_X: 94
+    m_Width: 417
+    m_Height: 1023
+  - m_X: 323
+    m_Y: 82
+    m_Width: 13
+    m_Height: 4
+  - m_X: 502
     m_Y: 82
     m_Width: 15
     m_Height: 25
