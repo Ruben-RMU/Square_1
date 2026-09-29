@@ -3019,6 +3019,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5421319834890243547, guid: 543e6acf7864f2e49ae6d2bd37f06503, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 3110.7473
+      objectReference: {fileID: 0}
+    - target: {fileID: 5421319834890243547, guid: 543e6acf7864f2e49ae6d2bd37f06503, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 1929.1238
+      objectReference: {fileID: 0}
+    - target: {fileID: 5421319834890243547, guid: 543e6acf7864f2e49ae6d2bd37f06503, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -97.34863
+      objectReference: {fileID: 0}
+    - target: {fileID: 5421319834890243547, guid: 543e6acf7864f2e49ae6d2bd37f06503, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 62.306885
+      objectReference: {fileID: 0}
     - target: {fileID: 5521092343288294698, guid: 543e6acf7864f2e49ae6d2bd37f06503, type: 3}
       propertyPath: m_Name
       value: LevelUI
