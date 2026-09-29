@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class LevelSelector : MonoBehaviour
 {
@@ -13,8 +12,8 @@ public class LevelSelector : MonoBehaviour
     [SerializeField] private Sprite lockedSprite;
 
     [Header("UI Overlay Elements")]
-    [SerializeField] private GameObject lockIcon;        // Drag your Lock Icon child GameObject here
-    [SerializeField] private GameObject levelTextObject; // Drag your Level Text child GameObject here
+    [SerializeField] private GameObject lockIcon;        
+    [SerializeField] private GameObject levelTextObject; 
 
     private Button button;
     private Image backgroundImage;
@@ -34,25 +33,21 @@ public class LevelSelector : MonoBehaviour
         int highestUnlocked = GameManager.Instance.Data.highestLevelUnlocked;
         bool isUnlocked = level <= highestUnlocked;
 
-        // Enable or disable button interactions
         if (button != null)
         {
             button.interactable = isUnlocked;
         }
 
-        // Show lock icon when locked, hide when unlocked
         if (lockIcon != null)
         {
             lockIcon.SetActive(!isUnlocked);
         }
 
-        // Hide level text when locked, show when unlocked
         if (levelTextObject != null)
         {
             levelTextObject.SetActive(isUnlocked);
         }
 
-        // Update the background sprite based on progress
         if (backgroundImage != null)
         {
             if (level < highestUnlocked)
@@ -81,6 +76,16 @@ public class LevelSelector : MonoBehaviour
             }
         }
 
-        SceneManager.LoadScene("Level " + level.ToString());
+        string sceneName = "Level " + level.ToString();
+
+        // Call GameManager so it fades out before loading
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.LoadScene(sceneName);
+        }
+        else
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
+        }
     }
 }

@@ -20,7 +20,6 @@ public class NextLevel : MonoBehaviour
     {
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
 
-        // Use manual level number if assigned > 0, otherwise use build index
         int activeLevel = currentLevelNumber > 0
             ? currentLevelNumber
             : currentSceneIndex;
@@ -32,20 +31,33 @@ public class NextLevel : MonoBehaviour
 
         int nextSceneIndex = currentSceneIndex + 1;
 
-        // Make sure there actually is another scene
         if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
         {
-            // Remember which level we want to load
             LoadingScreen.nextSceneIndex = nextSceneIndex;
 
-            // Second-to-last scene is the loading screen
             int loadingSceneIndex = SceneManager.sceneCountInBuildSettings - 2;
 
-            SceneManager.LoadScene(loadingSceneIndex);
+            // Fade out using GameManager
+            if (GameManager.Instance != null)
+            {
+                GameManager.Instance.LoadScene(loadingSceneIndex);
+            }
+            else
+            {
+                SceneManager.LoadScene(loadingSceneIndex);
+            }
         }
         else
         {
-            SceneManager.LoadScene(0);
+            // Fade out using GameManager back to index 0
+            if (GameManager.Instance != null)
+            {
+                GameManager.Instance.LoadScene(0);
+            }
+            else
+            {
+                SceneManager.LoadScene(0);
+            }
         }
     }
 }
