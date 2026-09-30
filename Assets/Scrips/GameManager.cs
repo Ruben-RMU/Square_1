@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void LoadScene(string sceneName)
+    public void LoadSceneFromMenu(string sceneName)
     {
         StartCoroutine(TransitionToScene(sceneName));
     }
@@ -128,6 +128,12 @@ public class GameManager : MonoBehaviour
         {
             Data.highestLevelUnlocked = levelNumber + 1;
         }
+        SaveSystem.Save(Data);
+    }
+
+    public void UnlockAllLevels(int totalLevels)
+    {
+        Data.highestLevelUnlocked = totalLevels;
         SaveSystem.Save(Data);
     }
 
