@@ -393,5 +393,14 @@ namespace Scrips
             Gizmos.DrawLine(transform.position, transform.position + Vector3.right * wallCheckDistance);
             Gizmos.DrawLine(transform.position, transform.position + Vector3.left * wallCheckDistance);
         }
+
+        public bool Heal(int amount = 1)
+        {
+            if (_isDead || _currentLives >= maxLives) return false;
+
+            _currentLives = Mathf.Min(_currentLives + amount, maxLives);
+            OnLivesChanged?.Invoke(_currentLives);
+            return true;
+        }
     }
 }
