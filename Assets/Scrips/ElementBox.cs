@@ -529,7 +529,7 @@ namespace Scrips
             }
         }
 
-        private void TriggerImplosion(Vector3 point)
+        private void TriggergitImplosion(Vector3 point)
         {
             float implosionRadius = 3.5f;
             int hitCount = Physics2D.OverlapCircleNonAlloc(point, implosionRadius, ExplosionResults);
