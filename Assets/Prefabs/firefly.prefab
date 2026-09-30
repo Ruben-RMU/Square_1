@@ -4853,3 +4853,9 @@ MonoBehaviour:
   speed: 1.5
   offset: {x: 0, y: 0, z: 0}
   destroyAtEnd: 0
+  effectCheckpoints: 
+  travelEffect: {fileID: 6025810385544938830}
+  effectA: {fileID: 7063352946703574816, guid: 145a02bf3553a834aa38772d1f9e25d3, type: 3}
+  effectB: {fileID: 0}
+  effectADuration: 1.5
+  effectBDuration: 1.5
