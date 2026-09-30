@@ -81,7 +81,7 @@ public class LevelSelector : MonoBehaviour
         // Call GameManager so it fades out before loading
         if (GameManager.Instance != null)
         {
-            GameManager.Instance.LoadScene(sceneName);
+            GameManager.Instance.LoadSceneFromMenu(sceneName);
         }
         else
         {
