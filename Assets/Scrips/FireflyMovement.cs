@@ -2,13 +2,13 @@ using UnityEngine;
 
 public class FireflyMovement : MonoBehaviour
 {
-    [HideInInspector]
-    public Transform[] waypoints;
-
-    [HideInInspector]
-    public float speed = 1.5f;
+    [HideInInspector] public Transform[] waypoints;
+    [HideInInspector] public float speed = 1.5f;
+    [HideInInspector] public Vector3 offset;
+    [HideInInspector] public bool destroyAtEnd;
 
     private int currentPoint;
+    private bool finished;
 
     public void SetStartingPoint(int point)
     {
@@ -17,28 +17,27 @@ public class FireflyMovement : MonoBehaviour
 
     void Update()
     {
-        if (waypoints == null || waypoints.Length < 2)
+        if (finished || waypoints == null || waypoints.Length < 2)
             return;
 
-        // Move smoothly toward the next point
+        Vector3 target = waypoints[currentPoint].position + offset;
+
         transform.position = Vector3.MoveTowards(
             transform.position,
-            waypoints[currentPoint].position,
+            target,
             speed * Time.deltaTime
         );
 
-        // Check if we reached the point
-        if (Vector3.Distance(
-            transform.position,
-            waypoints[currentPoint].position
-        ) < 0.01f)
+        if (Vector3.Distance(transform.position, target) < 0.01f)
         {
             currentPoint++;
 
-            // Start again when reaching the end
+            // Reached the last point: stop (or remove)
             if (currentPoint >= waypoints.Length)
             {
-                currentPoint = 0;
+                finished = true;
+                if (destroyAtEnd)
+                    Destroy(gameObject);
             }
         }
     }
