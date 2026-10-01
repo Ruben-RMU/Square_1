@@ -196,7 +196,7 @@ MonoBehaviour:
   anim3Duration: 0.2
   boxReSuckCooldown: 1
   magneticRadius: 3
-  maxRepelForce: 15
+  maxRepelForce: 17
   obstacleMask:
     serializedVersion: 2
     m_Bits: 8
