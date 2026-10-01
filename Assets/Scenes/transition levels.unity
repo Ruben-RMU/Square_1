@@ -1255,6 +1255,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0760b118a52f8054e9e572b3f6a62439, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  menuAnimator: {fileID: 0}
+  animationTriggerName: Play
+  animationDuration: 1
+  fadeCanvasGroup: {fileID: 0}
+  fadeDelay: 0.5
+  fadeDuration: 1
 --- !u!114 &1050484948
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2996,6 +3002,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0760b118a52f8054e9e572b3f6a62439, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  menuAnimator: {fileID: 0}
+  animationTriggerName: Play
+  animationDuration: 1
+  fadeCanvasGroup: {fileID: 0}
+  fadeDelay: 0.5
+  fadeDuration: 1
 --- !u!114 &2077851325
 MonoBehaviour:
   m_ObjectHideFlags: 0
