@@ -179,11 +179,11 @@ MonoBehaviour:
   - {fileID: 7025532806888399791}
   fireflyPrefab: {fileID: 6025810385544938830, guid: dd4655d4ca3dc3d45bc0faa997300187, type: 3}
   numberOfFireflies: 3
-  speed: 1.5
+  speed: 2.5
   groupRadius: 0.5
   destroyAtEnd: 0
   secondEffectPrefab: {fileID: 7063352946703574816, guid: 145a02bf3553a834aa38772d1f9e25d3, type: 3}
   thirdEffectPrefab: {fileID: 6025810385544938830, guid: dd4655d4ca3dc3d45bc0faa997300187, type: 3}
   effectPointIndex: 1
   secondEffectDuration: 2
-  quietTime: 2
+  quietTime: 0.1
