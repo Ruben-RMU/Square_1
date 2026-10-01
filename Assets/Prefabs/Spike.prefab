@@ -81,7 +81,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 6
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
@@ -151,5 +151,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b51b4313b71803448e250d4872e552e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Scrips.Hazard
-  reloadSceneOnTouch: 1
-  deathEffectPrefab: {fileID: 0}
+  damageAmount: 1
+  hitEffectPrefab: {fileID: 0}

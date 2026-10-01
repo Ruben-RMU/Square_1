@@ -6,6 +6,7 @@ public class FireflyMovement : MonoBehaviour
     [HideInInspector] public float speed = 1.5f;
     [HideInInspector] public Vector3 offset;
     [HideInInspector] public bool destroyAtEnd;
+    [HideInInspector] public GameObject rootToDestroy;
 
     [HideInInspector] public int effectPointIndex = 1;
     [HideInInspector] public GameObject firstEffectPrefab;
@@ -14,7 +15,14 @@ public class FireflyMovement : MonoBehaviour
     [HideInInspector] public float secondEffectDuration = 2f;
     [HideInInspector] public float quietTime = 2f;
 
-    private enum State { Moving, SecondEffect, Quiet, Finished }
+    private enum State
+    {
+        Moving,
+        SecondEffect,
+        Quiet,
+        Finished
+    }
+
     private State state = State.Moving;
 
     private int currentPoint = 1;
@@ -64,6 +72,7 @@ public class FireflyMovement : MonoBehaviour
                     timer = quietTime;
                     state = State.Quiet;
                 }
+
                 break;
 
             case State.Quiet:
@@ -83,6 +92,7 @@ public class FireflyMovement : MonoBehaviour
                     state = State.Moving;
                     CheckFinished();
                 }
+
                 break;
         }
     }
@@ -146,7 +156,7 @@ public class FireflyMovement : MonoBehaviour
         {
             state = State.Finished;
             if (destroyAtEnd)
-                Destroy(gameObject);
+                Destroy(rootToDestroy != null ? rootToDestroy : gameObject);
         }
     }
 }
