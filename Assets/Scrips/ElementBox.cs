@@ -55,6 +55,11 @@ namespace Scrips
         private float anim3Duration = 0.2f;
 
         [Tooltip(
+            "Optional. Where the dark combination teleports to. If left empty, the nearest object tagged 'TeleportTarget' is used.")]
+        [SerializeField]
+        private Transform teleportPoint;
+
+        [Tooltip(
             "How long a box is immune from being sucked in again by this same portal after it lands at the destination. Prevents physics drift or gravity at the destination from immediately re-triggering the suck, while still allowing the box to go through again later.")]
         [SerializeField]
         private float boxReSuckCooldown = 1f;
@@ -130,7 +135,7 @@ namespace Scrips
                 }
             }
         }
-        
+
         private bool IsPathBlocked(Vector2 from, Vector2 to, GameObject otherGameObject)
         {
             int hitCount = Physics2D.Linecast(from, to, _obstacleFilter, LinecastResults);
@@ -244,18 +249,19 @@ namespace Scrips
             // Computed once up front so any box sucked in early teleports to the same place as the player.
             Transform teleportTarget = GetTeleportTarget(mergePoint);
             Vector3 targetPosition = teleportTarget != null ? teleportTarget.position : mergePoint;
-            
+
             Quaternion exitRotation = teleportTarget != null ? teleportTarget.rotation : Quaternion.identity;
 
             var boxSuckCooldowns = new Dictionary<ElementBox, float>();
-            
+
             bool firstPass = true;
 
             while (true)
             {
                 if (!firstPass)
                 {
-                    while (player != null && Vector3.Distance(player.transform.position, mergePoint) <= portalTriggerRadius)
+                    while (player != null &&
+                           Vector3.Distance(player.transform.position, mergePoint) <= portalTriggerRadius)
                     {
                         yield return null;
                     }
@@ -276,10 +282,11 @@ namespace Scrips
                 }
 
                 yield return StartCoroutine(
-                    TeleportPlayerThroughPortalRoutine(player, mergePoint, targetPosition, exitRotation, activePortalFX));
+                    TeleportPlayerThroughPortalRoutine(player, mergePoint, targetPosition, exitRotation,
+                        activePortalFX));
             }
         }
-        
+
         private IEnumerator TeleportPlayerThroughPortalRoutine(GameObject player, Vector3 mergePoint,
             Vector3 targetPosition, Quaternion exitRotation, GameObject activePortalFX)
         {
@@ -314,7 +321,7 @@ namespace Scrips
                 playerRb.gravityScale = 0f;
                 playerRb.linearVelocity = Vector2.zero;
             }
-            
+
             Vector2 launchDirection = (Vector2)(exitRotation * (Vector3)entryDirection);
             if (launchDirection == Vector2.zero) launchDirection = Vector2.up;
 
@@ -378,7 +385,7 @@ namespace Scrips
 
             if (anim3Duration > 0f) yield return new WaitForSeconds(anim3Duration);
         }
-        
+
         private void SuckInNearbyBoxes(Vector3 mergePoint, Vector3 targetPosition,
             Dictionary<ElementBox, float> boxSuckCooldowns)
         {
@@ -393,14 +400,14 @@ namespace Scrips
 
                 // Skip the two boxes that are combining (they're already flagged _isCombining).
                 if (box._isCombining) continue;
-                
+
                 if (boxSuckCooldowns.TryGetValue(box, out float eligibleAt) && Time.time < eligibleAt) continue;
-                
+
                 boxSuckCooldowns[box] = float.MaxValue;
                 StartCoroutine(SuckInOtherBoxRoutine(box, mergePoint, targetPosition, boxSuckCooldowns));
             }
         }
-        
+
         private IEnumerator SuckInOtherBoxRoutine(ElementBox box, Vector3 mergePoint, Vector3 targetPosition,
             Dictionary<ElementBox, float> boxSuckCooldowns)
         {
@@ -458,9 +465,12 @@ namespace Scrips
                 }
             }
         }
-        
+
         private Transform GetTeleportTarget(Vector3 originPoint)
         {
+            // Prefer the explicitly assigned teleport point, if there is one.
+            if (teleportPoint != null) return teleportPoint;
+
             GameObject[] targets = GameObject.FindGameObjectsWithTag("TeleportTarget");
             if (targets.Length == 0) return null;
 
