@@ -373,7 +373,6 @@ namespace Scrips
 
                 yield return null;
             }
-
             _cam.orthographicSize = targetSize;
         }
         
@@ -384,6 +383,11 @@ namespace Scrips
             _isDead = true;
             _currentLives = 0;
             OnLivesChanged?.Invoke(_currentLives);
+            
+            CameraFollow follow = FindFirstObjectByType<CameraFollow>();
+            if (follow != null)
+                follow.enabled = false;
+            
             StartCoroutine(ZoomOut());
             deathMc.SetActive(true);
             _anim = deathMc.GetComponent<Animator>();
