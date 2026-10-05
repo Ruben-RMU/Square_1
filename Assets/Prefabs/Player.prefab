@@ -191,7 +191,7 @@ MonoBehaviour:
   wallCheckDistance: 0.55
   climbableLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   coyoteTime: 0.15
   groundCheck: {fileID: 139239042625816266}
   groundCheckDistance: 0.75
