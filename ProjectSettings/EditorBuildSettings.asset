@@ -29,15 +29,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/1_Intro/Level 5.unity
     guid: a45a9081c1220394cb4f7bc6b076aab3
-  - enabled: 1
-    path: Assets/Scenes/1_Intro/Level 6.unity
+  - enabled: 0
+    path: Assets/Scenes/1_Intro/Level Box Moving.unity
     guid: cf2bf134d22b19c43a17a84f1a4814eb
   - enabled: 0
-    path: Assets/Scenes/1_Intro/Level 6-1.unity
+    path: Assets/Scenes/1_Intro/Level 6.unity
     guid: f17143230d25e74d9aaf781b9077b1d4
   - enabled: 1
     path: Assets/Scenes/1_Intro/Level 7.unity
-    guid: b662319d93eec02439f149da4c0feaba
+    guid: 2ecb787835c2574e29669865d2e385c2
   - enabled: 1
     path: Assets/Scenes/1_Intro/Level 8.unity
     guid: 5a1ef6d4d0e4efd4aa2c4e390bca0495
