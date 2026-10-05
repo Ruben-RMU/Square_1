@@ -155,14 +155,14 @@ EdgeCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
+  m_EdgeRadius: 0.1
   m_Points:
-  - {x: 1.8637552, y: -0.41518542}
-  - {x: -5.821252, y: -0.584003}
-  - {x: -7.2195797, y: 1.050786}
-  - {x: 7.207283, y: 1.1366448}
-  - {x: 5.052083, y: -1.139173}
-  - {x: 1.8772321, y: -0.40711898}
+  - {x: 2.0002, y: -0.20077227}
+  - {x: -5.723972, y: -0.37322974}
+  - {x: -6.8996887, y: 0.98652935}
+  - {x: 6.8876214, y: 0.9893641}
+  - {x: 4.922376, y: -0.92840016}
+  - {x: 2.2865663, y: -0.24808395}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
