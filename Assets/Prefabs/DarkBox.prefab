@@ -165,8 +165,8 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
+  m_Size: {x: 0.85, y: 0.85}
+  m_EdgeRadius: 0.1
 --- !u!114 &6666285617766740291
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -194,8 +194,9 @@ MonoBehaviour:
   anim2Duration: 0.4
   anim3StartDelay: 0
   anim3Duration: 0.2
+  teleportPoint: {fileID: 0}
   boxReSuckCooldown: 1
-  magneticRadius: 3
+  magneticRadius: 3.1
   maxRepelForce: 17
   obstacleMask:
     serializedVersion: 2

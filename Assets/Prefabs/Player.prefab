@@ -184,6 +184,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Scrips.PlayerController2D
   maxLives: 3
   invincibilityDuration: 1.5
+  deathMc: {fileID: 0}
   moveSpeed: 5
   jumpForce: 6.5
   fallMultiplier: 3.5
@@ -234,7 +235,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7833867270432446068}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eefb768949b03fe4cbe954504a6bd746, type: 3}
   m_Name: 
