@@ -11,10 +11,13 @@ namespace Scrips
         [Header("Lives & Health")]
         [SerializeField] private int maxLives = 3;
         [SerializeField] private float invincibilityDuration = 1.5f;
+        [SerializeField] private GameObject deathMc;
+        private Camera _cam;
         private int _currentLives;
         private bool _isInvincible;
         private bool _isDead;
         private bool _inputLocked;
+        private Animator _anim;
 
         [Header("Movement Tuning")]
         [SerializeField] private float moveSpeed = 8f;
@@ -67,6 +70,7 @@ namespace Scrips
         private void Start()
         {
             OnLivesChanged?.Invoke(_currentLives);
+            _cam = Camera.main;
         }
 
         public void SetInputLock(bool locked)
@@ -342,7 +346,36 @@ namespace Scrips
 
             _isInvincible = false;
         }
+        
+        private IEnumerator ZoomOut()
+        {
+            float startSize = _cam.orthographicSize;
+            float targetSize = 163f;
 
+            float startX = _cam.transform.position.x;
+            float targetX = startX - 130f;
+
+            float duration = 2f;
+            float elapsed = 0f;
+
+            while (elapsed < duration)
+            {
+                elapsed += Time.deltaTime;
+
+                float t = elapsed / duration;
+                _cam.orthographicSize = Mathf.Lerp(startSize, targetSize, t);
+
+                float newX = Mathf.Lerp(startX, targetX, t);
+
+                Vector3 position = _cam.transform.position;
+                position.x = newX;
+                _cam.transform.position = position;
+
+                yield return null;
+            }
+            _cam.orthographicSize = targetSize;
+        }
+        
         public void Die()
         {
             if (_isDead) return;
@@ -350,6 +383,15 @@ namespace Scrips
             _isDead = true;
             _currentLives = 0;
             OnLivesChanged?.Invoke(_currentLives);
+            
+            CameraFollow follow = FindFirstObjectByType<CameraFollow>();
+            if (follow != null)
+                follow.enabled = false;
+            
+            StartCoroutine(ZoomOut());
+            deathMc.SetActive(true);
+            _anim = deathMc.GetComponent<Animator>();
+            _anim.SetTrigger("death");
 
             StartCoroutine(DieRoutine());
         }
@@ -369,7 +411,7 @@ namespace Scrips
                 _spriteRenderer.enabled = false;
             }
 
-            yield return new WaitForSeconds(1.0f);
+            yield return new WaitForSeconds(3.0f);
 
             DeathScreenManager.RecordCurrentLevel();
             SceneManager.LoadScene("Death Screen");
