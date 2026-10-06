@@ -4737,7 +4737,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Scrips.CheatCodeManager
   cheatPanel: {fileID: 1199248842}
   cheatInputField: {fileID: 163012534}
-  totalLevels: 10
+  totalLevels: 40
   unlockAllCode: unlockall
 --- !u!4 &1891286022
 Transform:
