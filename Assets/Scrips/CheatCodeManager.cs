@@ -10,12 +10,12 @@ namespace Scrips
 {
     public class CheatCodeManager : MonoBehaviour
     {
-        [Header("UI References")]
-        [SerializeField] private GameObject cheatPanel;
+        [Header("UI References")] [SerializeField]
+        private GameObject cheatPanel;
+
         [SerializeField] private TMP_InputField cheatInputField;
 
-        [Header("Settings")]
-        [SerializeField] private int totalLevels = 10;
+        [Header("Settings")] [SerializeField] private int totalLevels = 10;
         [SerializeField] private string unlockAllCode = "unlockall";
 
         private void Start()
