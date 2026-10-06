@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: bdce8e620dd4bee4798fb579c2d060d7
+guid: 9d6c5198bdcff234298d02522e5038ea
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7325166834822626861
-    second: dark cube 1_0
+      213: -1698585762271954419
+    second: dark cube test_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -178,13 +178,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: dark cube 1_0
+      name: dark cube test_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 293
-        height: 288
+        width: 262
+        height: 257
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -193,8 +193,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3d1cce9f297c75a90800000000000000
-      internalID: -7325166834822626861
+      spriteID: d0a7e3baf396d68e0800000000000000
+      internalID: -1698585762271954419
       vertices: []
       indices: 
       edges: []
@@ -213,7 +213,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      dark cube 1_0: -7325166834822626861
+      dark cube test_0: -1698585762271954419
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
