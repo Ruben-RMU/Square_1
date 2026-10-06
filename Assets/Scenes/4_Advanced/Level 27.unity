@@ -9732,6 +9732,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: next level
       objectReference: {fileID: 0}
+    - target: {fileID: 7833656435671317954, guid: d0067e648514442488bbde92b38d7709, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.24
+      objectReference: {fileID: 0}
     - target: {fileID: 8015683990173732789, guid: d0067e648514442488bbde92b38d7709, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.6
