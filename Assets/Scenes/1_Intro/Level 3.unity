@@ -885,6 +885,26 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.17254902
       objectReference: {fileID: 0}
+    - target: {fileID: 3883939763607358596, guid: 5d499b0417e8600458c560979e7e73a9, type: 3}
+      propertyPath: m_Points.Array.size
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 3883939763607358596, guid: 5d499b0417e8600458c560979e7e73a9, type: 3}
+      propertyPath: m_Points.Array.data[12].x
+      value: -3.364677
+      objectReference: {fileID: 0}
+    - target: {fileID: 3883939763607358596, guid: 5d499b0417e8600458c560979e7e73a9, type: 3}
+      propertyPath: m_Points.Array.data[12].y
+      value: 4.7269187
+      objectReference: {fileID: 0}
+    - target: {fileID: 3883939763607358596, guid: 5d499b0417e8600458c560979e7e73a9, type: 3}
+      propertyPath: m_Points.Array.data[13].x
+      value: -8.20294
+      objectReference: {fileID: 0}
+    - target: {fileID: 3883939763607358596, guid: 5d499b0417e8600458c560979e7e73a9, type: 3}
+      propertyPath: m_Points.Array.data[13].y
+      value: 4.6387734
+      objectReference: {fileID: 0}
     - target: {fileID: 5458408459344084567, guid: 5d499b0417e8600458c560979e7e73a9, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.4811924
