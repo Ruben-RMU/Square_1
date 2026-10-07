@@ -1,6 +1,11 @@
 fileFormatVersion: 2
-guid: 2ee1362da1d264146a864bf6230907da
+<<<<<<<< HEAD:Assets/Scenes/2_Beginning/Level 15.unity.meta
+guid: f7e34170f1bad764a880afa81389ead7
 DefaultImporter:
+========
+guid: 7eb361f84d4ff104f89b9d4de7fedfc6
+PrefabImporter:
+>>>>>>>> origin/red-levels:Assets/Prefabs/interactive/breakable wall 1_1 1.prefab.meta
   externalObjects: {}
   userData: 
   assetBundleName: 
