@@ -42,22 +42,22 @@ EditorBuildSettings:
     path: Assets/Scenes/1_Intro/Level 8.unity
     guid: 5a1ef6d4d0e4efd4aa2c4e390bca0495
   - enabled: 0
-    path: Assets/Scenes/2_Beginning/inter level another.unity
+    path: Assets/Scenes/2_Beginning/Level 9.unity
     guid: 77ef931d57a841b4a82fe599a5baabd1
   - enabled: 1
     path: Assets/Scenes/2_Beginning/Level 10.unity
     guid: 207564c21bc2d5e4db3b8359f4f8a548
   - enabled: 1
-    path: Assets/Scenes/2_Beginning/Level 11.unity
+    path: Assets/Scenes/2_Beginning/Level 16.unity
     guid: f9d9846cee1dc044389c27825b7c2e13
   - enabled: 1
-    path: Assets/Scenes/2_Beginning/finally final inter level.unity
+    path: Assets/Scenes/2_Beginning/Level 11.unity
     guid: e15d041e0a01c044686bf08b7d826300
   - enabled: 1
-    path: Assets/Scenes/2_Beginning/Level 13.unity
+    path: Assets/Scenes/2_Beginning/Level 12.unity
     guid: d9b45cfb04271a64ab4c79e40c3490d2
   - enabled: 1
-    path: Assets/Scenes/2_Beginning/Level 14.unity
+    path: Assets/Scenes/2_Beginning/Level 13.unity
     guid: 88c28b24dae9a45439f58f67f823082d
   - enabled: 1
     path: Assets/Scenes/2_Beginning/Level 12.unity
