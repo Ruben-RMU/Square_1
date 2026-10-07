@@ -3946,6 +3946,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: platform_big_2 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5020086700770787916, guid: 91a18d9d66300128eb0da085b5db764b, type: 3}
+      propertyPath: m_Points.Array.data[5].x
+      value: -9.743849
+      objectReference: {fileID: 0}
+    - target: {fileID: 5020086700770787916, guid: 91a18d9d66300128eb0da085b5db764b, type: 3}
+      propertyPath: m_Points.Array.data[5].y
+      value: 5.428459
+      objectReference: {fileID: 0}
+    - target: {fileID: 5020086700770787916, guid: 91a18d9d66300128eb0da085b5db764b, type: 3}
+      propertyPath: m_Points.Array.data[6].x
+      value: 9.755551
+      objectReference: {fileID: 0}
+    - target: {fileID: 5020086700770787916, guid: 91a18d9d66300128eb0da085b5db764b, type: 3}
+      propertyPath: m_Points.Array.data[6].y
+      value: 5.4542804
+      objectReference: {fileID: 0}
     - target: {fileID: 7779722249034920452, guid: 91a18d9d66300128eb0da085b5db764b, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.37027615
