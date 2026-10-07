@@ -14,6 +14,8 @@ public static class SaveSystem
 
     public static void Save(GameData data)
     {
+        Debug.Log($"SaveSystem.Save data: {JsonUtility.ToJson(data)}");
+        Debug.Log($"SaveSystem.Save data: {SaveFolderPath}");
         if (data == null)
         {
             Debug.LogError("SaveSystem.Save called with null data. Aborting save.");
