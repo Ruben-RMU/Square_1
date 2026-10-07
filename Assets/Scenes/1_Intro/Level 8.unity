@@ -351,6 +351,10 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: 5.0088015
       objectReference: {fileID: 0}
+    - target: {fileID: 6966866280265666895, guid: a11f327aa7f7e194f92ef0076a7d7554, type: 3}
+      propertyPath: currentLevelNumber
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 8781412763261124087, guid: a11f327aa7f7e194f92ef0076a7d7554, type: 3}
       propertyPath: m_Name
       value: Next Level
