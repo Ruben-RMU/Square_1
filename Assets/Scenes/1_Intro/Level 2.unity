@@ -3985,8 +3985,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: or use the knockback to reach high or far places
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 9177f64bb1221154c9d50b5b7aabaaa1, type: 2}
-  m_sharedMaterial: {fileID: -8105798861554313324, guid: 9177f64bb1221154c9d50b5b7aabaaa1, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 0408f2c0d0275eb478e06856190968b7, type: 2}
+  m_sharedMaterial: {fileID: 6640744296140495495, guid: 0408f2c0d0275eb478e06856190968b7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
