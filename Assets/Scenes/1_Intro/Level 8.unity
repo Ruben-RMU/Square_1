@@ -15289,6 +15289,18 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 5225812073150833243, guid: af81bd535b6eca36786eaa52578e3155, type: 3}
+      propertyPath: m_Points.Array.data[5].y
+      value: 5.347375
+      objectReference: {fileID: 0}
+    - target: {fileID: 5225812073150833243, guid: af81bd535b6eca36786eaa52578e3155, type: 3}
+      propertyPath: m_Points.Array.data[6].x
+      value: 9.547511
+      objectReference: {fileID: 0}
+    - target: {fileID: 5225812073150833243, guid: af81bd535b6eca36786eaa52578e3155, type: 3}
+      propertyPath: m_Points.Array.data[6].y
+      value: 5.391652
+      objectReference: {fileID: 0}
     - target: {fileID: 5860081204608841157, guid: af81bd535b6eca36786eaa52578e3155, type: 3}
       propertyPath: m_Name
       value: platform_big_1
