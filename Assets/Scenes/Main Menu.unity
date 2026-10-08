@@ -2930,10 +2930,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0da15a71664be649a3aa60e01395fbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MusicManager
+  musicMixerGroup: {fileID: -1713272229580916902, guid: cf6f233f4ff5f484ab2fcb1cbaca5f67, type: 2}
   introSource: {fileID: 1234315433}
   loopSource: {fileID: 1234315432}
-  introClip: {fileID: 8300000, guid: 84c71994ed67a934896d6ca6606b756a, type: 3}
-  mainLoopClip: {fileID: 8300000, guid: 5f2da4c19842b104baaf49ae52e95d82, type: 3}
+  mainMenuIntroClip: {fileID: 8300000, guid: 84c71994ed67a934896d6ca6606b756a, type: 3}
+  mainMenuLoopClip: {fileID: 8300000, guid: 5f2da4c19842b104baaf49ae52e95d82, type: 3}
+  mapLoopClips:
+  - {fileID: 8300000, guid: 84f8080235c633f418c51469a3b101b4, type: 3}
+  - {fileID: 8300000, guid: f1027d9f9472e0f499d9a1e0da29d29b, type: 3}
+  - {fileID: 8300000, guid: 98ac38a90556be44fa1ddd18c37418a6, type: 3}
 --- !u!4 &1234315435
 Transform:
   m_ObjectHideFlags: 0
