@@ -2823,9 +2823,45 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 983507632015157257, guid: d0067e648514442488bbde92b38d7709, type: 3}
+      propertyPath: m_Size.x
+      value: 0.33972654
+      objectReference: {fileID: 0}
+    - target: {fileID: 983507632015157257, guid: d0067e648514442488bbde92b38d7709, type: 3}
+      propertyPath: m_Size.y
+      value: 2.0311494
+      objectReference: {fileID: 0}
+    - target: {fileID: 983507632015157257, guid: d0067e648514442488bbde92b38d7709, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.16164
+      objectReference: {fileID: 0}
+    - target: {fileID: 983507632015157257, guid: d0067e648514442488bbde92b38d7709, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.43577024
+      objectReference: {fileID: 0}
     - target: {fileID: 2564283116868115953, guid: d0067e648514442488bbde92b38d7709, type: 3}
       propertyPath: m_Name
       value: next level
+      objectReference: {fileID: 0}
+    - target: {fileID: 5247358464913263787, guid: d0067e648514442488bbde92b38d7709, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -23.38
+      objectReference: {fileID: 0}
+    - target: {fileID: 5247358464913263787, guid: d0067e648514442488bbde92b38d7709, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.61
+      objectReference: {fileID: 0}
+    - target: {fileID: 5247358464913263787, guid: d0067e648514442488bbde92b38d7709, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.99990726
+      objectReference: {fileID: 0}
+    - target: {fileID: 5247358464913263787, guid: d0067e648514442488bbde92b38d7709, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.013619862
+      objectReference: {fileID: 0}
+    - target: {fileID: 5247358464913263787, guid: d0067e648514442488bbde92b38d7709, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -1.561
       objectReference: {fileID: 0}
     - target: {fileID: 5908896967574585642, guid: d0067e648514442488bbde92b38d7709, type: 3}
       propertyPath: currentLevelNumber
