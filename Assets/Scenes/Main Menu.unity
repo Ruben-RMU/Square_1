@@ -2930,6 +2930,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0da15a71664be649a3aa60e01395fbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MusicManager
+  mainMenuSceneName: Main Menu
   musicMixerGroup: {fileID: -1713272229580916902, guid: cf6f233f4ff5f484ab2fcb1cbaca5f67, type: 2}
   introSource: {fileID: 1234315433}
   loopSource: {fileID: 1234315432}
