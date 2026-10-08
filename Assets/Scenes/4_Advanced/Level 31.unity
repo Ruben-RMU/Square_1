@@ -1208,7 +1208,6 @@ GameObject:
   - component: {fileID: 243795543}
   - component: {fileID: 243795542}
   - component: {fileID: 243795541}
-  - component: {fileID: 243795544}
   m_Layer: 3
   m_Name: rocks 1_2 (2)
   m_TagString: Untagged
@@ -1268,14 +1267,14 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0.1
   m_Points:
-  - {x: -7.193044, y: -1.294756}
-  - {x: -7.232273, y: 2.021073}
-  - {x: 7.2421784, y: 2.0397522}
-  - {x: 7.2587175, y: -1.3363155}
-  - {x: 4.591016, y: -2.0719829}
-  - {x: 0.748842, y: -0.96008855}
-  - {x: -3.3405206, y: -0.75266564}
-  - {x: -7.1162963, y: -1.3119067}
+  - {x: -6.8374467, y: -0.6307408}
+  - {x: -6.8322234, y: 1.2094979}
+  - {x: 6.9754815, y: 1.1543974}
+  - {x: 6.725319, y: -0.74607813}
+  - {x: 4.591016, y: -1.2604088}
+  - {x: 0.92663825, y: -0.000954628}
+  - {x: -3.4294164, y: 0.058909416}
+  - {x: -6.671798, y: -0.35277283}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -1366,49 +1365,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!68 &243795544
-EdgeCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 243795539}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
-  m_Points:
-  - {x: -7.225007, y: -0.0000009536743}
-  - {x: 7.224992, y: -0.0000009536743}
-  m_AdjacentStartPoint: {x: 0, y: 0}
-  m_AdjacentEndPoint: {x: 0, y: 0}
-  m_UseAdjacentStartPoint: 0
-  m_UseAdjacentEndPoint: 0
 --- !u!1 &264343131
 GameObject:
   m_ObjectHideFlags: 0
@@ -2669,7 +2625,6 @@ GameObject:
   - component: {fileID: 417411406}
   - component: {fileID: 417411405}
   - component: {fileID: 417411404}
-  - component: {fileID: 417411407}
   m_Layer: 3
   m_Name: Rocks_14 (2)
   m_TagString: Untagged
@@ -2729,8 +2684,8 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0.1
   m_Points:
-  - {x: -8.363899, y: 4.840635}
-  - {x: 8.357399, y: 4.8974657}
+  - {x: -8.258441, y: 4.511925}
+  - {x: 8.354275, y: 4.565501}
   - {x: 8.056593, y: 3.4094954}
   - {x: 5.1856604, y: 1.8143244}
   - {x: 4.634874, y: -0.34377402}
@@ -2741,7 +2696,7 @@ EdgeCollider2D:
   - {x: -6.14763, y: 0.3518194}
   - {x: -6.120726, y: 1.6940696}
   - {x: -7.909152, y: 3.4375038}
-  - {x: -8.436189, y: 4.7826633}
+  - {x: -8.136825, y: 4.289599}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -2832,49 +2787,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!68 &417411407
-EdgeCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 417411402}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
-  m_Points:
-  - {x: -8.395008, y: 0}
-  - {x: 8.394989, y: 0}
-  m_AdjacentStartPoint: {x: 0, y: 0}
-  m_AdjacentEndPoint: {x: 0, y: 0}
-  m_UseAdjacentStartPoint: 0
-  m_UseAdjacentEndPoint: 0
 --- !u!1 &418600913
 GameObject:
   m_ObjectHideFlags: 0
@@ -3229,7 +3141,6 @@ GameObject:
   - component: {fileID: 492249671}
   - component: {fileID: 492249670}
   - component: {fileID: 492249669}
-  - component: {fileID: 492249672}
   m_Layer: 3
   m_Name: rocks 1_4 (4)
   m_TagString: Untagged
@@ -3289,14 +3200,14 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0.1
   m_Points:
-  - {x: -7.705, y: 0}
-  - {x: -7.655313, y: 1.7541819}
-  - {x: 7.686246, y: 1.7575274}
-  - {x: 7.6397133, y: -0.7285098}
-  - {x: 3.77351, y: -1.3498061}
-  - {x: -0.73550326, y: -0.8097949}
-  - {x: -5.151331, y: -1.7745765}
-  - {x: -7.729039, y: -0.7718419}
+  - {x: -7.295071, y: -0.0972909}
+  - {x: -7.2112246, y: 1.0731523}
+  - {x: 7.481282, y: 1.1737889}
+  - {x: 7.2297845, y: -0.14477128}
+  - {x: 3.77351, y: -0.7660675}
+  - {x: -0.73550326, y: -0.17740744}
+  - {x: -5.11717, y: -0.94761074}
+  - {x: -7.2507896, y: -0.38268512}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -3387,49 +3298,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!68 &492249672
-EdgeCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 492249667}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
-  m_Points:
-  - {x: -7.705042, y: 0}
-  - {x: 7.704958, y: 0}
-  m_AdjacentStartPoint: {x: 0, y: 0}
-  m_AdjacentEndPoint: {x: 0, y: 0}
-  m_UseAdjacentStartPoint: 0
-  m_UseAdjacentEndPoint: 0
 --- !u!1001 &522740789
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5401,7 +5269,6 @@ GameObject:
   - component: {fileID: 786146017}
   - component: {fileID: 786146016}
   - component: {fileID: 786146015}
-  - component: {fileID: 786146018}
   m_Layer: 3
   m_Name: rocks 1_2 (4)
   m_TagString: Untagged
@@ -5461,14 +5328,14 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0.1
   m_Points:
-  - {x: -7.193044, y: -1.294756}
-  - {x: -7.232273, y: 2.021073}
-  - {x: 7.2421784, y: 2.0397522}
-  - {x: 7.2587175, y: -1.3363155}
-  - {x: 4.591016, y: -2.0719829}
-  - {x: 0.748842, y: -0.96008855}
-  - {x: -3.3405206, y: -0.75266564}
-  - {x: -7.1162963, y: -1.3119067}
+  - {x: -6.8354387, y: -0.75860727}
+  - {x: -6.785266, y: 1.178556}
+  - {x: 6.884572, y: 1.1206468}
+  - {x: 6.767009, y: -0.7235746}
+  - {x: 4.591016, y: -1.2294656}
+  - {x: 0.748842, y: -0.19416744}
+  - {x: -3.3852239, y: 0.013255477}
+  - {x: -6.7586904, y: -0.85235393}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -5559,49 +5426,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!68 &786146018
-EdgeCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 786146013}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
-  m_Points:
-  - {x: -7.22496, y: 0}
-  - {x: 7.22504, y: 0}
-  m_AdjacentStartPoint: {x: 0, y: 0}
-  m_AdjacentEndPoint: {x: 0, y: 0}
-  m_UseAdjacentStartPoint: 0
-  m_UseAdjacentEndPoint: 0
 --- !u!1001 &801443921
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6369,6 +6193,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2728611624180726729, guid: 7eb361f84d4ff104f89b9d4de7fedfc6, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 4d3b81d9388dd0549be073ae82420289, type: 2}
     - target: {fileID: 6639251279277525397, guid: 7eb361f84d4ff104f89b9d4de7fedfc6, type: 3}
       propertyPath: m_Name
       value: breakable wall 1_1 1
@@ -6376,64 +6204,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6639251279277525397, guid: 7eb361f84d4ff104f89b9d4de7fedfc6, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 976172865}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7eb361f84d4ff104f89b9d4de7fedfc6, type: 3}
 --- !u!4 &976172863 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 99288794608277610, guid: 7eb361f84d4ff104f89b9d4de7fedfc6, type: 3}
   m_PrefabInstance: {fileID: 976172862}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &976172864 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6639251279277525397, guid: 7eb361f84d4ff104f89b9d4de7fedfc6, type: 3}
-  m_PrefabInstance: {fileID: 976172862}
-  m_PrefabAsset: {fileID: 0}
---- !u!68 &976172865
-EdgeCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 976172864}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 6200000, guid: 4d3b81d9388dd0549be073ae82420289, type: 2}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0.1
-  m_Points:
-  - {x: -0.79, y: 0}
-  - {x: 0.79, y: 0}
-  m_AdjacentStartPoint: {x: 0, y: 0}
-  m_AdjacentEndPoint: {x: 0, y: 0}
-  m_UseAdjacentStartPoint: 0
-  m_UseAdjacentEndPoint: 0
 --- !u!4 &990424086 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 543051802420922650, guid: d2dfb6ae49a5e653fae54193216004b5, type: 3}
@@ -6901,6 +6678,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 135352586}
     m_Modifications:
+    - target: {fileID: 4199545001705438637, guid: 8a04250e8c848084cbb148acc2499d31, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 4d3b81d9388dd0549be073ae82420289, type: 2}
     - target: {fileID: 6107676248642728495, guid: 8a04250e8c848084cbb148acc2499d31, type: 3}
       propertyPath: m_LocalPosition.x
       value: 32.763268
@@ -6945,67 +6726,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: tall breakable wall 1 (1)_0
       objectReference: {fileID: 0}
+    - target: {fileID: 7152653788313925232, guid: 8a04250e8c848084cbb148acc2499d31, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7152653788313925232, guid: 8a04250e8c848084cbb148acc2499d31, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1096462369}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a04250e8c848084cbb148acc2499d31, type: 3}
 --- !u!4 &1096462367 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6107676248642728495, guid: 8a04250e8c848084cbb148acc2499d31, type: 3}
   m_PrefabInstance: {fileID: 1096462366}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1096462368 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7152653788313925232, guid: 8a04250e8c848084cbb148acc2499d31, type: 3}
-  m_PrefabInstance: {fileID: 1096462366}
-  m_PrefabAsset: {fileID: 0}
---- !u!68 &1096462369
-EdgeCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1096462368}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 6200000, guid: 4d3b81d9388dd0549be073ae82420289, type: 2}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0.1
-  m_Points:
-  - {x: -0.78000015, y: -0.0000076293945}
-  - {x: 0.78000015, y: -0.0000076293945}
-  m_AdjacentStartPoint: {x: 0, y: 0}
-  m_AdjacentEndPoint: {x: 0, y: 0}
-  m_UseAdjacentStartPoint: 0
-  m_UseAdjacentEndPoint: 0
 --- !u!1 &1104334759
 GameObject:
   m_ObjectHideFlags: 0
@@ -7435,7 +7169,6 @@ GameObject:
   - component: {fileID: 1176595320}
   - component: {fileID: 1176595319}
   - component: {fileID: 1176595318}
-  - component: {fileID: 1176595321}
   m_Layer: 3
   m_Name: rocks 1_4 (5)
   m_TagString: Untagged
@@ -7495,14 +7228,14 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0.1
   m_Points:
-  - {x: -7.705, y: 0}
-  - {x: -7.655313, y: 1.7541819}
-  - {x: 7.686246, y: 1.7575274}
-  - {x: 7.6397133, y: -0.7285098}
-  - {x: 3.77351, y: -1.3498061}
-  - {x: -0.73550326, y: -0.8097949}
-  - {x: -5.151331, y: -1.7745765}
-  - {x: -7.729039, y: -0.7718419}
+  - {x: -7.1900077, y: -0.3666697}
+  - {x: -7.2506766, y: 1.073214}
+  - {x: 7.4655366, y: 1.0241811}
+  - {x: 7.0143647, y: -0.46660382}
+  - {x: 3.77351, y: -0.82598734}
+  - {x: -0.73550326, y: -0.024063349}
+  - {x: -5.0777597, y: -0.93645966}
+  - {x: -7.0301223, y: -0.30040157}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -7593,49 +7326,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!68 &1176595321
-EdgeCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1176595316}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
-  m_Points:
-  - {x: -7.704962, y: -0.0000076293945}
-  - {x: 7.705038, y: -0.0000076293945}
-  m_AdjacentStartPoint: {x: 0, y: 0}
-  m_AdjacentEndPoint: {x: 0, y: 0}
-  m_UseAdjacentStartPoint: 0
-  m_UseAdjacentEndPoint: 0
 --- !u!4 &1179391637 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6047334636439588042, guid: 15fb20dfd46fc9215836eb532044022a, type: 3}
@@ -7658,7 +7348,6 @@ GameObject:
   - component: {fileID: 1192064433}
   - component: {fileID: 1192064432}
   - component: {fileID: 1192064431}
-  - component: {fileID: 1192064434}
   m_Layer: 3
   m_Name: Rocks_13 (7)
   m_TagString: Untagged
@@ -7718,17 +7407,17 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0.1
   m_Points:
-  - {x: -7.031944, y: 4.1538835}
-  - {x: 7.1170244, y: 4.168286}
-  - {x: 7.3949585, y: 2.981788}
-  - {x: 4.8738265, y: 1.1397158}
-  - {x: 3.0581026, y: -2.025945}
-  - {x: 0.17563963, y: -4.2398515}
-  - {x: -1.0122523, y: -3.6295288}
-  - {x: -2.8191378, y: -0.9177451}
-  - {x: -4.9446397, y: -0.2026246}
-  - {x: -7.407559, y: 2.3302248}
-  - {x: -6.9729247, y: 4.1032276}
+  - {x: -7.031944, y: 3.7548249}
+  - {x: 7.032976, y: 3.769227}
+  - {x: 6.848631, y: 3.2478254}
+  - {x: 4.6006613, y: 1.5387695}
+  - {x: 2.9740508, y: -1.4938701}
+  - {x: 0.17563963, y: -3.7742846}
+  - {x: -0.9912394, y: -3.1639595}
+  - {x: -2.756099, y: -0.38567024}
+  - {x: -4.9446397, y: 0.26294464}
+  - {x: -7.2184453, y: 2.5962622}
+  - {x: -6.9098873, y: 3.3051102}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -7819,49 +7508,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!68 &1192064434
-EdgeCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1192064429}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
-  m_Points:
-  - {x: -7.370011, y: 0.0000038146973}
-  - {x: 7.369988, y: 0.0000038146973}
-  m_AdjacentStartPoint: {x: 0, y: 0}
-  m_AdjacentEndPoint: {x: 0, y: 0}
-  m_UseAdjacentStartPoint: 0
-  m_UseAdjacentEndPoint: 0
 --- !u!1 &1224315717
 GameObject:
   m_ObjectHideFlags: 0
@@ -8147,7 +7793,6 @@ GameObject:
   - component: {fileID: 1253914002}
   - component: {fileID: 1253914001}
   - component: {fileID: 1253914000}
-  - component: {fileID: 1253914003}
   m_Layer: 3
   m_Name: Rocks_13 (3)
   m_TagString: Untagged
@@ -8207,8 +7852,8 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0.1
   m_Points:
-  - {x: -7.031944, y: 4.1538835}
-  - {x: 7.1170244, y: 4.168286}
+  - {x: -7.0621552, y: 4.0121727}
+  - {x: 7.086813, y: 3.9982326}
   - {x: 7.3949585, y: 2.981788}
   - {x: 4.8738265, y: 1.1397158}
   - {x: 3.0581026, y: -2.025945}
@@ -8217,7 +7862,7 @@ EdgeCollider2D:
   - {x: -2.8191378, y: -0.9177451}
   - {x: -4.9446397, y: -0.2026246}
   - {x: -7.407559, y: 2.3302248}
-  - {x: -6.9729247, y: 4.1032276}
+  - {x: -7.018242, y: 3.9331748}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -8308,49 +7953,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!68 &1253914003
-EdgeCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1253913998}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
-  m_Points:
-  - {x: -7.370003, y: -0.0000009536743}
-  - {x: 7.3699956, y: -0.0000009536743}
-  m_AdjacentStartPoint: {x: 0, y: 0}
-  m_AdjacentEndPoint: {x: 0, y: 0}
-  m_UseAdjacentStartPoint: 0
-  m_UseAdjacentEndPoint: 0
 --- !u!4 &1255784513 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9036745864396241208, guid: 377d82f33a63264c4b11a8254993b40c, type: 3}
@@ -9767,7 +9369,6 @@ GameObject:
   - component: {fileID: 1539781857}
   - component: {fileID: 1539781856}
   - component: {fileID: 1539781855}
-  - component: {fileID: 1539781858}
   m_Layer: 3
   m_Name: Rocks_13 (6)
   m_TagString: Untagged
@@ -9827,9 +9428,12 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0.1
   m_Points:
-  - {x: -7.031944, y: 4.1538835}
-  - {x: 7.1170244, y: 4.168286}
-  - {x: 7.3949585, y: 2.981788}
+  - {x: -7.0493765, y: 3.8783133}
+  - {x: -4.179117, y: 3.9025507}
+  - {x: -4.179117, y: 3.9025502}
+  - {x: -4.179117, y: 3.9025497}
+  - {x: 7.062998, y: 3.9974754}
+  - {x: 7.2869043, y: 3.1953015}
   - {x: 4.8738265, y: 1.1397158}
   - {x: 3.0581026, y: -2.025945}
   - {x: 0.17563963, y: -4.2398515}
@@ -9837,7 +9441,7 @@ EdgeCollider2D:
   - {x: -2.8191378, y: -0.9177451}
   - {x: -4.9446397, y: -0.2026246}
   - {x: -7.407559, y: 2.3302248}
-  - {x: -6.9729247, y: 4.1032276}
+  - {x: -7.0533743, y: 3.8241563}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -9928,49 +9532,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!68 &1539781858
-EdgeCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1539781853}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
-  m_Points:
-  - {x: -7.3699923, y: 0}
-  - {x: 7.3700056, y: 0}
-  m_AdjacentStartPoint: {x: 0, y: 0}
-  m_AdjacentEndPoint: {x: 0, y: 0}
-  m_UseAdjacentStartPoint: 0
-  m_UseAdjacentEndPoint: 0
 --- !u!1 &1543121314
 GameObject:
   m_ObjectHideFlags: 0
@@ -10637,7 +10198,6 @@ GameObject:
   - component: {fileID: 1668023997}
   - component: {fileID: 1668023996}
   - component: {fileID: 1668023995}
-  - component: {fileID: 1668023998}
   m_Layer: 3
   m_Name: Rocks_13 (8)
   m_TagString: Untagged
@@ -10697,17 +10257,17 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0.1
   m_Points:
-  - {x: -7.031944, y: 4.1538835}
-  - {x: 7.1170244, y: 4.168286}
-  - {x: 7.3949585, y: 2.981788}
+  - {x: -6.936861, y: 3.8004067}
+  - {x: 6.998165, y: 3.814809}
+  - {x: 6.8244433, y: 3.1585245}
   - {x: 4.8738265, y: 1.1397158}
   - {x: 3.0581026, y: -2.025945}
   - {x: 0.17563963, y: -4.2398515}
   - {x: -1.0122523, y: -3.6295288}
   - {x: -2.8191378, y: -0.9177451}
   - {x: -4.9446397, y: -0.2026246}
-  - {x: -7.407559, y: 2.3302248}
-  - {x: -6.9729247, y: 4.1032276}
+  - {x: -7.122303, y: 2.5953314}
+  - {x: -6.806528, y: 3.4404573}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -10798,49 +10358,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!68 &1668023998
-EdgeCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1668023993}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
-  m_Points:
-  - {x: -7.370031, y: 0}
-  - {x: 7.36997, y: 0}
-  m_AdjacentStartPoint: {x: 0, y: 0}
-  m_AdjacentEndPoint: {x: 0, y: 0}
-  m_UseAdjacentStartPoint: 0
-  m_UseAdjacentEndPoint: 0
 --- !u!1 &1673624376
 GameObject:
   m_ObjectHideFlags: 0
@@ -10959,7 +10476,6 @@ GameObject:
   - component: {fileID: 1692830015}
   - component: {fileID: 1692830014}
   - component: {fileID: 1692830013}
-  - component: {fileID: 1692830016}
   m_Layer: 3
   m_Name: rocks 1_4 (2)
   m_TagString: Untagged
@@ -11020,13 +10536,13 @@ EdgeCollider2D:
   m_EdgeRadius: 0.1
   m_Points:
   - {x: -7.705, y: 0}
-  - {x: -7.655313, y: 1.7541819}
-  - {x: 7.686246, y: 1.7575274}
-  - {x: 7.6397133, y: -0.7285098}
-  - {x: 3.77351, y: -1.3498061}
-  - {x: -0.73550326, y: -0.8097949}
-  - {x: -5.151331, y: -1.7745765}
-  - {x: -7.729039, y: -0.7718419}
+  - {x: -7.2572613, y: 0.74788094}
+  - {x: 7.288192, y: 0.8231057}
+  - {x: 7.386407, y: 0.062155426}
+  - {x: 3.809695, y: -0.48726273}
+  - {x: -0.59075767, y: 0.3402624}
+  - {x: -5.078958, y: -0.7682754}
+  - {x: -7.2947974, y: 0.09070146}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -11117,49 +10633,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!68 &1692830016
-EdgeCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1692830011}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
-  m_Points:
-  - {x: -7.7050457, y: 0.0000009536743}
-  - {x: 7.704954, y: 0.0000009536743}
-  m_AdjacentStartPoint: {x: 0, y: 0}
-  m_AdjacentEndPoint: {x: 0, y: 0}
-  m_UseAdjacentStartPoint: 0
-  m_UseAdjacentEndPoint: 0
 --- !u!4 &1707480043 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6992749870397189592, guid: 7842f6d70d7a8b24baad3a97e94f7f72, type: 3}
@@ -12018,7 +11491,7 @@ PolygonCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 4d3b81d9388dd0549be073ae82420289, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -12486,7 +11959,6 @@ GameObject:
   - component: {fileID: 1960871821}
   - component: {fileID: 1960871820}
   - component: {fileID: 1960871819}
-  - component: {fileID: 1960871822}
   m_Layer: 3
   m_Name: rocks 1_2 (6)
   m_TagString: Untagged
@@ -12546,14 +12018,14 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0.1
   m_Points:
-  - {x: -7.193044, y: -1.294756}
-  - {x: -7.232273, y: 2.021073}
-  - {x: 7.2421784, y: 2.0397522}
-  - {x: 7.2587175, y: -1.3363155}
-  - {x: 4.591016, y: -2.0719829}
-  - {x: 0.748842, y: -0.96008855}
-  - {x: -3.3405206, y: -0.75266564}
-  - {x: -7.1162963, y: -1.3119067}
+  - {x: -6.729195, y: -0.57674557}
+  - {x: -6.9792643, y: 1.1594574}
+  - {x: 6.820499, y: 1.1781405}
+  - {x: 6.7948685, y: -0.4746998}
+  - {x: 4.4223437, y: -1.1385665}
+  - {x: 0.748842, y: -0.026672184}
+  - {x: -3.4670248, y: 0.037145436}
+  - {x: -6.3572707, y: -0.5220956}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -12644,49 +12116,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!68 &1960871822
-EdgeCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1960871817}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
-  m_Points:
-  - {x: -7.2249923, y: 0}
-  - {x: 7.2250075, y: 0}
-  m_AdjacentStartPoint: {x: 0, y: 0}
-  m_AdjacentEndPoint: {x: 0, y: 0}
-  m_UseAdjacentStartPoint: 0
-  m_UseAdjacentEndPoint: 0
 --- !u!1 &1973999684
 GameObject:
   m_ObjectHideFlags: 0
@@ -13511,7 +12940,6 @@ GameObject:
   - component: {fileID: 2077275909}
   - component: {fileID: 2077275908}
   - component: {fileID: 2077275907}
-  - component: {fileID: 2077275910}
   m_Layer: 3
   m_Name: rocks 1_4 (3)
   m_TagString: Untagged
@@ -13571,14 +12999,14 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0.1
   m_Points:
-  - {x: -7.705, y: 0}
-  - {x: -7.655313, y: 1.7541819}
-  - {x: 7.686246, y: 1.7575274}
-  - {x: 7.6397133, y: -0.7285098}
-  - {x: 3.77351, y: -1.3498061}
-  - {x: -0.73550326, y: -0.8097949}
-  - {x: -5.151331, y: -1.7745765}
-  - {x: -7.729039, y: -0.7718419}
+  - {x: -7.2491217, y: -0.29507828}
+  - {x: -7.1994348, y: 0.9279609}
+  - {x: 7.437585, y: 1.0493395}
+  - {x: 7.142392, y: -0.13835144}
+  - {x: 3.77351, y: -0.8186635}
+  - {x: -0.73550326, y: 0.016426027}
+  - {x: -5.151331, y: -1.2434338}
+  - {x: -7.1902733, y: -0.29971835}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -13669,49 +13097,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!68 &2077275910
-EdgeCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2077275905}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
-  m_Points:
-  - {x: -7.705019, y: 0}
-  - {x: 7.704981, y: 0}
-  m_AdjacentStartPoint: {x: 0, y: 0}
-  m_AdjacentEndPoint: {x: 0, y: 0}
-  m_UseAdjacentStartPoint: 0
-  m_UseAdjacentEndPoint: 0
 --- !u!1001 &2106019462
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13802,7 +13187,6 @@ GameObject:
   - component: {fileID: 2132329970}
   - component: {fileID: 2132329969}
   - component: {fileID: 2132329968}
-  - component: {fileID: 2132329971}
   m_Layer: 3
   m_Name: rocks 1_2 (3)
   m_TagString: Untagged
@@ -13862,14 +13246,14 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0.1
   m_Points:
-  - {x: -7.193044, y: -1.294756}
-  - {x: -7.232273, y: 2.021073}
-  - {x: 7.2421784, y: 2.0397522}
-  - {x: 7.2587175, y: -1.3363155}
-  - {x: 4.591016, y: -2.0719829}
-  - {x: 0.748842, y: -0.96008855}
-  - {x: -3.3405206, y: -0.75266564}
-  - {x: -7.1162963, y: -1.3119067}
+  - {x: -6.8686557, y: -0.6217263}
+  - {x: -6.8267937, y: 1.1461343}
+  - {x: 6.8366995, y: 1.1648136}
+  - {x: 6.4883018, y: -0.39407396}
+  - {x: 4.591016, y: -0.92783225}
+  - {x: 0.6677462, y: 0.11675924}
+  - {x: -3.5027122, y: 0.2568791}
+  - {x: -6.4675245, y: -0.3696649}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -13960,49 +13344,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!68 &2132329971
-EdgeCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2132329966}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
-  m_Points:
-  - {x: -7.224927, y: -0.00000023841858}
-  - {x: 7.225072, y: -0.00000023841858}
-  m_AdjacentStartPoint: {x: 0, y: 0}
-  m_AdjacentEndPoint: {x: 0, y: 0}
-  m_UseAdjacentStartPoint: 0
-  m_UseAdjacentEndPoint: 0
 --- !u!1 &2134070643
 GameObject:
   m_ObjectHideFlags: 0
@@ -14102,6 +13443,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 135352586}
     m_Modifications:
+    - target: {fileID: 4199545001705438637, guid: 8a04250e8c848084cbb148acc2499d31, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 4d3b81d9388dd0549be073ae82420289, type: 2}
     - target: {fileID: 6107676248642728495, guid: 8a04250e8c848084cbb148acc2499d31, type: 3}
       propertyPath: m_LocalPosition.x
       value: -25.395807
