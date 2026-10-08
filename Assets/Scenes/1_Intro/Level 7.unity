@@ -10234,6 +10234,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5225812073150833243, guid: af81bd535b6eca36786eaa52578e3155, type: 3}
+      propertyPath: m_Points.Array.data[5].x
+      value: -9.34855
+      objectReference: {fileID: 0}
+    - target: {fileID: 5225812073150833243, guid: af81bd535b6eca36786eaa52578e3155, type: 3}
+      propertyPath: m_Points.Array.data[5].y
+      value: 5.37027
+      objectReference: {fileID: 0}
+    - target: {fileID: 5225812073150833243, guid: af81bd535b6eca36786eaa52578e3155, type: 3}
+      propertyPath: m_Points.Array.data[6].x
+      value: 9.568972
+      objectReference: {fileID: 0}
+    - target: {fileID: 5225812073150833243, guid: af81bd535b6eca36786eaa52578e3155, type: 3}
+      propertyPath: m_Points.Array.data[6].y
+      value: 5.372092
+      objectReference: {fileID: 0}
     - target: {fileID: 5860081204608841157, guid: af81bd535b6eca36786eaa52578e3155, type: 3}
       propertyPath: m_Name
       value: platform_big_1 (1)

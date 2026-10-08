@@ -4280,7 +4280,6 @@ GameObject:
   - component: {fileID: 1161858440}
   - component: {fileID: 1161858439}
   - component: {fileID: 1161858438}
-  - component: {fileID: 1161858437}
   m_Layer: 3
   m_Name: Rocks_13 (5)
   m_TagString: Untagged
@@ -4303,49 +4302,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1357040636}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!68 &1161858437
-EdgeCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1161858435}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
-  m_Points:
-  - {x: -7.3699994, y: 0}
-  - {x: 7.3699985, y: 0}
-  m_AdjacentStartPoint: {x: 0, y: 0}
-  m_AdjacentEndPoint: {x: 0, y: 0}
-  m_UseAdjacentStartPoint: 0
-  m_UseAdjacentEndPoint: 0
 --- !u!68 &1161858438
 EdgeCollider2D:
   m_ObjectHideFlags: 0
@@ -4383,8 +4339,8 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0.1
   m_Points:
-  - {x: -7.031944, y: 4.1538835}
-  - {x: 7.10266, y: 4.255907}
+  - {x: -7.031944, y: 3.989858}
+  - {x: 7.0624075, y: 3.9684634}
   - {x: 7.3949585, y: 2.981788}
   - {x: 4.8738265, y: 1.1397158}
   - {x: 3.0581026, y: -2.025945}
@@ -4393,7 +4349,7 @@ EdgeCollider2D:
   - {x: -2.8191378, y: -0.9177451}
   - {x: -4.9446397, y: -0.2026246}
   - {x: -7.407559, y: 2.3302248}
-  - {x: -6.9729247, y: 4.1032276}
+  - {x: -6.9082336, y: 3.5642877}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -6193,7 +6149,6 @@ GameObject:
   - component: {fileID: 1818928387}
   - component: {fileID: 1818928386}
   - component: {fileID: 1818928385}
-  - component: {fileID: 1818928384}
   m_Layer: 3
   m_Name: Rocks_13 (2)
   m_TagString: Untagged
@@ -6216,49 +6171,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1357040636}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!68 &1818928384
-EdgeCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1818928382}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
-  m_Points:
-  - {x: -7.3699994, y: 0}
-  - {x: 7.3699985, y: 0}
-  m_AdjacentStartPoint: {x: 0, y: 0}
-  m_AdjacentEndPoint: {x: 0, y: 0}
-  m_UseAdjacentStartPoint: 0
-  m_UseAdjacentEndPoint: 0
 --- !u!68 &1818928385
 EdgeCollider2D:
   m_ObjectHideFlags: 0
@@ -6296,8 +6208,8 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0.1
   m_Points:
-  - {x: -7.031944, y: 4.1538835}
-  - {x: 7.10266, y: 4.255907}
+  - {x: -6.9973187, y: 3.9782958}
+  - {x: 7.0181026, y: 3.9933777}
   - {x: 7.3949585, y: 2.981788}
   - {x: 4.8738265, y: 1.1397158}
   - {x: 3.0581026, y: -2.025945}
@@ -6306,7 +6218,7 @@ EdgeCollider2D:
   - {x: -2.8191378, y: -0.9177451}
   - {x: -4.9446397, y: -0.2026246}
   - {x: -7.407559, y: 2.3302248}
-  - {x: -6.9729247, y: 4.1032276}
+  - {x: -7.0537176, y: 3.8022203}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -7013,7 +6925,6 @@ GameObject:
   - component: {fileID: 1953807787}
   - component: {fileID: 1953807786}
   - component: {fileID: 1953807785}
-  - component: {fileID: 1953807784}
   m_Layer: 3
   m_Name: Rocks_14 (3)
   m_TagString: Untagged
@@ -7036,49 +6947,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1357040636}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!68 &1953807784
-EdgeCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1953807782}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
-  m_Points:
-  - {x: -8.395014, y: 0}
-  - {x: 8.394983, y: 0}
-  m_AdjacentStartPoint: {x: 0, y: 0}
-  m_AdjacentEndPoint: {x: 0, y: 0}
-  m_UseAdjacentStartPoint: 0
-  m_UseAdjacentEndPoint: 0
 --- !u!68 &1953807785
 EdgeCollider2D:
   m_ObjectHideFlags: 0
@@ -7116,9 +6984,9 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0.1
   m_Points:
-  - {x: -8.363899, y: 4.840635}
-  - {x: 8.357399, y: 4.8974657}
-  - {x: 8.056593, y: 3.4094954}
+  - {x: -8.298231, y: 4.649842}
+  - {x: 8.3163185, y: 4.6696115}
+  - {x: 7.9668856, y: 3.5971508}
   - {x: 5.1856604, y: 1.8143244}
   - {x: 4.634874, y: -0.34377402}
   - {x: 1.9478881, y: -1.7128103}
@@ -7128,7 +6996,7 @@ EdgeCollider2D:
   - {x: -6.14763, y: 0.3518194}
   - {x: -6.120726, y: 1.6940696}
   - {x: -7.909152, y: 3.4375038}
-  - {x: -8.436189, y: 4.7826633}
+  - {x: -8.261074, y: 4.5346327}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
