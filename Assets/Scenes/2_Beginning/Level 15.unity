@@ -1951,7 +1951,7 @@ MonoBehaviour:
   target: {fileID: 1183627329}
   smoothSpeed: 0.125
   offset: {x: 0, y: 0, z: 0}
-  minX: -9.75
+  minX: -1.73
   maxX: 35.44
   lockY: 0
   showBounds: 1
@@ -3793,11 +3793,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 139239042625816266, guid: 25ff0187399bc154c9fdc796481ba7ff, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.650258
+      value: 47
       objectReference: {fileID: 0}
     - target: {fileID: 139239042625816266, guid: 25ff0187399bc154c9fdc796481ba7ff, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.1812782
+      value: -3.3
       objectReference: {fileID: 0}
     - target: {fileID: 139239042625816266, guid: 25ff0187399bc154c9fdc796481ba7ff, type: 3}
       propertyPath: m_LocalPosition.z
