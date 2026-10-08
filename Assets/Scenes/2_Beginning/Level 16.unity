@@ -1355,7 +1355,7 @@ MonoBehaviour:
   target: {fileID: 464559159}
   smoothSpeed: 0.125
   offset: {x: 0, y: 0, z: 0}
-  minX: 1.62
+  minX: 5.36
   maxX: 10.5
   lockY: 0
   showBounds: 1

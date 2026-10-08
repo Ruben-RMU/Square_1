@@ -1960,11 +1960,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 139239042625816266, guid: 25ff0187399bc154c9fdc796481ba7ff, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.14
+      value: 3.62
       objectReference: {fileID: 0}
     - target: {fileID: 139239042625816266, guid: 25ff0187399bc154c9fdc796481ba7ff, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.87
+      value: -1.8
       objectReference: {fileID: 0}
     - target: {fileID: 139239042625816266, guid: 25ff0187399bc154c9fdc796481ba7ff, type: 3}
       propertyPath: m_LocalPosition.z
@@ -11694,8 +11694,8 @@ MonoBehaviour:
   target: {fileID: 1522624354}
   smoothSpeed: 0.125
   offset: {x: 0, y: 0, z: 0}
-  minX: -1
-  maxX: 6
+  minX: -0.34
+  maxX: 2.55
   lockY: 0
   showBounds: 1
 --- !u!114 &2075036851
