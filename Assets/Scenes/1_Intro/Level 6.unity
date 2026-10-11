@@ -3948,7 +3948,7 @@ MonoBehaviour:
   minX: 0
   maxX: 6.2
   lockY: 0
-  showBounds: 1
+  showBounds: 0
 --- !u!1001 &1443331701
 PrefabInstance:
   m_ObjectHideFlags: 0
