@@ -1845,7 +1845,7 @@ MonoBehaviour:
   minX: -1.79
   maxX: 28.9
   lockY: 0
-  showBounds: 1
+  showBounds: 0
 --- !u!114 &393163470
 MonoBehaviour:
   m_ObjectHideFlags: 0

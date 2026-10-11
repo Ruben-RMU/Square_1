@@ -1056,7 +1056,7 @@ MonoBehaviour:
   minX: 0
   maxX: 0
   lockY: 1
-  showBounds: 1
+  showBounds: 0
 --- !u!1 &483599871
 GameObject:
   m_ObjectHideFlags: 0
